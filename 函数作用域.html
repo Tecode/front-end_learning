@@ -30,6 +30,23 @@
         d()
     }
     b()
+    function fn() {
+        console.log('1111')
+        function ffn() {
+            console.log('2222')
+        }
+        ffn()
+    }
+    fn()
+
+    function foo(a) {
+        var b = a * 2
+        function bar(c) {
+            console.log(a, b, c, '-------------foo')
+        }
+        bar(b * 3)
+    }
+    foo(2) // 2 4 12
 </script>
 
 </html>

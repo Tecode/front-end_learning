@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据双向绑定</title>
+</head>
+
+<body>
+    <input type="text" id="inp" />
+    <p id="showText"></p>
+</body>
+<script>
+    var data = {}
+    Object.defineProperty(data, 'newData', {
+        get: function () {
+            return obj;
+        },
+        set: function (newVal) {
+            document.getElementById("inp").value = newVal;
+            document.getElementById("showText").innerHTML = newVal;
+        }
+    })
+    document.addEventListener("keyup", function (e) {
+        data.newData = e.target.value;
+    })
+</script>
+
+</html>

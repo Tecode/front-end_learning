@@ -39,3 +39,12 @@ chmod ug+x,o+w hello.sh
 
 -rwxr-xrw- 1 root   root        67 11月 23 21:49 hello.sh
 ```
+
+## 数字授权法
+
+```shell
+rwx
+421
+#读写执行权限
+chmod 777 file.txtx
+```

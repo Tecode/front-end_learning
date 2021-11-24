@@ -36,4 +36,51 @@ other::r--
 [root@localhost tmp]# ls -l ./files.txt 
 -rw-rwxr--+ 1 root root 1850 Nov 24 23:46 ./files.txt
 
+[root@localhost tmp]# setfacl -m o::r-- ./files.txt 
+[root@localhost tmp]# getfacl ./files.txt 
+# file: files.txt
+# owner: root
+# group: root
+user::rw-
+user:xm:rwx
+group::r--
+mask::rwx
+other::r--
+```
+
+## 删除ACL权限`-x`
+
+```shell
+[root@localhost tmp]# getfacl ./files.txt 
+# file: files.txt
+# owner: root
+# group: root
+user::rw-
+group::r--
+mask::r--
+other::r--
+
+[root@localhost tmp]# setfacl -m u:haoxuan:rwx ./files.txt 
+[root@localhost tmp]# getfacl ./files.txt 
+# file: files.txt
+# owner: root
+# group: root
+user::rw-
+user:haoxuan:rwx
+group::r--
+mask::rwx
+other::r--
+
+[root@localhost tmp]# setfacl -x u:haoxuan ./files.txt 
+[root@localhost tmp]# getfacl ./files.txt 
+# file: files.txt
+# owner: root
+# group: root
+user::rw-
+group::r--
+mask::r--
+other::r--
+
+[root@localhost tmp]# 
+
 ```

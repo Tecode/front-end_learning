@@ -48,3 +48,42 @@ rwx
 #读写执行权限
 chmod 777 file.txtx
 ```
+
+##  修改所有者或所有组`chown`
+
+```shell
+[root@localhost ~]# ll ./file.txt 
+-rw-r--r--. 1 root root 2337 Nov 24 23:27 ./file.txt
+
+# 修改所有者
+[root@localhost ~]# chown xm ./file.txt 
+[root@localhost ~]# ll ./file.txt 
+-rw-r--r--. 1 xm root 2337 Nov 24 23:27 ./file.txt
+
+# 修改所有组
+[root@localhost ~]# chown .xm ./file.txt 
+[root@localhost ~]# ll ./file.txt 
+-rw-r--r--. 1 xm xm 2337 Nov 24 23:27 ./file.txt
+```
+
+##  修改所有组`chgrp`
+
+```shell
+[root@localhost ~]# ll ./file.txt 
+-rw-r--r--. 1 xm xm 2337 Nov 24 23:27 ./file.txt
+[root@localhost ~]# chgrp root ./file.txt 
+[root@localhost ~]# ll ./file.txt 
+-rw-r--r--. 1 xm root 2337 Nov 24 23:27 ./file.txt
+```
+
+## 迭代修改文件或目录`-R`
+
+```shell
+[root@localhost tmp]# ls -l floder01/
+total 0
+drwxr-xr-x. 3 root root 22 Nov 24 23:38 floder02
+[root@localhost tmp]# chmod -R 777 floder01/
+[root@localhost tmp]# ls -l floder01/
+total 0
+drwxrwxrwx. 3 root root 22 Nov 24 23:38 floder02
+```

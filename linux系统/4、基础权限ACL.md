@@ -121,5 +121,4 @@ Usage: setfacl [-bkndRLP] { -m|-M|-x|-X ... } file ...
       --test              test mode (ACLs are not modified)
   -v, --version           print version and exit
   -h, --help              this help text
-
 ```

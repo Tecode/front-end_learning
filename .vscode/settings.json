@@ -2,6 +2,8 @@
     "cSpell.words": [
         "SEUSER",
         "chgrp",
+        "inodes",
+        "mkfs",
         "userdel",
         "usermod"
     ]

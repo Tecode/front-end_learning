@@ -1,5 +1,10 @@
 // import { Observable } from "rxjs";
-import "./mergeRequest";
+// 合并请求发送
+// import "./mergeRequest";
+// token刷新
+// import "./exchangeToken";
+// 自己实现一个Observer Observable
+
 
 // const observable = new Observable((subscriber) => {
 //   subscriber.next(1);

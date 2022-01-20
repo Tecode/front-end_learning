@@ -2,7 +2,7 @@
 // 合并请求发送
 // import "./mergeRequest";
 // token刷新
-// import "./exchangeToken";
+import "./exchangeToken";
 // 自己实现一个Observer Observable
 
 

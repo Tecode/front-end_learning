@@ -2,7 +2,7 @@
 
 适用场景：网络请求、数据库读写、文件读写各种耗时操作通过异步操作完成
 
-## 文档 [https://rxjs.dev/api](https://rxjs.dev/api)
+## 文档 [https://rxjs.dev/api](https://rxjs.dev/api) [https://www.learnrxjs.io/learn-rxjs/operators](https://www.learnrxjs.io/learn-rxjs/operators)
 
 ## Observer
 

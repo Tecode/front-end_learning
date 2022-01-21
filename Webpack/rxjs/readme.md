@@ -13,6 +13,8 @@ RxJS 是一个库，它通过使用`observable`（可观察对象）序列来编
 
 ### 操作符查询 [https://rxjs.dev/api](https://rxjs.dev/api)
 
+### 其他编程语言的[ReactiveX](https://reactivex.io/languages.html)
+
 ### Angular中的[使用](https://github.com/Tecode/angular-music-player/blob/master/src/interceptor/httpconfig.interceptor.ts)
 
 ## [迭代器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators)
@@ -64,5 +66,7 @@ a.next() // {value: undefined, done: true}
 
 ## 使用场景
 
-场景：在发送请求的时候我们有这样一个请求，页面中有三个APi用户信息、商品列表、推荐商品列表,
+场景1：在发送请求的时候我们有这样一个请求，页面中有三个APi用户信息、商品列表、推荐商品列表,
 在接口没有全部回来以前我们会放置一个骨架图，如果某个请求失败也要展示数据要保证用户看到的不是一个空白页
+
+场景2：Token过期我们需要重新换取新的Token,完成以后会重新发送之前的请求；有时候我们进去电梯手机信号不好网络请求会出现超时的情况，网络正常时需要重试看能否恢复正常，重试失败手动刷新；

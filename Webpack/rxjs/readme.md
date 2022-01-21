@@ -13,6 +13,26 @@ RxJS 是一个库，它通过使用`observable`（可观察对象）序列来编
 
 ### 操作符查询 [https://rxjs.dev/api](https://rxjs.dev/api)
 
+### Angular中的[使用](https://github.com/Tecode/angular-music-player/blob/master/src/interceptor/httpconfig.interceptor.ts)
+
+## [迭代器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators)
+
+```js
+function* makeRangeIterator(start = 0, end = Infinity, step = 1) {
+    for (let i = start; i < end; i += step) {
+        yield i;
+    }
+}
+var a = makeRangeIterator(1,10,2)
+a.next() // {value: 1, done: false}
+a.next() // {value: 3, done: false}
+a.next() // {value: 5, done: false}
+a.next() // {value: 7, done: false}
+a.next() // {value: 9, done: false}
+a.next() // {value: undefined, done: true}
+
+```
+
 ## Observable（可观察对象）
 
 ### [原理](https://github.com/Tecode/front-end_learning/blob/master/Webpack/rxjs/src/observable.js)

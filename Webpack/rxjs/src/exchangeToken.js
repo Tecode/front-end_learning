@@ -1,6 +1,7 @@
 // import { userApi, productListApi, recommendedListApi } from "./mergeRequest";
 import { Observable } from "rxjs";
 import axios from "axios";
+import { interval, take } from "rxjs";
 
 const exchangeTokenApi = () =>
   new Promise((resolve, reject) => {
@@ -25,4 +26,22 @@ axios.get("/api/refreshToken").then((data) => {
   console.log(data);
 });
 
-console.log("Api2w");
+console.log("Api");
+exchangeTokenApi();
+
+const interval$ = interval(1000);
+// 模拟发送请求
+interval$.pipe(take(5)).subscribe({
+  next(x) {
+    console.log("got value " + x);
+  },
+  error(err) {
+    console.error("something wrong occurred: " + err);
+  },
+  complete() {
+    console.log("done");
+  },
+});
+
+let requests = [];
+const exchangeToken = (request) => {};

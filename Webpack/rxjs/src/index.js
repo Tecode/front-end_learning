@@ -3,8 +3,8 @@
 // import "./mergeRequest";
 // token刷新
 import "./exchangeToken";
-// 自己实现一个Observer Observable
-
+// 迭代器
+import "./iterator";
 
 // const observable = new Observable((subscriber) => {
 //   subscriber.next(1);

@@ -7,5 +7,11 @@
         "mkfs",
         "userdel",
         "usermod"
-    ]
+    ],
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.proxy": {
+        "enable": true,
+        "baseUri": "/api",
+        "proxyUri": "http://jd206.mocklab.io/api"
+    }
 }

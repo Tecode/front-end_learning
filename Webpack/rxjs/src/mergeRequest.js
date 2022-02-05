@@ -72,7 +72,7 @@ const awaitFun002 = async () => {
   console.log("使用await加载", `耗时：${new Date().valueOf() - dateTime}ms`);
 };
 
-awaitFun();
+// awaitFun();
 // build.js:1 Uncaught (in promise)
 // {error: {…}}
 // error: {code: 500, message: '服务器错误'}
@@ -141,7 +141,7 @@ const mergeRequest = () => {
   });
 };
 
-// mergeRequest();
+mergeRequest();
 // recommendedListApi {data: Array(2)}
 // build.js:2 userApi {data: {…}}
 // build.js:2 next=== (3) [{…}, {…}, {…}]

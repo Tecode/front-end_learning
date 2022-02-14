@@ -1,0 +1,14 @@
+{
+  "name": "front_end_advanced",
+  "version": "1.0.0",
+  "description": "前端进阶",
+  "main": "1.filter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "haoxuan",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

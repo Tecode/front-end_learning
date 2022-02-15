@@ -1,2 +1,4 @@
 const _ = require("lodash");
-console.log(_.curry, "----_");
+const value = "haoxuan lina lock";
+const fn = _.flowRight(_.toUpper, _.first);
+console.log(fn(value));

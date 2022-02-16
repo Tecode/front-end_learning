@@ -8,4 +8,4 @@ const func = fp.flowRight(
 );
 
 console.log(func(value));
-// HAOXUAN
+// HAOXUAN-LINA-LOCK

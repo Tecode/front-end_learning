@@ -9,3 +9,6 @@ const func = fp.flowRight(
 
 console.log(func(value));
 // HAOXUAN-LINA-LOCK
+
+const func002 = fp.flowRight((value) => value.length, () => "Hello");
+console.log(func002());

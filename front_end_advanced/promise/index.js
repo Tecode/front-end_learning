@@ -23,12 +23,24 @@ const WritePromise = require("./handwritingPromise");
 
 const promise = new WritePromise((resolve, reject) => {
   setTimeout(() => {
-    resolve("OK");
-  }, 2000);
+    // resolve("OK");
+    reject("Error");
+  }, 20);
   // reject(new Error("出错误了"));
+  // resolve("OK");
 });
 
 promise.then(
-  (value) => console.log(value, "成功"),
-  (value) => console.log(value, "失败")
+  (value) => console.log(value, "成功1"),
+  (value) => console.log(value, "失败1")
+);
+
+promise.then(
+  (value) => console.log(value, "成功2"),
+  (value) => console.log(value, "失败2")
+);
+
+promise.then(
+  (value) => console.log(value, "成功3"),
+  (value) => console.log(value, "失败3")
 );

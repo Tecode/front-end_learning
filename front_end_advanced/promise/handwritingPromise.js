@@ -15,9 +15,9 @@ class HandWritPromise {
   // 保存失败的值
   reason = null;
   // 定义一个失败的回调
-  filedCallback = null;
+  filedCallback = [];
   // 定义一个成功的回调
-  successCallback = null;
+  successCallback = [];
 
   resolve = (value) => {
     // 如果不是等待状态就往下执行
@@ -27,7 +27,10 @@ class HandWritPromise {
     // 保存成功的值
     this.value = value;
     // 执行函数要将结果告诉调用方
-    this.successCallback && this.successCallback(this.value);
+    // this.successCallback && this.successCallback(this.value);
+    while (this.successCallback.length > 0) {
+      this.successCallback.shift()(this.value);
+    }
   };
 
   reject = (value) => {
@@ -38,7 +41,10 @@ class HandWritPromise {
     // 保存失败的原因
     this.reason = value;
     // 执行函数要将结果告诉调用方
-    this.filedCallback && this.filedCallback(this.value);
+    // this.filedCallback && this.filedCallback(this.reason);
+    while (this.filedCallback.length > 0) {
+      this.filedCallback.shift()(this.reason);
+    }
   };
 
   then(successCallback, filedCallback) {
@@ -53,8 +59,8 @@ class HandWritPromise {
     }
     // 处理异步情况，目前处于PENDING状态
     // 将会掉函数方法保存
-    this.filedCallback = filedCallback;
-    this.successCallback = successCallback;
+    this.filedCallback.push(filedCallback);
+    this.successCallback.push(successCallback);
   }
 }
 

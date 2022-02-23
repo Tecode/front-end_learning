@@ -4,7 +4,13 @@ const FULFILLED = "fulfilled"; // 完成
 const REJECTED = "rejected"; // 失败
 
 // 处理返回的数据是promise还是普通参数
-const resolvePromise = (result, resolve, reject) => {
+const resolvePromise = (promise001, result, resolve, reject) => {
+  // 如果调用的是promise自己回死循环
+  if (promise001 == result) {
+    return reject(
+      TypeError("TypeError: Chaining cycle detected for promise #<Promise>")
+    );
+  }
   // promise参数需要处理后再返回
   if (result instanceof HandWritPromise) {
     result.then(resolve, reject);
@@ -63,13 +69,15 @@ class HandWritPromise {
     const handWritPromise = new HandWritPromise((resolve, reject) => {
       // 根据状态支持失败函数或者成功函数
       if (this.status === FULFILLED) {
-        const result = successCallback(this.value);
         // 判断 result 的值是普通值还是promise对象
         // 如果是普通值 直接调用resolve
         // 如果是promise对象 查看promise对象返回的结果
         // 再根据promise对象返回的结果 决定调用resolve 还是调用reject
         // resolve(result);
-        resolvePromise(result, resolve, reject);
+        setTimeout(() => {
+          const result = successCallback(this.value);
+          resolvePromise(handWritPromise, result, resolve, reject);
+        }, 0);
         return;
       }
       if (this.status === REJECTED) {

@@ -22,8 +22,10 @@
 const WritePromise = require("./handwritingPromise");
 
 const promise = new WritePromise((resolve, reject) => {
-  // resolve("OK");
-  reject(new Error("出错误了"));
+  setTimeout(() => {
+    resolve("OK");
+  }, 2000);
+  // reject(new Error("出错误了"));
 });
 
 promise.then(

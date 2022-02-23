@@ -22,25 +22,41 @@
 const WritePromise = require("./handwritingPromise");
 
 const promise = new WritePromise((resolve, reject) => {
-  setTimeout(() => {
-    // resolve("OK");
-    reject("Error");
-  }, 20);
+  // setTimeout(() => {
+  //   resolve("OK");
+  //   reject("Error");
+  // }, 20);
   // reject(new Error("出错误了"));
-  // resolve("OK");
+  resolve("OK");
 });
 
-promise.then(
-  (value) => console.log(value, "成功1"),
-  (value) => console.log(value, "失败1")
-);
+const promise002 = new WritePromise((resolve, reject) => {
+  // setTimeout(() => {
+  //   resolve("OK");
+  //   reject("Error");
+  // }, 20);
+  // reject(new Error("出错误了"));
+  resolve("OTHER");
+});
 
-promise.then(
-  (value) => console.log(value, "成功2"),
-  (value) => console.log(value, "失败2")
-);
-
-promise.then(
-  (value) => console.log(value, "成功3"),
-  (value) => console.log(value, "失败3")
-);
+// then方法的链式调用
+// 要实现链式调用就需要then返回一个promise对象
+promise
+  .then(
+    (value) => {
+      console.log(value, "成功1");
+      return promise002;
+    },
+    (value) => console.log(value, "失败1")
+  )
+  .then(
+    (value) => {
+      console.log(value, "成功2");
+      return 200;
+    },
+    (value) => console.log(value, "失败2")
+  )
+  .then(
+    (value) => console.log(value, "成功3"),
+    (value) => console.log(value, "失败3")
+  );

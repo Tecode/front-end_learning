@@ -3,6 +3,17 @@ const PENDING = "pending"; // 等待
 const FULFILLED = "fulfilled"; // 完成
 const REJECTED = "rejected"; // 失败
 
+// 处理返回的数据是promise还是普通参数
+const resolvePromise = (result, resolve, reject) => {
+  // promise参数需要处理后再返回
+  if (result instanceof HandWritPromise) {
+    result.then(resolve, reject);
+  } else {
+    // 普通参数直接返回
+    resolve(result);
+  }
+};
+
 class HandWritPromise {
   constructor(execute) {
     execute(this.resolve, this.reject);
@@ -48,19 +59,29 @@ class HandWritPromise {
   };
 
   then(successCallback, filedCallback) {
-    // 根据状态支持失败函数或者成功函数
-    if (this.status === FULFILLED) {
-      successCallback(this.value);
-      return;
-    }
-    if (this.status === REJECTED) {
-      filedCallback(this.reason);
-      return;
-    }
-    // 处理异步情况，目前处于PENDING状态
-    // 将会掉函数方法保存
-    this.filedCallback.push(filedCallback);
-    this.successCallback.push(successCallback);
+    // 实现then方法的链式调用
+    const handWritPromise = new HandWritPromise((resolve, reject) => {
+      // 根据状态支持失败函数或者成功函数
+      if (this.status === FULFILLED) {
+        const result = successCallback(this.value);
+        // 判断 result 的值是普通值还是promise对象
+        // 如果是普通值 直接调用resolve
+        // 如果是promise对象 查看promise对象返回的结果
+        // 再根据promise对象返回的结果 决定调用resolve 还是调用reject
+        // resolve(result);
+        resolvePromise(result, resolve, reject);
+        return;
+      }
+      if (this.status === REJECTED) {
+        filedCallback(this.reason);
+        return;
+      }
+      // 处理异步情况，目前处于PENDING状态
+      // 将会掉函数方法保存
+      this.filedCallback.push(filedCallback);
+      this.successCallback.push(successCallback);
+    });
+    return handWritPromise;
   }
 }
 

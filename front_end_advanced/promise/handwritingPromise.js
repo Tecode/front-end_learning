@@ -127,6 +127,13 @@ class HandWritPromise {
       }
     });
   }
+
+  // 实现Promise.resolve方法
+  static resolve(value) {
+    if (value instanceof HandWritPromise) return value;
+
+    return new HandWritPromise((resolve) => resolve(value));
+  }
 }
 
 module.exports = HandWritPromise;

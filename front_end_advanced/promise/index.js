@@ -52,3 +52,15 @@ HandWritPromise.all(["promise", "执行", promise, promise002]).then(
   (value) => console.log(value),
   (error) => console.log(error)
 );
+
+// Promise resolve使用
+HandWritPromise.resolve("OK Resolve").then(
+  (value) => console.log(value),
+  (error) => console.log(error)
+);
+
+// 延迟2秒执行的resolve方法
+HandWritPromise.resolve(promise002).then(
+  (value) => console.log(value),
+  (error) => console.log(error)
+);

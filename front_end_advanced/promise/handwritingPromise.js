@@ -65,6 +65,14 @@ class HandWritPromise {
   };
 
   then(successCallback, filedCallback) {
+    // 参数可选 .then()
+    successCallback = successCallback ? successCallback : (value) => value;
+    // 参数可选 .then()
+    filedCallback = filedCallback
+      ? filedCallback
+      : (reason) => {
+          throw reason;
+        };
     // 实现then方法的链式调用
     const handWritPromise = new HandWritPromise((resolve, reject) => {
       // 根据状态支持失败函数或者成功函数

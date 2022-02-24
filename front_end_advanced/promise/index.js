@@ -28,7 +28,7 @@ const promise = new WritePromise((resolve, reject) => {
   // }, 20);
   // reject(new Error("出错误了"));
   resolve("OK");
-}).then(() => promise);
+});
 
 const promise002 = new WritePromise((resolve, reject) => {
   // setTimeout(() => {
@@ -41,10 +41,9 @@ const promise002 = new WritePromise((resolve, reject) => {
 
 // then方法的链式调用
 // 要实现链式调用就需要then返回一个promise对象
-promise.then(
-  (value) => {
-    console.log(value, "成功1");
-    return promise002;
-  },
+promise
+.then()
+.then(
+  (value) => console.log(value, "成功1"),
   (value) => console.log(value, "失败1")
 );

@@ -134,6 +134,34 @@ class HandWritPromise {
 
     return new HandWritPromise((resolve) => resolve(value));
   }
+
+  // 实现finally方法
+  // finally(callBack) {
+  //   return this.then(
+  //     (value) => {
+  //       callBack();
+  //       return value;
+  //     },
+  //     (reason) => {
+  //       callBack();
+  //       throw reason;
+  //     }
+  //   );
+  // }
+
+  // 实现finally方法
+  finally(callBack) {
+    return this.then(
+      (value) => {
+        return HandWritPromise.resolve(callBack()).then(() => value);
+      },
+      (reason) => {
+        return HandWritPromise.resolve(callBack()).then(() => {
+          throw reason;
+        });
+      }
+    );
+  }
 }
 
 module.exports = HandWritPromise;

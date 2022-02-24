@@ -28,12 +28,12 @@ const promise = new WritePromise((resolve, reject) => {
   //   reject("Error");
   // }, 20);
   // reject(new Error("出错误了"));
-  resolve("OK");
+  resolve("OK XX");
 });
 
 const promise002 = new WritePromise((resolve, reject) => {
   setTimeout(() => {
-    resolve("OK 001");
+    resolve("OK 009");
     // reject("Error");
   }, 2000);
   // reject(new Error("出错误了"));
@@ -64,3 +64,14 @@ HandWritPromise.resolve(promise002).then(
   (value) => console.log(value),
   (error) => console.log(error)
 );
+
+// Promise finally使用
+promise
+  .finally(() => {
+    console.log("执行finally");
+    return promise002;
+  })
+  .then(
+    (value) => console.log(value, "成功 finally"),
+    (value) => console.log(value, "失败 finally")
+  );

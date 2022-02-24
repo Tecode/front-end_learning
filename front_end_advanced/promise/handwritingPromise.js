@@ -99,6 +99,34 @@ class HandWritPromise {
     });
     return handWritPromise;
   }
+
+  // 实现Promise的All方法
+  static all(list) {
+    const newList = [];
+    let total = 0;
+    return new HandWritPromise((resolve, reject) => {
+      // 执行结果放入新的数组
+      const addItem = (index, value) => {
+        total++;
+        newList[index] = value;
+        if (list.length == total) {
+          resolve(newList);
+        }
+      };
+      // 循环传入的promise列表
+      for (let index = 0; index < list.length; index++) {
+        const current = list[index];
+        if (current instanceof HandWritPromise) {
+          current.then(
+            (result) => addItem(index, result),
+            (reason) => reject(reason)
+          );
+        } else {
+          addItem(index, current);
+        }
+      }
+    });
+  }
 }
 
 module.exports = HandWritPromise;

@@ -19,6 +19,7 @@
 //   console.log(value);
 // });
 
+const HandWritPromise = require("./handwritingPromise");
 const WritePromise = require("./handwritingPromise");
 
 const promise = new WritePromise((resolve, reject) => {
@@ -31,19 +32,23 @@ const promise = new WritePromise((resolve, reject) => {
 });
 
 const promise002 = new WritePromise((resolve, reject) => {
-  // setTimeout(() => {
-  //   resolve("OK");
-  //   reject("Error");
-  // }, 20);
+  setTimeout(() => {
+    resolve("OK 001");
+    // reject("Error");
+  }, 2000);
   // reject(new Error("出错误了"));
-  resolve("OTHER");
+  // resolve("OTHER");
 });
 
 // then方法的链式调用
 // 要实现链式调用就需要then返回一个promise对象
-promise
-.then()
-.then(
+promise.then().then(
   (value) => console.log(value, "成功1"),
   (value) => console.log(value, "失败1")
+);
+
+// Promise all使用
+HandWritPromise.all(["promise", "执行", promise, promise002]).then(
+  (value) => console.log(value),
+  (error) => console.log(error)
 );

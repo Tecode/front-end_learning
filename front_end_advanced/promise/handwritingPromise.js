@@ -128,6 +128,11 @@ class HandWritPromise {
     });
   }
 
+  // 实现catch方法
+  catch() {
+    
+  }
+
   // 实现Promise.resolve方法
   static resolve(value) {
     if (value instanceof HandWritPromise) return value;

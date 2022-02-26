@@ -129,8 +129,8 @@ class HandWritPromise {
   }
 
   // 实现catch方法
-  catch() {
-    
+  catch(filedCallback) {
+    return this.then(null, filedCallback);
   }
 
   // 实现Promise.resolve方法

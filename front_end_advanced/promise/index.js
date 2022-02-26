@@ -27,9 +27,9 @@ const promise = new WritePromise((resolve, reject) => {
   //   resolve("OK");
   //   reject("Error");
   // }, 20);
-  // reject(new Error("出错误了"));
-  resolve("OK XX");
-});
+  reject(new Error("出错误了"));
+  // resolve("OK XX");
+}).catch((err) => console.log("捕获错误", err));
 
 const promise002 = new WritePromise((resolve, reject) => {
   setTimeout(() => {
@@ -75,3 +75,6 @@ promise
     (value) => console.log(value, "成功 finally"),
     (value) => console.log(value, "失败 finally")
   );
+
+// Promise catch使用
+promise.then().catch((error) => console.log("捕获错误", error));

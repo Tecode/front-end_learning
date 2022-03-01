@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>堆快照监控内存</title>
+</head>
+
+<body>
+  <button id="button">Run JavaScript</button>
+</body>
+<script>
+  // 运行javaScript脚本查看deta
+  var list = [];
+  function run() {
+    const ul = document.createElement("ul");
+    for (let index = 0; index < 100; index++) {
+      li = document.createElement("li")
+      ul.appendChild(li)
+    }
+    list = ul;
+    // 清空就会发现没有
+    list = null;
+  }
+  document.getElementById("button").addEventListener("click", run)
+</script>
+
+</html>

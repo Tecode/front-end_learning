@@ -9,6 +9,7 @@
         "haoxuan",
         "inodes",
         "mkfs",
+        "tmpl",
         "userdel",
         "usermod"
     ],

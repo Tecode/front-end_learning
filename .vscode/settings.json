@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
+        "SEUSER",
+        "browserslist",
         "chgrp",
         "deta",
         "haha",
@@ -7,7 +9,6 @@
         "haoxuan",
         "inodes",
         "mkfs",
-        "SEUSER",
         "userdel",
         "usermod"
     ],

@@ -9,6 +9,7 @@
         "haoxuan",
         "inodes",
         "mkfs",
+        "nomodule",
         "tmpl",
         "userdel",
         "usermod"

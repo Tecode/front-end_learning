@@ -1,0 +1,10 @@
+{
+  "name": "automate-build-gulp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "haoxuan",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}

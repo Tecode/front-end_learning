@@ -1,5 +1,6 @@
 {
   "name": "yeoman-node",
+<<<<<<< HEAD
   "version": "0.0.0",
   "description": "Study Yeoman",
   "homepage": "",
@@ -16,6 +17,21 @@
     ""
   ],
   "devDependencies": {
+=======
+  "version": "1.0.0",
+  "description": "Yeoman Study",
+  "homepage": "",
+  "author": "haoxuan",
+  "files": [
+    "lib"
+  ],
+  "main": "index.js",
+  "keywords": [
+    "Yeoman Front-End"
+  ],
+  "devDependencies": {
+    "coveralls": "^3.0.7",
+>>>>>>> 2f11b0aa35094ec9521863cf44a25ef1717cfb7f
     "eslint": "^6.6.0",
     "prettier": "^1.19.1",
     "husky": "^3.0.9",
@@ -23,12 +39,24 @@
     "eslint-config-prettier": "^6.6.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-config-xo": "^0.27.2",
+<<<<<<< HEAD
     "jest": "^26.1.0",
     "lec": "^1.0.1"
+=======
+    "jest": "^26.1.0"
+>>>>>>> 2f11b0aa35094ec9521863cf44a25ef1717cfb7f
   },
   "engines": {
     "npm": ">= 4.0.0"
   },
+<<<<<<< HEAD
+=======
+  "license": "MIT",
+  "dependencies": {
+    "generator-node": "^2.8.0",
+    "yo": "^4.3.0"
+  },
+>>>>>>> 2f11b0aa35094ec9521863cf44a25ef1717cfb7f
   "lint-staged": {
     "*.js": [
       "eslint --fix",
@@ -62,6 +90,7 @@
   },
   "scripts": {
     "pretest": "eslint .",
+<<<<<<< HEAD
     "test": "jest",
     "prepare": "lec lib/cli.js -c LF"
   },
@@ -73,5 +102,12 @@
   "bin": "lib/cli.js",
   "dependencies": {
     "meow": "^3.7.0"
+=======
+    "test": "jest"
+  },
+  "repository": "git@github.com:Tecode/front-end_learning.git",
+  "jest": {
+    "testEnvironment": "node"
+>>>>>>> 2f11b0aa35094ec9521863cf44a25ef1717cfb7f
   }
 }

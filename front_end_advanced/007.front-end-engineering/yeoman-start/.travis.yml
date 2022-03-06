@@ -8,3 +8,7 @@ node_js:
   - v8
   - v6
   - v4
+<<<<<<< HEAD
+=======
+after_script: cat ./coverage/lcov.info | coveralls
+>>>>>>> 2f11b0aa35094ec9521863cf44a25ef1717cfb7f

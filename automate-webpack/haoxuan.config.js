@@ -14,7 +14,7 @@ module.exports = {
           "style-loader",
           {
             loader: "css-loader",
-            options: { importLoaders: 1, sourceMap: true },
+            options: { importLoaders: 1, sourceMap: true, esModule: false },
           },
           {
             loader: "postcss-loader",
@@ -32,7 +32,7 @@ module.exports = {
           "style-loader",
           {
             loader: "css-loader",
-            options: { importLoaders: 1, sourceMap: true },
+            options: { importLoaders: 1, sourceMap: true, esModule: false },
           },
           {
             loader: "postcss-loader",
@@ -43,6 +43,18 @@ module.exports = {
             },
           },
           "less-loader",
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/i,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              name: "img/[name].[hash:6].[ext]",
+              limit: 1024 * 100,
+            },
+          },
         ],
       },
     ],

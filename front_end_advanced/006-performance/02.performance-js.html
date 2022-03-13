@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeLine记录内存</title>
+</head>
+
+<body>
+  <button id="button">Run JavaScript</button>
+</body>
+<script>
+  // 运行javaScript脚本可以在TimeLine查看内存
+  // 可以看到我们一直点击内存会一直增加不会减少
+  let list = [];
+  function run() {
+    for (let index = 0; index < 100000; index++) {
+      document.body.appendChild(document.createElement("p"))
+    }
+    list.push([...new Array(1000000)].join("X"))
+  }
+  document.getElementById("button").addEventListener("click", run)
+</script>
+
+</html>

@@ -1,0 +1,61 @@
+{
+  "name": "yeoman-node",
+  "version": "1.0.0",
+  "description": "Yeoman Study",
+  "homepage": "",
+  "author": "haoxuan",
+  "files": [
+    "lib"
+  ],
+  "main": "index.js",
+  "keywords": [
+    "Yeoman Front-End"
+  ],
+  "devDependencies": {
+    "coveralls": "^3.0.7",
+    "jest": "^26.1.0",
+    "lec": "^1.0.1"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest"
+  },
+  "repository": "git@github.com:Tecode/front-end_learning.git",
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

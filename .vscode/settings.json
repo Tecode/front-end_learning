@@ -1,0 +1,26 @@
+{
+    "cSpell.words": [
+        "browserslist",
+        "chgrp",
+        "deta",
+        "haha",
+        "haoxua",
+        "haoxuan",
+        "importmap",
+        "inodes",
+        "largeish",
+        "mkfs",
+        "nomodule",
+        "SEUSER",
+        "systemjs",
+        "tmpl",
+        "userdel",
+        "usermod"
+    ],
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.proxy": {
+        "enable": true,
+        "baseUri": "/api",
+        "proxyUri": "http://jd206.mocklab.io/api"
+    }
+}

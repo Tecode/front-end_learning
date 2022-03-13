@@ -1,0 +1,10 @@
+{
+  "name": "automate-build-grunt-config",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "haoxuan",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^1.0.4"
+  }
+}

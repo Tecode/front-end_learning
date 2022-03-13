@@ -1,0 +1,10 @@
+{
+  "name": "micro-front-end",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "haoxuan",
+  "license": "MIT",
+  "devDependencies": {
+    "create-single-spa": "^4.1.2"
+  }
+}

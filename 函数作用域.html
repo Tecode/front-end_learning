@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数作用域</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 变量var会提升变量但是不会赋值为undefined，function函数会直接执行
+    console.log(a);
+    a()
+    c()
+    function a() {
+        console.log('a')
+    }
+
+    var b = function () {
+        console.log('b')
+    }
+
+    function c() {
+        console.log('c')
+        function d() {
+            console.log('d')
+        }
+        d()
+    }
+    b()
+    function fn() {
+        console.log('1111')
+        function ffn() {
+            console.log('2222')
+        }
+        ffn()
+    }
+    fn()
+
+    function foo(a) {
+        var b = a * 2
+        function bar(c) {
+            console.log(a, b, c, '-------------foo')
+        }
+        bar(b * 3)
+    }
+    foo(2) // 2 4 12
+</script>
+
+</html>

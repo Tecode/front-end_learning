@@ -1,0 +1,1 @@
+(()=>{var o={677:()=>{console.log("webpack依赖图")}},r={};function e(t){var s=r[t];if(void 0!==s)return s.exports;var n=r[t]={exports:{}};return o[t](n,n.exports,e),n.exports}(()=>{"use strict";e(677),console.log(12+36)})()})();

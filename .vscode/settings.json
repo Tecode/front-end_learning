@@ -1,10 +1,10 @@
 {
     "cSpell.words": [
+        "SEUSER",
         "browserslist",
         "chgrp",
         "deta",
         "haha",
-        "haoxua",
         "haoxuan",
         "importmap",
         "inodes",
@@ -13,6 +13,9 @@
         "nomodule",
         "SEUSER",
         "systemjs",
+        "inodes",
+        "mkfs",
+        "nomodule",
         "tmpl",
         "userdel",
         "usermod"

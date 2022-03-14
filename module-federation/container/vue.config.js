@@ -4,17 +4,17 @@ const packageJSON = require("./package.json")
 
 module.exports = {
   devServer: {
-    port: 8081,
+    port: 8080,
     historyApiFallback: true
   },
   configureWebpack: {
     plugins: [
       new ModuleFederationPlugin({
         name: "container",
+        filename: 'remoteEntry.js',
         remotes: {
-          // marketing: "marketing@http://localhost:8081/remoteEntry.js",
-          // auth: "auth@http://localhost:8082/remoteEntry.js",
-          // dashboard: "dashboard@http://localhost:8083/remoteEntry.js"
+          auth: 'auth@http://localhost:9002/remoteEntry.js',
+          product: 'product@http://localhost:9001/remoteEntry.js',
         },
         shared: packageJSON.dependencies
       }),

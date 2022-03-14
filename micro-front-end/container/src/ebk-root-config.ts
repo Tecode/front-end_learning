@@ -17,4 +17,20 @@ const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
 layoutEngine.activate();
+
+// registerApplication(
+//   "@single-spa/welcome",
+//   () =>
+//     System.import(
+//       "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
+//     ),
+//   location => location.pathname === "/"
+// )
+
+registerApplication({
+  name: "@ebk/iframe",
+  app: () => System.import("@ebk/iframe"),
+  activeWhen: ["/iframe"],
+});
+
 start();

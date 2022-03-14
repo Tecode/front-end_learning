@@ -33,4 +33,10 @@ registerApplication({
   activeWhen: ["/iframe"],
 });
 
+registerApplication({
+  name: "@ebk/vue",
+  app: () => System.import("@ebk/vue"),
+  activeWhen: ["/vue"],
+});
+
 start();

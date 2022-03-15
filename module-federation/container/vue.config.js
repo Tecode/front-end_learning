@@ -5,6 +5,7 @@ module.exports = {
   publicPath: "http://localhost:8080/",
 
   chainWebpack: (config) => {
+    // 移除splitChunks，使用时无法找到模块
     config.optimization.delete("splitChunks");
     /* module federation plugin import */
     config.plugin("module-federation-plugin").use(ModuleFederationPlugin, [

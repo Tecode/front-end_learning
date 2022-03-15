@@ -1,6 +1,5 @@
 {
     "cSpell.words": [
-        "SEUSER",
         "browserslist",
         "chgrp",
         "deta",
@@ -9,13 +8,11 @@
         "importmap",
         "inodes",
         "largeish",
+        "microfrontend",
         "mkfs",
         "nomodule",
         "SEUSER",
         "systemjs",
-        "inodes",
-        "mkfs",
-        "nomodule",
         "tmpl",
         "userdel",
         "usermod"

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>微前端应用</title>
+  <title>SingleSpa-微前端服务</title>
 
   <!--
     Remove this if you only support browsers that support async/await.
@@ -34,13 +34,14 @@
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
   <script type="systemjs-importmap">
-    {
-      "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
-        "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js",
-        "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.0.7/dist/vue-router.min.js"
+      {
+        "imports": {
+          "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+          "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js",
+          "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.0.7/dist/vue-router.min.js",
+          "rxjs": "https://cdn.jsdelivr.net/npm/rxjs@6.6.3/bundles/rxjs.umd.min.js"
+        }
       }
-    }
   </script>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
 
@@ -51,10 +52,9 @@
     <script type="systemjs-importmap">
     {
       "imports": {
-        "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
         "@ebk/root-config": "//localhost:9000/ebk-root-config.js",
-        "@ebk/iframe": "//localhost:9001/ebk-iframe.js",
-        "@ebk/vue": "//localhost:9002/js/app.js"
+        "@ebk/product": "//localhost:9006/js/app.js",
+        "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
       }
     }
   </script>
@@ -78,7 +78,17 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <template id="single-spa-layout">
+    <single-spa-router>
+      <!-- <application name="@study/navbar""></application> -->
+      <route default>
+        <application name="@single-spa/welcome"></application>
+      </route>
+      <route path="product">
+        <application name="@ebk/product"></application>
+      </route>
+    </single-spa-router>
+  </template>
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>

@@ -181,6 +181,11 @@ module.exports = { chainWebpack: config => { config.externals(["vue", "vue-route
 ```
 
 # 4、基于模块联邦的微应用
+
+## 应用初始化
+
+使用`Vue cli`的脚手架工具创建容器应用（我们的技术栈是vue这里介绍vue项目的微应用开发），启动应用`yarn serve`，这时我们就可以看到我们的应用以及可以访问。
+
 ## 4.1 模块联邦概述
 
 Module Federation 即为模块联邦，是 Webpack 5 中新增的一项功能，可以实现跨应用共享模块。
@@ -202,11 +207,25 @@ Runtime 的方式可能是 UMD 方式共享代码模块，即将模块用 Webpac
 
 注意：共享模块需要异步加载，需要添加 bootstrap.js
 ### 共享模块版本冲突解决 
+如果使用 4.1.0 版本的 faker，例如 product 中使用 5.2.0 版本的 faker，通过查看网络控制面板可以发现 faker 又会被加载了两次，模块共享失败。
+解决办法是分别在 faker，product 和 cart 中的 webpack 配置中加入如下代码
 
+```sh
+shared: { faker: { singleton: true } }
+```
 
-## 应用初始化
+但同时会在原本使用低版本的共享模块应用的控制台中给予警告提示
 
-使用`Vue cli`的脚手架工具创建容器应用（我们的技术栈是vue这里介绍vue项目的微应用开发），启动应用`yarn serve`，这时我们就可以看到我们的应用以及可以访问。
+### 开放子应用挂载接口
+
+在容器应用导入微应用后，应该有权限决定微应用的挂载位置，而不是微应用在代码运行时直接进行挂载。所以每个微应用都应该导出一个挂载方法供容器应用调用。
+
+```js
+exposes: {
+ "./HelloWorld": "./src/components/HelloWorld",
+ "./ProductApp": "./src/bootstrap.js",
+},
+```
 
 # 错误信息
 

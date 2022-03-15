@@ -184,11 +184,29 @@ module.exports = { chainWebpack: config => { config.externals(["vue", "vue-route
 ## 4.1 模块联邦概述
 
 Module Federation 即为模块联邦，是 Webpack 5 中新增的一项功能，可以实现跨应用共享模块。
+Runtime 的方式可能是 UMD 方式共享代码模块，即将模块用 Webpack UMD 模式打包，并输出到其他项目中，运行时加载模块进行页面渲染。
+
+
+## 4.2 共享模块
+
+### 实现模块共享
+
+在 Product 和 Auth 中都需要同一个组件的时候， Container 加载了这两个模块后，他们使用的模块会被加载了两次。
+
+```shell
+// 分别在 Products 和 Cart 的 webpack 配置文件中的模块联邦插件中添加以下代码
+{ 
+  shared: ["模块名称"] 
+}
+```
+
+注意：共享模块需要异步加载，需要添加 bootstrap.js
+### 共享模块版本冲突解决 
+
 
 ## 应用初始化
 
-使用`Vue`的脚手架工具创建容器应用（我们的技术栈是vue这里介绍vue项目的微应用开发），
-
+使用`Vue cli`的脚手架工具创建容器应用（我们的技术栈是vue这里介绍vue项目的微应用开发），启动应用`yarn serve`，这时我们就可以看到我们的应用以及可以访问。
 
 # 错误信息
 

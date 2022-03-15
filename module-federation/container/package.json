@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "ebk-ui": "git+ssh://git@git.17usoft.com:hotel-ebooking-java/ebk-ui.git#v1.0.3",
     "http-server": "^0.13.0",
-    "vue": "^2.6.14"
+    "vue": "^2.6.14",
+    "vue-router": "^3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

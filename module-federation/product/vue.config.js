@@ -2,6 +2,9 @@ const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlug
 
 module.exports = {
   publicPath: 'http://localhost:9001/',
+  chainWebpack: (config) => {
+    config.optimization.delete("splitChunks");
+  },
   configureWebpack: {
     plugins: [
       new ModuleFederationPlugin({

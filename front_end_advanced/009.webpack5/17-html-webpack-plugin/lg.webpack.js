@@ -1,13 +1,13 @@
-const path = require('path')
-const { DefinePlugin } = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require("path");
+const { DefinePlugin } = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist"),
     // assetModuleFilename: "img/[name].[hash:4][ext]"
   },
   module: {
@@ -15,59 +15,53 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               importLoaders: 1,
-              esModule: false
-            }
+              esModule: false,
+            },
           },
-          'postcss-loader'
-        ]
+          "postcss-loader",
+        ],
       },
       {
         test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'less-loader'
-        ]
+        use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
       },
       {
         test: /\.(png|svg|gif|jpe?g)$/,
-        type: 'asset',
+        type: "asset",
         generator: {
-          filename: "img/[name].[hash:4][ext]"
+          filename: "img/[name].[hash:4][ext]",
         },
         parser: {
           dataUrlCondition: {
-            maxSize: 30 * 1024
-          }
-        }
+            maxSize: 30 * 1024,
+          },
+        },
       },
       {
         test: /\.(ttf|woff2?)$/,
-        type: 'asset/resource',
+        type: "asset/resource",
         generator: {
-          filename: 'font/[name].[hash:3][ext]'
-        }
-      }
-    ]
+          filename: "font/[name].[hash:3][ext]",
+        },
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'html-webpack-plugin',
-      template: './public/index.html'
+      title: "html-webpack-plugin",
+      template: "./public/index.html",
     }),
     new DefinePlugin({
-      BASE_URL: '"./"'
-    })
-  ]
-}
-
+      BASE_URL: '"./"',
+    }),
+  ],
+};
 
 /**
  * class MyPlugin{

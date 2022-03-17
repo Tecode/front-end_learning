@@ -5,6 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: "./src/index.js",
+  mode: "development",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "webpack.bundle.js",
@@ -60,11 +61,15 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.js$/,
+        use: ["babel-loader"]
+      }
     ],
   },
   plugins: [
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: "./index.html" })
+    new HtmlWebpackPlugin({ template: "./index.html", title: "自动化构建" })
   ]
 };

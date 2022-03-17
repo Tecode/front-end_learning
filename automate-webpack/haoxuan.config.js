@@ -1,4 +1,7 @@
 const path = require("path");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: "./src/index.js",
@@ -59,4 +62,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.ProgressPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({ template: "./index.html" })
+  ]
 };

@@ -2,7 +2,7 @@
   <div id="app">
     <router-link class="link" to="/">Auth模块</router-link>
     <router-link class="link" to="/bar">Product模块</router-link>
-    <router-link class="link" to="/authChild">Auth页面</router-link>
+    <router-link class="link" to="/product/home">Auth页面</router-link>
     <router-view></router-view>
     <!-- <MainComponent />
     <HelloWorld2 /> -->

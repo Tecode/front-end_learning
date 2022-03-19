@@ -13,7 +13,7 @@ module.exports = {
         filename: "remoteEntry.js",
         exposes: {
           "./HelloWorld": "./src/components/HelloWorld",
-          "./ProductApp": "./src/App",
+          "./ProductApp": "./src/bootstrap",
         },
         shared: require("./package.json").dependencies,
       }),

@@ -9,5 +9,5 @@ const routes = [
   { path: "/product/detail", name: "detail", component: () => import(/* webpackChunkName: "group-detail" */"./views/product-detail/index.vue") },
 ];
 
-const router = new VueRouter({ routes, mode: "hash", base: "/product/home" });
+const router = new VueRouter({ routes, mode: "history" });
 export default router;

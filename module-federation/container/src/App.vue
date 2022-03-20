@@ -19,6 +19,9 @@ export default {
     // MainComponent: () => import("auth/MainComponent"),
     // HelloWorld2: () => import("product/HelloWorld"),
   },
+  mounted(){
+    // setTimeout(() => this.$router.push("/bar"), 2000);
+  },
 };
 </script>
 

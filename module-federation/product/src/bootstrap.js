@@ -10,10 +10,22 @@ const mount = (el) => {
     render: h => h(App),
   })
   app.$mount(el)
+
+  console.log(window.location.pathname, "#product-app")
+  // window.location.href = "/bar"
+  return {
+    onParentNavigate: (nextPathname) => {
+      const { pathname } = window.location;
+      console.log(app.$route, pathname, nextPathname);
+      // if (pathname !== nextPathname) {
+      //   console.log("route from container to auth", nextPathname);
+      //   history.push(nextPathname);
+      // }
+    }
+  };
 }
 
 const el = document.querySelector("#product-app")
-console.log(el, "#product-app");
 if (el) mount(el)
 
 export { mount }

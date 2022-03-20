@@ -1,5 +1,5 @@
-const ModuleFederationPlugin =
-  require("webpack").container.ModuleFederationPlugin;
+const { ModuleFederationPlugin } = require("webpack").container;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   publicPath: "http://localhost:9001/",
@@ -8,6 +8,9 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
+      new MiniCssExtractPlugin({
+        filename: "[name].css"
+      }),
       new ModuleFederationPlugin({
         name: "product",
         filename: "remoteEntry.js",
@@ -21,5 +24,7 @@ module.exports = {
   },
   devServer: {
     port: 9001,
+    hot: true,
+    historyApiFallback: true,
   },
 };

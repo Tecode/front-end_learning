@@ -10,6 +10,11 @@
 <script>
 export default {
   name: "App",
+  watch: {
+    $route(to, from) {
+      console.log(to, from, "5656345");
+    },
+  },
 };
 </script>
 

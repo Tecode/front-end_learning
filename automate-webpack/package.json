@@ -6,7 +6,8 @@
   "author": "haoxuan",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config haoxuan.config.js"
+    "build": "webpack --config haoxuan.config.js --mode=production",
+    "start": "webpack serve --config haoxuan.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",
@@ -23,6 +24,10 @@
     "style-loader": "^3.3.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {
+    "mini-css-extract-plugin": "^2.6.0"
   }
 }

@@ -1,21 +1,36 @@
 const path = require("path");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.js",
   mode: "development",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "webpack.bundle.js",
+    filename: "[name].[hash:6].bundle.js",
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    compress: true,
+    port: 9000,
+  },
+  resolve: {
+    alias: {
+      javascript: path.resolve(__dirname, "src/javascript/"),
+      images: path.resolve(__dirname, "src/images/"),
+    },
   },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
-          "style-loader",
+          // "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: { importLoaders: 1, sourceMap: true, esModule: false },
@@ -33,7 +48,8 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          "style-loader",
+          // "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: { importLoaders: 1, sourceMap: true, esModule: false },
@@ -63,13 +79,14 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: ["babel-loader"]
-      }
+        use: ["babel-loader"],
+      },
     ],
   },
   plugins: [
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: "./index.html", title: "自动化构建" })
-  ]
+    new MiniCssExtractPlugin({ linkType: "text/css" }),
+    new HtmlWebpackPlugin({ template: "./index.html", title: "自动化构建" }),
+  ],
 };

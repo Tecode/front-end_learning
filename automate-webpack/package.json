@@ -28,6 +28,8 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
-    "mini-css-extract-plugin": "^2.6.0"
+    "mini-css-extract-plugin": "^2.6.0",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3"
   }
 }

@@ -81,6 +81,10 @@ module.exports = {
         test: /\.js$/,
         use: ["babel-loader"],
       },
+      {
+        test: /\.ts$/,
+        use: ["ts-loader"],
+      },
     ],
   },
   plugins: [

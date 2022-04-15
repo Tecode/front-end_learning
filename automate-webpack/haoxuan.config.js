@@ -3,9 +3,19 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    // index: "./src/index.js",
+    // index2: "./src/index2.js",
+    // 插件分包
+    // index: "./src/index.js",
+    // index2: { import: "./src/index2.js", dependOn: "shared" },
+    // shared: ["lodash"],
+
+    index2: "./src/index2.js",
+  },
   mode: "development",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -17,6 +27,12 @@ module.exports = {
     },
     compress: true,
     port: 9000,
+  },
+  optimization: {
+    minimizer: [new TerserPlugin({ extractComments: false })],
+    splitChunks: {
+      chunks: "all",
+    },
   },
   resolve: {
     alias: {

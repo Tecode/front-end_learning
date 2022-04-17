@@ -7,19 +7,20 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: {
-    // index: "./src/index.js",
+    index: "./src/index.js",
     // index2: "./src/index2.js",
     // 插件分包
     // index: "./src/index.js",
     // index2: { import: "./src/index2.js", dependOn: "shared" },
     // shared: ["lodash"],
 
-    index2: "./src/index2.js",
+    // index2: "./src/index2.js",
   },
   mode: "development",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[hash:6].bundle.js",
+    filename: "js/[name].[hash:6].bundle.js",
+    chunkFilename: "js/chunk_[name].js"
   },
   devServer: {
     static: {
@@ -30,6 +31,7 @@ module.exports = {
   },
   optimization: {
     minimizer: [new TerserPlugin({ extractComments: false })],
+    chunkIds: 'deterministic',
     splitChunks: {
       chunks: "all",
       minSize: 20000,

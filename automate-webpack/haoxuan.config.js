@@ -30,6 +30,7 @@ module.exports = {
     port: 9000,
   },
   optimization: {
+    runtimeChunk: true,
     minimizer: [new TerserPlugin({ extractComments: false })],
     chunkIds: 'deterministic',
     splitChunks: {

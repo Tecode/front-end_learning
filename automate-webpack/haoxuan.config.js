@@ -20,7 +20,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].[hash:6].bundle.js",
-    chunkFilename: "js/chunk_[name].js"
+    chunkFilename: "js/chunk_[name].js",
   },
   devServer: {
     static: {
@@ -29,10 +29,13 @@ module.exports = {
     compress: true,
     port: 9000,
   },
+  externals: {
+    lodash: "_",
+  },
   optimization: {
     runtimeChunk: true,
     minimizer: [new TerserPlugin({ extractComments: false })],
-    chunkIds: 'deterministic',
+    chunkIds: "deterministic",
     splitChunks: {
       chunks: "all",
       minSize: 20000,

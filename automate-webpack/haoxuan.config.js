@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -34,7 +35,10 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: true,
-    minimizer: [new TerserPlugin({ extractComments: false })],
+    minimizer: [
+      new TerserPlugin({ extractComments: false }), // 去掉声明
+      new CssMinimizerPlugin(), // 压缩Css
+    ],
     chunkIds: "deterministic",
     splitChunks: {
       chunks: "all",
@@ -126,7 +130,10 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ linkType: "text/css" }),
+    new MiniCssExtractPlugin({
+      linkType: "text/css",
+      filename: "css/[name].[hash:8].css",
+    }),
     new HtmlWebpackPlugin({ template: "./index.html", title: "自动化构建" }),
   ],
 };

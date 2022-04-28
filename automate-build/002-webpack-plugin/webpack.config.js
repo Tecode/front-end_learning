@@ -10,7 +10,6 @@ class MyPlugin {
         if (Object.hasOwnProperty.call(assets, item)) {
           const element = assets[item];
           const content = element.source.source().replace(/\/\*\*+\*\//g, "");
-          console.log(content, "--content");
           compilation.updateAsset(element.name, new sources.RawSource(content));
         }
       }

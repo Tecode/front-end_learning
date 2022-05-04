@@ -1,0 +1,14 @@
+{
+  "name": "001-webpack-soure-code",
+  "version": "1.0.0",
+  "description": "webpack打包源码分析",
+  "main": "index.js",
+  "author": "haoxuan",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^5.72.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
+  }
+}

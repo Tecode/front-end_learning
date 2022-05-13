@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\front_end_advanced\\013-hand-writing\\001-webpack-soure-code\\dist\\build.js"
+            "program": "${workspaceFolder}\\front_end_advanced\\013-hand-writing\\002-multiple-source-code\\dist\\build.js"
         }
     ]
 }

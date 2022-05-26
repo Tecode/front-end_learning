@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.发布订阅模式</title>
+</head>
+
+<body>
+  发布订阅模式
+</body>
+<script>
+  // 事件触发器
+  class EventEmitter {
+    constructor() {
+      this.emitterList = Object.create(null)
+    }
+    $on(eventKey, func) {
+      this.emitterList[eventKey] = this.emitterList[eventKey] || []
+      this.emitterList[eventKey].push(func)
+    }
+    $emit(eventKey) {
+      let list = this.emitterList[eventKey]
+      if (list) {
+        list.forEach(handle => handle())
+      }
+    }
+  }
+
+  const emit = new EventEmitter()
+  emit.$on("print", () => console.log("绑定的第一个事件"))
+  emit.$on("print", () => console.log("绑定的第二个事件"))
+  emit.$emit("print")
+</script>
+
+</html>

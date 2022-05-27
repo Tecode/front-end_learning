@@ -13,6 +13,9 @@ class Observer {
     );
   }
   defineReactive(obj, key, value) {
+    // 如果val是对象，把val内部的属性转换成响应式数据
+    this.walk(value);
+    const _this = this;
     Object.defineProperty(obj, key, {
       configurable: true,
       enumerable: true,
@@ -24,6 +27,7 @@ class Observer {
           return;
         }
         value = newValue;
+        _this.walk(newValue);
       },
     });
   }

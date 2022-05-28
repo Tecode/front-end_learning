@@ -13,6 +13,8 @@ class Observer {
     );
   }
   defineReactive(obj, key, value) {
+    //
+    const dependency = new Dependency();
     // 如果val是对象，把val内部的属性转换成响应式数据
     this.walk(value);
     const _this = this;
@@ -20,6 +22,8 @@ class Observer {
       configurable: true,
       enumerable: true,
       get() {
+        // 收集依赖
+        Dependency.target && dependency.addListener(Dependency.target);
         return value;
       },
       set(newValue) {
@@ -28,6 +32,8 @@ class Observer {
         }
         value = newValue;
         _this.walk(newValue);
+        // 发送通知
+        dependency.notify();
       },
     });
   }

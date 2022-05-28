@@ -25,7 +25,26 @@ class Compiler {
 
   // 编译元素节点，处理指令
   compilerElement(node) {
-    console.log(node.attributes, '----ll')
+    // 处理元素节点例如v-model v-text
+    // console.log(node.attributes);
+    // 遍历所有的属性节点
+    Array.from(node.attributes).forEach((attr) => {
+      // 判断是否是指令
+      let attrName = attr.name;
+      if (this.isDirection(attrName)) {
+        attrName = attrName.substr(2);
+        const value = attr.value;
+        this[attrName + "Updater"](node, value);
+      }
+    });
+  }
+  // 处理v-text
+  textUpdater(node, value) {
+    node.textContent = value;
+  }
+  // 处理v-text
+  modelUpdater(node, value) {
+    node.value = value;
   }
 
   // 编译文本节点，处理插值表达式
@@ -35,6 +54,9 @@ class Compiler {
       // RegExp.$1是RegExp的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串
       const key = RegExp.$1.trim();
       node.textContent = this.vm[key];
+      new Watcher(this.vm, key, (newValue) => {
+        node.textContent = newValue;
+      });
     }
   }
 

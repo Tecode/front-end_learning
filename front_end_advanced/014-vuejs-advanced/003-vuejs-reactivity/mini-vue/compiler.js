@@ -2,15 +2,41 @@ class Compiler {
   constructor(vm) {
     this.el = vm.$el;
     this.vm = vm;
+    this.compiler(this.el);
   }
   // 编译模版处理文本节点和对象节点
-  compiler(el) {}
+  compiler(el) {
+    const childNodes = el.childNodes;
+    Array.from(childNodes).forEach((node) => {
+      // 处理文本节点
+      if (this.isTextNode(node)) {
+        this.compilerText(node);
+      }
+      // 处理元素节点,处理指令
+      if (this.isElementNode(node)) {
+        this.compilerElement(node);
+      }
+      // 判断node节点，是否有子节点，如果有子节点，要递归调用compile
+      if (node.childNodes && node.childNodes.length) {
+        this.compiler(node);
+      }
+    });
+  }
 
   // 编译元素节点，处理指令
-  compilerElement(node) {}
+  compilerElement(node) {
+    console.log(node.attributes, '----ll')
+  }
 
   // 编译文本节点，处理插值表达式
-  compilerText(node) {}
+  compilerText(node) {
+    const reg = /\{\{(.+?)\}\}/;
+    if (reg.test(node.textContent)) {
+      // RegExp.$1是RegExp的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串
+      const key = RegExp.$1.trim();
+      node.textContent = this.vm[key];
+    }
+  }
 
   // 判断是否是指令
   isDirection(attrName) {

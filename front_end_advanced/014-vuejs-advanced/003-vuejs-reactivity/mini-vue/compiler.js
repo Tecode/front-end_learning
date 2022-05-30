@@ -31,20 +31,26 @@ class Compiler {
     Array.from(node.attributes).forEach((attr) => {
       // 判断是否是指令
       let attrName = attr.name;
+      console.dir(attr);
       if (this.isDirection(attrName)) {
         attrName = attrName.substr(2);
-        const value = attr.value;
-        this[attrName + "Updater"](node, value);
+        const func = this[attrName + "Updater"];
+        const key = attr.value;
+        // 取保this指向的是Compiler
+        func.call(this, node, this.vm[key], key);
       }
     });
   }
   // 处理v-text
-  textUpdater(node, value) {
+  textUpdater(node, value, key) {
     node.textContent = value;
   }
-  // 处理v-text
-  modelUpdater(node, value) {
+  // 处理v-model
+  modelUpdater(node, value, key) {
     node.value = value;
+    node.addEventListener("input", (event) => {
+      this.vm[key] = event.target.value;
+    });
   }
 
   // 编译文本节点，处理插值表达式

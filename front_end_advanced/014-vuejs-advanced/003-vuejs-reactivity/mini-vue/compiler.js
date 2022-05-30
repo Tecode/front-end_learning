@@ -44,10 +44,16 @@ class Compiler {
   // 处理v-text
   textUpdater(node, value, key) {
     node.textContent = value;
+    new Watcher(this.vm, key, (newValue) => {
+      node.textContent = newValue;
+    });
   }
   // 处理v-model
   modelUpdater(node, value, key) {
     node.value = value;
+    new Watcher(this.vm, key, (newValue) => {
+      node.value = newValue;
+    });
     node.addEventListener("input", (event) => {
       this.vm[key] = event.target.value;
     });

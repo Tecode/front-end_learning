@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"02dZu":[function(require,module,exports) {
+})({"6xHBg":[function(require,module,exports) {
 "use strict";
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "7afdbb5cc16c6684";
+module.bundle.HMR_BUNDLE_ID = "769796766a42f3e9";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, importScripts */ /*::
 import type {
   HMRAsset,
@@ -502,42 +502,50 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"hx3bk":[function(require,module,exports) {
-var _init = require("snabbdom/src/package/init");
-var _h = require("snabbdom/src/package/h");
-const patch = (0, _init.init)([]);
-const app = document.querySelector("#app");
-// 第一个参数：标签+选择器
-// 第二个参数：如果是字符串就是标签中的文本内容
-const v_node001 = (0, _h.h)("div#container.name", [
-    (0, _h.h)("h1", "Hello Snabbdom")
+},{}],"eqIWe":[function(require,module,exports) {
+var _init = require("snabbdom/build/package/init");
+var _h = require("snabbdom/build/package/h");
+// 1. 导入模块
+var _style = require("snabbdom/build/package/modules/style");
+var _eventlisteners = require("snabbdom/build/package/modules/eventlisteners");
+// 2. 注册模块
+const patch = (0, _init.init)([
+    (0, _style.styleModule),
+    (0, _eventlisteners.eventListenersModule)
 ]);
-const patch001 = patch(app, v_node001);
-const v_node002 = (0, _h.h)("h1#title.wrap_box", "Edit Snabbdom");
-let patch002 = null;
-setTimeout(()=>{
-    patch002 = patch(patch001, v_node002);
-}, 2000);
-// 清空div的内容
-const v_node003 = (0, _h.h)("!");
-setTimeout(()=>{
-    patch(patch002, v_node003);
-}, 4000);
+// 3. 使用h() 函数的第二个参数传入模块中使用的数据（对象）
+let vnode = (0, _h.h)("div", [
+    (0, _h.h)("h1", {
+        style: {
+            backgroundColor: "red"
+        }
+    }, "Hello World"),
+    (0, _h.h)("p", {
+        on: {
+            click: eventHandler
+        }
+    }, "Hello P")
+]);
+function eventHandler() {
+    console.log("\u522B\u70B9\u6211\uFF0C\u75BC");
+}
+let app = document.querySelector("#app");
+patch(app, vnode);
 
-},{"snabbdom/src/package/init":"6KTyh","snabbdom/src/package/h":"3mCHT"}],"6KTyh":[function(require,module,exports) {
+},{"snabbdom/build/package/init":"fyDxL","snabbdom/build/package/h":"ddjTl","snabbdom/build/package/modules/style":"4fA6D","snabbdom/build/package/modules/eventlisteners":"luByB"}],"fyDxL":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "init", ()=>init);
-var _vnode = require("./vnode");
-var _is = require("./is");
-var _htmldomapi = require("./htmldomapi");
+var _vnodeJs = require("./vnode.js");
+var _isJs = require("./is.js");
+var _htmldomapiJs = require("./htmldomapi.js");
 function isUndef(s) {
     return s === undefined;
 }
 function isDef(s) {
     return s !== undefined;
 }
-const emptyNode = (0, _vnode.vnode)("", {}, [], undefined, undefined);
+const emptyNode = (0, _vnodeJs.vnode)("", {}, [], undefined, undefined);
 function sameVnode(vnode1, vnode2) {
     return vnode1.key === vnode2.key && vnode1.sel === vnode2.sel;
 }
@@ -545,9 +553,10 @@ function isVnode(vnode) {
     return vnode.sel !== undefined;
 }
 function createKeyToOldIdx(children, beginIdx, endIdx) {
+    var _a;
     const map = {};
     for(let i = beginIdx; i <= endIdx; ++i){
-        const key = children[i]?.key;
+        const key = (_a = children[i]) === null || _a === void 0 ? void 0 : _a.key;
         if (key !== undefined) map[key] = i;
     }
     return map;
@@ -571,7 +580,7 @@ function init(modules, domApi) {
         pre: [],
         post: []
     };
-    const api = domApi !== undefined ? domApi : (0, _htmldomapi.htmlDomApi);
+    const api = domApi !== undefined ? domApi : (0, _htmldomapiJs.htmlDomApi);
     for(i1 = 0; i1 < hooks.length; ++i1){
         cbs[hooks[i1]] = [];
         for(j1 = 0; j1 < modules.length; ++j1){
@@ -582,7 +591,7 @@ function init(modules, domApi) {
     function emptyNodeAt(elm) {
         const id = elm.id ? "#" + elm.id : "";
         const c = elm.className ? "." + elm.className.split(" ").join(".") : "";
-        return (0, _vnode.vnode)(api.tagName(elm).toLowerCase() + id + c, {}, [], undefined, elm);
+        return (0, _vnodeJs.vnode)(api.tagName(elm).toLowerCase() + id + c, {}, [], undefined, elm);
     }
     function createRmCb(childElm, listeners) {
         return function rmCb() {
@@ -593,10 +602,11 @@ function init(modules, domApi) {
         };
     }
     function createElm(vnode, insertedVnodeQueue) {
+        var _a, _b;
         let i;
         let data = vnode.data;
         if (data !== undefined) {
-            const init1 = data.hook?.init;
+            const init1 = (_a = data.hook) === null || _a === void 0 ? void 0 : _a.init;
             if (isDef(init1)) {
                 init1(vnode);
                 data = vnode.data;
@@ -618,14 +628,14 @@ function init(modules, domApi) {
             if (hash < dot) elm.setAttribute("id", sel.slice(hash + 1, dot));
             if (dotIdx > 0) elm.setAttribute("class", sel.slice(dot + 1).replace(/\./g, " "));
             for(i = 0; i < cbs.create.length; ++i)cbs.create[i](emptyNode, vnode);
-            if (_is.array(children)) for(i = 0; i < children.length; ++i){
+            if (_isJs.array(children)) for(i = 0; i < children.length; ++i){
                 const ch = children[i];
                 if (ch != null) api.appendChild(elm, createElm(ch, insertedVnodeQueue));
             }
-            else if (_is.primitive(vnode.text)) api.appendChild(elm, api.createTextNode(vnode.text));
+            else if (_isJs.primitive(vnode.text)) api.appendChild(elm, api.createTextNode(vnode.text));
             const hook = vnode.data.hook;
             if (isDef(hook)) {
-                hook.create?.(emptyNode, vnode);
+                (_b = hook.create) === null || _b === void 0 || _b.call(hook, emptyNode, vnode);
                 if (hook.insert) insertedVnodeQueue.push(vnode);
             }
         } else vnode.elm = api.createTextNode(vnode.text);
@@ -638,9 +648,10 @@ function init(modules, domApi) {
         }
     }
     function invokeDestroyHook(vnode) {
+        var _a, _b;
         const data = vnode.data;
         if (data !== undefined) {
-            data?.hook?.destroy?.(vnode);
+            (_b = (_a = data === null || data === void 0 ? void 0 : data.hook) === null || _a === void 0 ? void 0 : _a.destroy) === null || _b === void 0 || _b.call(_a, vnode);
             for(let i = 0; i < cbs.destroy.length; ++i)cbs.destroy[i](vnode);
             if (vnode.children !== undefined) for(let j = 0; j < vnode.children.length; ++j){
                 const child = vnode.children[j];
@@ -649,6 +660,7 @@ function init(modules, domApi) {
         }
     }
     function removeVnodes(parentElm, vnodes, startIdx, endIdx) {
+        var _a, _b;
         for(; startIdx <= endIdx; ++startIdx){
             let listeners;
             let rm;
@@ -659,7 +671,7 @@ function init(modules, domApi) {
                     listeners = cbs.remove.length + 1;
                     rm = createRmCb(ch.elm, listeners);
                     for(let i = 0; i < cbs.remove.length; ++i)cbs.remove[i](ch, rm);
-                    const removeHook = ch?.data?.hook?.remove;
+                    const removeHook = (_b = (_a = ch === null || ch === void 0 ? void 0 : ch.data) === null || _a === void 0 ? void 0 : _a.hook) === null || _b === void 0 ? void 0 : _b.remove;
                     if (isDef(removeHook)) removeHook(ch, rm);
                     else rm();
                 } else api.removeChild(parentElm, ch.elm);
@@ -680,8 +692,7 @@ function init(modules, domApi) {
         let elmToMove;
         let before;
         while(oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx){
-            if (oldStartVnode == null) oldStartVnode = oldCh[++oldStartIdx] // Vnode might have been moved left
-            ;
+            if (oldStartVnode == null) oldStartVnode = oldCh[++oldStartIdx]; // Vnode might have been moved left
             else if (oldEndVnode == null) oldEndVnode = oldCh[--oldEndIdx];
             else if (newStartVnode == null) newStartVnode = newCh[++newStartIdx];
             else if (newEndVnode == null) newEndVnode = newCh[--newEndIdx];
@@ -727,15 +738,16 @@ function init(modules, domApi) {
         }
     }
     function patchVnode(oldVnode, vnode, insertedVnodeQueue) {
-        const hook = vnode.data?.hook;
-        hook?.prepatch?.(oldVnode, vnode);
+        var _a, _b, _c, _d, _e;
+        const hook = (_a = vnode.data) === null || _a === void 0 ? void 0 : _a.hook;
+        (_b = hook === null || hook === void 0 ? void 0 : hook.prepatch) === null || _b === void 0 || _b.call(hook, oldVnode, vnode);
         const elm = vnode.elm = oldVnode.elm;
         const oldCh = oldVnode.children;
         const ch = vnode.children;
         if (oldVnode === vnode) return;
         if (vnode.data !== undefined) {
             for(let i = 0; i < cbs.update.length; ++i)cbs.update[i](oldVnode, vnode);
-            vnode.data.hook?.update?.(oldVnode, vnode);
+            (_d = (_c = vnode.data.hook) === null || _c === void 0 ? void 0 : _c.update) === null || _d === void 0 || _d.call(_c, oldVnode, vnode);
         }
         if (isUndef(vnode.text)) {
             if (isDef(oldCh) && isDef(ch)) {
@@ -749,7 +761,7 @@ function init(modules, domApi) {
             if (isDef(oldCh)) removeVnodes(elm, oldCh, 0, oldCh.length - 1);
             api.setTextContent(elm, vnode.text);
         }
-        hook?.postpatch?.(oldVnode, vnode);
+        (_e = hook === null || hook === void 0 ? void 0 : hook.postpatch) === null || _e === void 0 || _e.call(hook, oldVnode, vnode);
     }
     return function patch(oldVnode, vnode) {
         let i, elm, parent;
@@ -774,7 +786,7 @@ function init(modules, domApi) {
     };
 }
 
-},{"./vnode":"hPlo3","./is":"iZ8Vq","./htmldomapi":"1pLra","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hPlo3":[function(require,module,exports) {
+},{"./vnode.js":"9fauP","./is.js":"hE9HK","./htmldomapi.js":"4Tw6P","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9fauP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "vnode", ()=>vnode);
@@ -820,7 +832,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"iZ8Vq":[function(require,module,exports) {
+},{}],"hE9HK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "array", ()=>array);
@@ -830,7 +842,7 @@ function primitive(s) {
     return typeof s === "string" || typeof s === "number";
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1pLra":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Tw6P":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "htmlDomApi", ()=>htmlDomApi);
@@ -897,12 +909,12 @@ const htmlDomApi = {
     isComment
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3mCHT":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ddjTl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "h", ()=>h);
-var _vnode = require("./vnode");
-var _is = require("./is");
+var _vnodeJs = require("./vnode.js");
+var _isJs = require("./is.js");
 function addNS(data, children, sel) {
     data.ns = "http://www.w3.org/2000/svg";
     if (sel !== "foreignObject" && children !== undefined) for(let i = 0; i < children.length; ++i){
@@ -917,26 +929,180 @@ function h(sel, b, c) {
     var i;
     if (c !== undefined) {
         if (b !== null) data = b;
-        if (_is.array(c)) children = c;
-        else if (_is.primitive(c)) text = c;
+        if (_isJs.array(c)) children = c;
+        else if (_isJs.primitive(c)) text = c;
         else if (c && c.sel) children = [
             c
         ];
     } else if (b !== undefined && b !== null) {
-        if (_is.array(b)) children = b;
-        else if (_is.primitive(b)) text = b;
+        if (_isJs.array(b)) children = b;
+        else if (_isJs.primitive(b)) text = b;
         else if (b && b.sel) children = [
             b
         ];
         else data = b;
     }
     if (children !== undefined) {
-        for(i = 0; i < children.length; ++i)if (_is.primitive(children[i])) children[i] = (0, _vnode.vnode)(undefined, undefined, undefined, children[i], undefined);
+        for(i = 0; i < children.length; ++i)if (_isJs.primitive(children[i])) children[i] = (0, _vnodeJs.vnode)(undefined, undefined, undefined, children[i], undefined);
     }
     if (sel[0] === "s" && sel[1] === "v" && sel[2] === "g" && (sel.length === 3 || sel[3] === "." || sel[3] === "#")) addNS(data, children, sel);
-    return (0, _vnode.vnode)(sel, data, children, text, undefined);
+    return (0, _vnodeJs.vnode)(sel, data, children, text, undefined);
 }
 
-},{"./vnode":"hPlo3","./is":"iZ8Vq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["02dZu","hx3bk"], "hx3bk", "parcelRequire2a7a")
+},{"./vnode.js":"9fauP","./is.js":"hE9HK","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4fA6D":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "styleModule", ()=>styleModule);
+// Bindig `requestAnimationFrame` like this fixes a bug in IE/Edge. See #360 and #409.
+var raf = typeof window !== "undefined" && window.requestAnimationFrame.bind(window) || setTimeout;
+var nextFrame = function(fn) {
+    raf(function() {
+        raf(fn);
+    });
+};
+var reflowForced = false;
+function setNextFrame(obj, prop, val) {
+    nextFrame(function() {
+        obj[prop] = val;
+    });
+}
+function updateStyle(oldVnode, vnode) {
+    var cur;
+    var name;
+    var elm = vnode.elm;
+    var oldStyle = oldVnode.data.style;
+    var style = vnode.data.style;
+    if (!oldStyle && !style) return;
+    if (oldStyle === style) return;
+    oldStyle = oldStyle || {};
+    style = style || {};
+    var oldHasDel = "delayed" in oldStyle;
+    for(name in oldStyle)if (!style[name]) {
+        if (name[0] === "-" && name[1] === "-") elm.style.removeProperty(name);
+        else elm.style[name] = "";
+    }
+    for(name in style){
+        cur = style[name];
+        if (name === "delayed" && style.delayed) for(const name2 in style.delayed){
+            cur = style.delayed[name2];
+            if (!oldHasDel || cur !== oldStyle.delayed[name2]) setNextFrame(elm.style, name2, cur);
+        }
+        else if (name !== "remove" && cur !== oldStyle[name]) {
+            if (name[0] === "-" && name[1] === "-") elm.style.setProperty(name, cur);
+            else elm.style[name] = cur;
+        }
+    }
+}
+function applyDestroyStyle(vnode) {
+    var style;
+    var name;
+    var elm = vnode.elm;
+    var s = vnode.data.style;
+    if (!s || !(style = s.destroy)) return;
+    for(name in style)elm.style[name] = style[name];
+}
+function applyRemoveStyle(vnode, rm) {
+    var s = vnode.data.style;
+    if (!s || !s.remove) {
+        rm();
+        return;
+    }
+    if (!reflowForced) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        vnode.elm.offsetLeft;
+        reflowForced = true;
+    }
+    var name;
+    var elm = vnode.elm;
+    var i = 0;
+    var compStyle;
+    var style = s.remove;
+    var amount = 0;
+    var applied = [];
+    for(name in style){
+        applied.push(name);
+        elm.style[name] = style[name];
+    }
+    compStyle = getComputedStyle(elm);
+    var props = compStyle["transition-property"].split(", ");
+    for(; i < props.length; ++i)if (applied.indexOf(props[i]) !== -1) amount++;
+    elm.addEventListener("transitionend", function(ev) {
+        if (ev.target === elm) --amount;
+        if (amount === 0) rm();
+    });
+}
+function forceReflow() {
+    reflowForced = false;
+}
+const styleModule = {
+    pre: forceReflow,
+    create: updateStyle,
+    update: updateStyle,
+    destroy: applyDestroyStyle,
+    remove: applyRemoveStyle
+};
 
-//# sourceMappingURL=index.c16c6684.js.map
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"luByB":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "eventListenersModule", ()=>eventListenersModule);
+function invokeHandler(handler, vnode, event) {
+    if (typeof handler === "function") // call function handler
+    handler.call(vnode, event, vnode);
+    else if (typeof handler === "object") // call multiple handlers
+    for(var i = 0; i < handler.length; i++)invokeHandler(handler[i], vnode, event);
+}
+function handleEvent(event, vnode) {
+    var name = event.type;
+    var on = vnode.data.on;
+    // call event handler(s) if exists
+    if (on && on[name]) invokeHandler(on[name], vnode, event);
+}
+function createListener() {
+    return function handler(event) {
+        handleEvent(event, handler.vnode);
+    };
+}
+function updateEventListeners(oldVnode, vnode) {
+    var oldOn = oldVnode.data.on;
+    var oldListener = oldVnode.listener;
+    var oldElm = oldVnode.elm;
+    var on = vnode && vnode.data.on;
+    var elm = vnode && vnode.elm;
+    var name;
+    // optimization for reused immutable handlers
+    if (oldOn === on) return;
+    // remove existing listeners which no longer used
+    if (oldOn && oldListener) {
+        // if element changed or deleted we remove all existing listeners unconditionally
+        if (!on) for(name in oldOn)// remove listener if element was changed or existing listeners removed
+        oldElm.removeEventListener(name, oldListener, false);
+        else {
+            for(name in oldOn)// remove listener if existing listener removed
+            if (!on[name]) oldElm.removeEventListener(name, oldListener, false);
+        }
+    }
+    // add new listeners which has not already attached
+    if (on) {
+        // reuse existing listener or create new
+        var listener = vnode.listener = oldVnode.listener || createListener();
+        // update vnode for listener
+        listener.vnode = vnode;
+        // if element changed or added we add all needed listeners unconditionally
+        if (!oldOn) for(name in on)// add listener if element was changed or new listeners added
+        elm.addEventListener(name, listener, false);
+        else {
+            for(name in on)// add listener if new listener added
+            if (!oldOn[name]) elm.addEventListener(name, listener, false);
+        }
+    }
+}
+const eventListenersModule = {
+    create: updateEventListeners,
+    update: updateEventListeners,
+    destroy: updateEventListeners
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["6xHBg","eqIWe"], "eqIWe", "parcelRequire2a7a")
+
+//# sourceMappingURL=index.6a42f3e9.js.map

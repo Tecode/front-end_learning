@@ -38,7 +38,7 @@
 
 
         // 如果同时设置template和render此时会渲染什么？
-        // 先渲染template再渲染render
+        // 分析代码得知，只会渲染render方法不会去执行template
         const vm = new Vue({
             el: '#app',
             template: '<h1>Hello Template</h1>',

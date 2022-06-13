@@ -18,6 +18,9 @@
 
     <script src="../../dist/vue.js"></script>
     <script>
+        // 通过重写原型上的方将数据记录为响应式数据
+        // console.log(Array.prototype);
+        // console.log(Object.create(Array.prototype));
         const vm = new Vue({
             el: '#app',
             data: {

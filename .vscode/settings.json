@@ -18,7 +18,8 @@
         "systemjs",
         "tmpl",
         "userdel",
-        "usermod"
+        "usermod",
+        "Vuex"
     ],
     "liveServer.settings.port": 5500,
     "liveServer.settings.proxy": {

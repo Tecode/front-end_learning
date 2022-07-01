@@ -1,0 +1,12 @@
+{
+  "name": "05-vue-ssr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "haoxuan",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^2.0.18",
+    "vue": "^2.6.11",
+    "vue-server-renderer": "^2.6.11"
+  }
+}

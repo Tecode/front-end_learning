@@ -8,6 +8,7 @@
     "start": "nodemon server.js"
   },
   "dependencies": {
+    "express": "^4.18.1",
     "nodemon": "^2.0.18",
     "vue": "^2.6.11",
     "vue-server-renderer": "^2.6.11"

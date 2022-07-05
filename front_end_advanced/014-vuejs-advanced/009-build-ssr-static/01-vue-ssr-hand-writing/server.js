@@ -1,30 +1,27 @@
 const Vue = require("vue");
 const express = require("express");
 const fs = require("fs");
-const renderer = require("vue-server-renderer").createRenderer({
-  template: fs.readFileSync("./index.template.html", "utf-8"),
+
+
+const serverBundle = require('./dist/vue-ssr-server-bundle.json')
+const template = fs.readFileSync('./index.template.html', 'utf-8')
+const clientManifest = require('./dist/vue-ssr-client-manifest.json')
+
+const renderer = require("vue-server-renderer").createBundleRenderer(serverBundle, {
+  template,
+  clientManifest,
 });
 
 const server = express();
 
-server.get("/", (req, res) => {
-  const app = new Vue({
-    template: `
-      <div id="app">
-        <h1>{{ message }}</h1>
-      </div>
-    `,
-    data: {
-      message: "服务端渲染模版",
-    },
-  });
+server.use('/dist', express.static('./dist'))
 
+server.get("/", (req, res) => {
   renderer.renderToString(
-    app,
     {
-      title: "拉勾教育",
+      title: "服务端渲染",
       meta: `
-      <meta name="description" content="拉勾教育">
+      <meta name="description" content="服务端渲染">
     `,
       url: req.url,
     },

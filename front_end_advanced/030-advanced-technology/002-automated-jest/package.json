@@ -1,0 +1,13 @@
+{
+  "name": "002-automated-jest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "haoxuan",
+  "license": "MIT",
+  "scripts": {
+    "unit:test":"jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^28.1.2"
+  }
+}

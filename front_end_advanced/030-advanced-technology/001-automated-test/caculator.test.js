@@ -1,4 +1,4 @@
-const { sum, substract } = require("./caculater")
+const { sum, subtract } = require("./calculator")
 
 // 引入需要测试的函数
 // 给函数一个输出
@@ -6,24 +6,24 @@ const { sum, substract } = require("./caculater")
 // 检查函数是否返回了预期的结果
 
 // const result = sum(1,2)
-// const expexted = 3
+// const expected = 3
 
 test('sum(1,2) 的结果应该是3', () => {
     expect(sum(1, 2)).toBe(3)
 })
 
-test('substract(1,2) 的结果应该是-1', () => {
-    expect(substract(1, 2)).toBe(-1)
+test('subtract(1,2) 的结果应该是-1', () => {
+    expect(subtract(1, 2)).toBe(-1)
 })
 
-// if (result !== expexted) {
+// if (result !== expected) {
 //     throw new Error(`sum(1,2) 的结果应该是3，但是收到了${result}`)
 // }
 
 function expect(result) {
     return {
-        toBe(expexted) {
-            if (result !== expexted) {
+        toBe(expected) {
+            if (result !== expected) {
                 throw new Error(`sum(1,2) 的结果应该是3，但是收到了${result}`)
             }
         }

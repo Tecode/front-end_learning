@@ -5,7 +5,7 @@
   "author": "haoxuan",
   "license": "MIT",
   "scripts": {
-    "unit:test":"jest --coverage"
+    "unit:test":"jest --coverage --watch"
   },
   "devDependencies": {
     "jest": "^28.1.2"

@@ -5,9 +5,12 @@
   "author": "haoxuan",
   "license": "MIT",
   "scripts": {
-    "unit:test":"jest --coverage --watch"
+    "unit:test": "jest --coverage"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "babel-jest": "^28.1.2",
     "jest": "^28.1.2"
   }
 }

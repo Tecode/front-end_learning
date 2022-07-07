@@ -1,4 +1,4 @@
-const { sum, subtract } = require("./calculator")
+import { sum, subtract } from './calculator'
 
 // 引入需要测试的函数
 // 给函数一个输出

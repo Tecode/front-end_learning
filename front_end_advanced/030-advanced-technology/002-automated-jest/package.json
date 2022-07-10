@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "babel-jest": "^28.1.2",
     "jest": "^28.1.2",
-    "jest-environment-jsdom": "^28.1.2"
+    "jest-environment-jsdom": "^28.1.2",
+    "vue": "2.6.14"
   }
 }

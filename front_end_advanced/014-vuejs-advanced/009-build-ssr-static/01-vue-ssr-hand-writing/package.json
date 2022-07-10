@@ -1,9 +1,7 @@
 {
-  "name": "05-vue-ssr",
+  "name": "vue-ssr",
+  "private": true,
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "haoxuan",
-  "license": "MIT",
   "scripts": {
     "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.client.config.js",
     "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.server.config.js",

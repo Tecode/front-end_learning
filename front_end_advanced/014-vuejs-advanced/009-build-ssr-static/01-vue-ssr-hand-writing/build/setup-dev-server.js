@@ -40,8 +40,10 @@ module.exports = (server, callback) => {
   const serverDevMiddleware = devMiddleware(serverCompiler, {
     logLevel: 'silent' // 关闭日志输出，由 FriendlyErrorsWebpackPlugin 处理
   })
+  // 打包的结果保存在内存中
   serverCompiler.hooks.done.tap('server', () => {
     serverBundle = JSON.parse(
+      // 读取内存中保存的文件
       serverDevMiddleware.fileSystem.readFileSync(resolve('../dist/vue-ssr-server-bundle.json'), 'utf-8')
     )
     update()

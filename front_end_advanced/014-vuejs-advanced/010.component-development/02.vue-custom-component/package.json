@@ -1,0 +1,11 @@
+{
+  "name": "02.vue-custom-component",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "haoxuan",
+  "license": "MIT",
+  "scripts": {
+    "serve": "vue serve"
+  },
+  "dependencies": {}
+}

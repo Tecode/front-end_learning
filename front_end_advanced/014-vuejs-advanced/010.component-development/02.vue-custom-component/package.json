@@ -1,11 +1,33 @@
 {
   "name": "02.vue-custom-component",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "haoxuan",
-  "license": "MIT",
+  "description": "npm i -g @vue/cli-service-global vue serve // 默认app.vue App.vue main.js index.js",
+  "author": "",
   "scripts": {
-    "serve": "vue serve"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {}
+  "main": "index.js",
+  "dependencies": {
+    "element-ui": "^2.4.5"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^5.0.8",
+    "babel-plugin-component": "^1.1.1",
+    "vue": "2",
+    "vue-cli-plugin-element": "~1.0.1",
+    "vue-template-compiler": "^2.7.6"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "babel": {
+    "plugins": [
+      [
+        "component",
+        {
+          "libraryName": "element-ui",
+          "styleLibraryName": "theme-chalk"
+        }
+      ]
+    ]
+  }
 }

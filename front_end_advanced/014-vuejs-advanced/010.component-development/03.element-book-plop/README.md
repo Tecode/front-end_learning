@@ -82,6 +82,12 @@ module.exports = [
 ]
 ```
 
+## 工作区添加依赖
+
+```bash
+yarn workspace lg-button add -D lodash@4
+```
+
 ## 配置 build 脚本并运行
 
 找到 button 包中的 package.json 的 scripts 配置

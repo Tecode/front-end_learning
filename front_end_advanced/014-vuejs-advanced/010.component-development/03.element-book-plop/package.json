@@ -3,7 +3,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "name": "03-lgelement",
+  "name": "03.element-book-plop",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

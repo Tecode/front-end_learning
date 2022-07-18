@@ -185,3 +185,19 @@ module.exports = fs.readdirSync(root)
 ```js
 "build": "rollup -c"
 ```
+
+## Lerna使用
+
+```bash
+yarn global add lerna
+lerna init
+lerna publish
+```
+lerna publish会同时将包发布到npm以及将代码提交到GitHub
+
+### Lerna publish
+
+```bash
+npm whoami // 查看是否登录
+npm config get registry // 发布到npm要检查registry是npm的镜像源
+```

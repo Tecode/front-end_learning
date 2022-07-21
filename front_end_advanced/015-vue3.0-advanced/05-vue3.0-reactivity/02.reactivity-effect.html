@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue3.0响应式原理</title>
+</head>
+
+<body>
+
+</body>
+<script type="module">
+  import { reactive } from './reactivity/index.js'
+  const reactiveData = reactive({ name: 'haoxuan', developer: 'Go' })
+  reactiveData.developer = 'Swift'
+  console.log(reactiveData.name);
+  delete reactiveData.name
+  console.log(reactiveData);
+  // 触发了set
+  // index.js:12 触发了get
+  // 02.reactivity-effect.html:55 haoxuan
+  // index.js:30 删除了属性成功
+</script>
+
+</html>

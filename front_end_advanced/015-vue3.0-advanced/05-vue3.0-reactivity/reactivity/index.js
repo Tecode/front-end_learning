@@ -9,6 +9,7 @@ export function reactive(target) {
   
   const handler = {
     get(target, key, receiver) {
+      // 收集依赖
       console.log('触发了get');
       const result = Reflect.get(target, key, receiver)
       // 判断result是否是对象，如果是对象转化为响应式对象

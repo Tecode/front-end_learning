@@ -42,7 +42,7 @@ const commonConfig = {
         },
         default: {
           minChunks: 2,
-          filename: 'js/syy_[id].js',
+          filename: 'js/chunk-[hash:5].js',
           priority: -20,
         }
       }

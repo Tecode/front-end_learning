@@ -18,5 +18,22 @@ const virtualDOM = (
   </div>
 )
 
-console.log(virtualDOM, '---')
-Go.render(virtualDOM, document.getElementById('root'))
+// console.log(virtualDOM, '---')
+// Go.render(virtualDOM, document.getElementById('root'))
+
+function Demo() {
+  return <h2>Hello</h2>
+}
+
+function Heart(props) {
+  return (
+    <div>
+      {props.title}
+      &hearts;
+      <Demo />
+    </div>
+  )
+}
+
+
+Go.render(<Heart title="Hello React" />, document.getElementById('root'))

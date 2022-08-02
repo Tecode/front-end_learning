@@ -231,12 +231,140 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony import */ var _misc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../misc */ "./src/react/misc/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 /**
  * 任务队列
  */
 
 var taskQueue = Object(_misc__WEBPACK_IMPORTED_MODULE_0__["createTaskQueue"])();
+/**
+ * 要执行的子任务
+ */
+
+var subTask = null;
+
+var getFirstTask = function getFirstTask() {
+  /**
+   * 从任务队列中获取任务
+   */
+  var task = taskQueue.pop();
+
+  if (task.from === "class_component") {
+    var root = getRoot(task.instance);
+    task.instance.__fiber.partialState = task.partialState;
+    return {
+      props: root.props,
+      stateNode: root.stateNode,
+      tag: "host_root",
+      effects: [],
+      child: null,
+      alternate: root
+    };
+  }
+  /**
+   * 返回最外层节点的fiber对象
+   */
+
+
+  return {
+    props: task.props,
+    stateNode: task.dom,
+    tag: "host_root",
+    effects: [],
+    child: null,
+    alternate: task.dom.__rootFiberContainer
+  };
+};
+
+var executeTask = function executeTask(fiber) {
+  /**
+   * 构建子级fiber对象
+   */
+  if (fiber.tag === "class_component") {
+    if (fiber.stateNode.__fiber && fiber.stateNode.__fiber.partialState) {
+      fiber.stateNode.state = _objectSpread(_objectSpread({}, fiber.stateNode.state), fiber.stateNode.__fiber.partialState);
+    }
+
+    reconcileChildren(fiber, fiber.stateNode.render());
+  } else if (fiber.tag === "function_component") {
+    reconcileChildren(fiber, fiber.stateNode(fiber.props));
+  } else {
+    reconcileChildren(fiber, fiber.props.children);
+  }
+  /**
+   * 如果子级存在 返回子级
+   * 将这个子级当做父级 构建这个父级下的子级
+   */
+
+
+  if (fiber.child) {
+    return fiber.child;
+  }
+  /**
+   * 如果存在同级 返回同级 构建同级的子级
+   * 如果同级不存在 返回到父级 看父级是否有同级
+   */
+
+
+  var currentExcitedlyFiber = fiber;
+
+  while (currentExcitedlyFiber.parent) {
+    currentExcitedlyFiber.parent.effects = currentExcitedlyFiber.parent.effects.concat(currentExcitedlyFiber.effects.concat([currentExcitedlyFiber]));
+
+    if (currentExcitedlyFiber.sibling) {
+      return currentExcitedlyFiber.sibling;
+    }
+
+    currentExcitedlyFiber = currentExcitedlyFiber.parent;
+  }
+
+  pendingCommit = currentExcitedlyFiber;
+};
+
+var workLoop = function workLoop(deadline) {
+  /**
+   * 如果子任务不存在 就去获取子任务
+   */
+  if (!subTask) {
+    subTask = getFirstTask();
+  }
+  /**
+   * 如果任务存在并且浏览器有空余时间就调用
+   * executeTask 方法执行任务 接受任务 返回新的任务
+   */
+
+
+  while (subTask && deadline.timeRemaining() > 1) {
+    subTask = executeTask(subTask);
+  }
+
+  if (pendingCommit) {
+    commitAllWork(pendingCommit);
+  }
+};
+
+var performTask = function performTask(deadline) {
+  /**
+   * 执行任务
+   */
+  workLoop(deadline);
+  /**
+   * 判断任务是否存在
+   * 判断任务队列中是否还有任务没有执行
+   * 再一次告诉浏览器在空闲的时间执行任务
+   */
+
+  if (subTask || !taskQueue.isEmpty()) {
+    requestIdleCallback(performTask);
+  }
+};
+
 var render = function render(element, dom) {
   /**
    * 1. 向任务队列中添加任务
@@ -256,6 +384,8 @@ var render = function render(element, dom) {
   /**
    * 指定在浏览器空闲的时间去执行任务
    */
+
+  requestIdleCallback(performTask);
 };
 
 /***/ })

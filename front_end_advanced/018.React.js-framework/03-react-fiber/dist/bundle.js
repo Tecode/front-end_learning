@@ -86,6 +86,129 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/DOM/createDOMElement.js":
+/*!*************************************!*\
+  !*** ./src/DOM/createDOMElement.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return createDOMElement; });
+/* harmony import */ var _updateNodeElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./updateNodeElement */ "./src/DOM/updateNodeElement.js");
+
+function createDOMElement(virtualDOM) {
+  var newElement = null;
+
+  if (virtualDOM.type === 'text') {
+    // 文本节点
+    newElement = document.createTextNode(virtualDOM.props.textContent);
+  } else {
+    // 元素节点
+    newElement = document.createElement(virtualDOM.type);
+    Object(_updateNodeElement__WEBPACK_IMPORTED_MODULE_0__["default"])(newElement, virtualDOM);
+  }
+
+  return newElement;
+}
+
+/***/ }),
+
+/***/ "./src/DOM/index.js":
+/*!**************************!*\
+  !*** ./src/DOM/index.js ***!
+  \**************************/
+/*! exports provided: createDOMElement, updateNodeElement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _createDOMElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createDOMElement */ "./src/DOM/createDOMElement.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createDOMElement", function() { return _createDOMElement__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _updateNodeElement__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./updateNodeElement */ "./src/DOM/updateNodeElement.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "updateNodeElement", function() { return _updateNodeElement__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./src/DOM/updateNodeElement.js":
+/*!**************************************!*\
+  !*** ./src/DOM/updateNodeElement.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return updateNodeElement; });
+function updateNodeElement(newElement, virtualDOM) {
+  var oldVirtualDOM = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  // 获取节点对应的属性对象
+  var newProps = virtualDOM.props || {};
+  var oldProps = oldVirtualDOM.props || {};
+
+  if (virtualDOM.type === 'text') {
+    if (newProps.textContent !== oldProps.textContent) {
+      if (virtualDOM.parent.type !== oldVirtualDOM.parent.type) {
+        virtualDOM.parent.stateNode.appendChild(document.createTextNode(newProps.textContent));
+      } else {
+        virtualDOM.parent.stateNode.replaceChild(document.createTextNode(newProps.textContent), oldVirtualDOM.stateNode);
+      }
+    }
+
+    return;
+  }
+
+  Object.keys(newProps).forEach(function (propName) {
+    // 获取属性值
+    var newPropsValue = newProps[propName];
+    var oldPropsValue = oldProps[propName];
+
+    if (newPropsValue !== oldPropsValue) {
+      // 判断属性是否是否事件属性 onClick -> click
+      if (propName.slice(0, 2) === 'on') {
+        // 事件名称
+        var eventName = propName.toLowerCase().slice(2); // 为元素添加事件
+
+        newElement.addEventListener(eventName, newPropsValue); // 删除原有的事件的事件处理函数
+
+        if (oldPropsValue) {
+          newElement.removeEventListener(eventName, oldPropsValue);
+        }
+      } else if (propName === 'value' || propName === 'checked') {
+        newElement[propName] = newPropsValue;
+      } else if (propName !== 'children') {
+        if (propName === 'className') {
+          newElement.setAttribute('class', newPropsValue);
+        } else {
+          newElement.setAttribute(propName, newPropsValue);
+        }
+      }
+    }
+  }); // 判断属性被删除的情况
+
+  Object.keys(oldProps).forEach(function (propName) {
+    var newPropsValue = newProps[propName];
+    var oldPropsValue = oldProps[propName];
+
+    if (!newPropsValue) {
+      // 属性被删除了
+      if (propName.slice(0, 2) === 'on') {
+        var eventName = propName.toLowerCase().slice(2);
+        newElement.removeEventListener(eventName, oldPropsValue);
+      } else if (propName !== 'children') {
+        newElement.removeAttribute(propName);
+      }
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -100,6 +223,43 @@ __webpack_require__.r(__webpack_exports__);
 var root = document.getElementById('root');
 var jsx = /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("div", null, /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("p", null, "Hello React"), /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("p", null, "Hi Fiber"));
 Object(_react__WEBPACK_IMPORTED_MODULE_0__["render"])(jsx, root);
+
+/***/ }),
+
+/***/ "./src/react/component.js":
+/*!********************************!*\
+  !*** ./src/react/component.js ***!
+  \********************************/
+/*! exports provided: Component */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return Component; });
+/* harmony import */ var _reconciliation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reconciliation */ "./src/react/reconciliation/index.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+
+var Component = /*#__PURE__*/function () {
+  function Component(props) {
+    _classCallCheck(this, Component);
+
+    this.props = props;
+  }
+
+  _createClass(Component, [{
+    key: "setState",
+    value: function setState(partialState) {
+      Object(_reconciliation__WEBPACK_IMPORTED_MODULE_0__["scheduleUpdate"])(this, partialState);
+    }
+  }]);
+
+  return Component;
+}();
 
 /***/ }),
 
@@ -165,6 +325,73 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/react/misc/arrayField.js":
+/*!**************************************!*\
+  !*** ./src/react/misc/arrayField.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var arrayField = function arrayField(arg) {
+  return Array.isArray(arg) ? arg : [arg];
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (arrayField);
+
+/***/ }),
+
+/***/ "./src/react/misc/createReactInstance.js":
+/*!***********************************************!*\
+  !*** ./src/react/misc/createReactInstance.js ***!
+  \***********************************************/
+/*! exports provided: createReactInstance */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReactInstance", function() { return createReactInstance; });
+var createReactInstance = function createReactInstance(fiber) {
+  var instance = null;
+
+  if (fiber.tag === 'class_component') {
+    instance = new fiber.type(fiber.props);
+  } else {
+    instance = fiber.type;
+  }
+
+  return instance;
+};
+
+/***/ }),
+
+/***/ "./src/react/misc/createStateNode.js":
+/*!*******************************************!*\
+  !*** ./src/react/misc/createStateNode.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DOM__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../DOM */ "./src/DOM/index.js");
+/* harmony import */ var _createReactInstance__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createReactInstance */ "./src/react/misc/createReactInstance.js");
+
+
+
+var createStateNode = function createStateNode(fiber) {
+  if (fiber.tag === 'host_component') {
+    return Object(_DOM__WEBPACK_IMPORTED_MODULE_0__["createDOMElement"])(fiber);
+  } else {
+    return Object(_createReactInstance__WEBPACK_IMPORTED_MODULE_1__["createReactInstance"])(fiber);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (createStateNode);
+
+/***/ }),
+
 /***/ "./src/react/misc/createTaskQueue.js":
 /*!*******************************************!*\
   !*** ./src/react/misc/createTaskQueue.js ***!
@@ -204,17 +431,55 @@ var createTaskQueue = function createTaskQueue() {
 
 /***/ }),
 
+/***/ "./src/react/misc/getTag.js":
+/*!**********************************!*\
+  !*** ./src/react/misc/getTag.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../component */ "./src/react/component.js");
+
+
+var getTag = function getTag(vdom) {
+  if (typeof vdom.type === "string") {
+    return "host_component";
+  } else if (Object.getPrototypeOf(vdom.type) === _component__WEBPACK_IMPORTED_MODULE_0__["Component"]) {
+    return "class_component";
+  } else {
+    return "function_component";
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (getTag);
+
+/***/ }),
+
 /***/ "./src/react/misc/index.js":
 /*!*********************************!*\
   !*** ./src/react/misc/index.js ***!
   \*********************************/
-/*! exports provided: createTaskQueue */
+/*! exports provided: createTaskQueue, arrayField, getTag, createStateNode */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _createTaskQueue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createTaskQueue */ "./src/react/misc/createTaskQueue.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createTaskQueue", function() { return _createTaskQueue__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _arrayField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./arrayField */ "./src/react/misc/arrayField.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "arrayField", function() { return _arrayField__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _getTag__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getTag */ "./src/react/misc/getTag.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTag", function() { return _getTag__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _createStateNode__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createStateNode */ "./src/react/misc/createStateNode.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createStateNode", function() { return _createStateNode__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+
+
 
 
 
@@ -224,12 +489,13 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./src/react/reconciliation/index.js ***!
   \*******************************************/
-/*! exports provided: render */
+/*! exports provided: render, scheduleUpdate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scheduleUpdate", function() { return scheduleUpdate; });
 /* harmony import */ var _misc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../misc */ "./src/react/misc/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -280,6 +546,123 @@ var getFirstTask = function getFirstTask() {
     child: null,
     alternate: task.dom.__rootFiberContainer
   };
+};
+
+var reconcileChildren = function reconcileChildren(fiber, children) {
+  /**
+   * children 可能对象 也可能是数组
+   * 将children 转换成数组
+   */
+  var arrayFieldChildren = Object(_misc__WEBPACK_IMPORTED_MODULE_0__["arrayField"])(children);
+  /**
+   * 循环 children 使用的索引
+   */
+
+  var index = 0;
+  /**
+   * children 数组中元素的个数
+   */
+
+  var numberOfElements = arrayFieldChildren.length;
+  /**
+   * 循环过程中的循环项 就是子节点的 virtualDOM 对象
+   */
+
+  var element = null;
+  /**
+   * 子级 fiber 对象
+   */
+
+  var newFiber = null;
+  /**
+   * 上一个兄弟 fiber 对象
+   */
+
+  var prevFiber = null;
+  var alternate = null;
+
+  if (fiber.alternate && fiber.alternate.child) {
+    alternate = fiber.alternate.child;
+  }
+
+  while (index < numberOfElements || alternate) {
+    /**
+     * 子级 virtualDOM 对象
+     */
+    element = arrayFieldChildren[index];
+
+    if (!element && alternate) {
+      /**
+       * 删除操作
+       */
+      alternate.effectTag = "delete";
+      fiber.effects.push(alternate);
+    } else if (element && alternate) {
+      /**
+       * 更新
+       */
+      newFiber = {
+        type: element.type,
+        props: element.props,
+        tag: Object(_misc__WEBPACK_IMPORTED_MODULE_0__["getTag"])(element),
+        effects: [],
+        effectTag: "update",
+        parent: fiber,
+        alternate: alternate
+      };
+
+      if (element.type === alternate.type) {
+        /**
+         * 类型相同
+         */
+        newFiber.stateNode = alternate.stateNode;
+      } else {
+        /**
+         * 类型不同
+         */
+        newFiber.stateNode = Object(_misc__WEBPACK_IMPORTED_MODULE_0__["createStateNode"])(newFiber);
+      }
+    } else if (element && !alternate) {
+      /**
+       * 初始渲染
+       */
+
+      /**
+       * 子级 fiber 对象
+       */
+      newFiber = {
+        type: element.type,
+        props: element.props,
+        tag: Object(_misc__WEBPACK_IMPORTED_MODULE_0__["getTag"])(element),
+        effects: [],
+        effectTag: "placement",
+        parent: fiber
+      };
+      /**
+       * 为fiber节点添加DOM对象或组件实例对象
+       */
+
+      newFiber.stateNode = Object(_misc__WEBPACK_IMPORTED_MODULE_0__["createStateNode"])(newFiber);
+    }
+
+    if (index === 0) {
+      fiber.child = newFiber;
+    } else if (element) {
+      prevFiber.sibling = newFiber;
+    }
+
+    if (alternate && alternate.sibling) {
+      alternate = alternate.sibling;
+    } else {
+      alternate = null;
+    } // 更新
+
+
+    prevFiber = newFiber;
+    index++;
+  }
+
+  console.log(fiber, '-fiber');
 };
 
 var executeTask = function executeTask(fiber) {
@@ -380,11 +763,18 @@ var render = function render(element, dom) {
       children: element
     }
   });
-  console.log(taskQueue.pop(), '--taskQueue');
   /**
    * 指定在浏览器空闲的时间去执行任务
    */
 
+  requestIdleCallback(performTask);
+};
+var scheduleUpdate = function scheduleUpdate(instance, partialState) {
+  taskQueue.push({
+    from: "class_component",
+    instance: instance,
+    partialState: partialState
+  });
   requestIdleCallback(performTask);
 };
 

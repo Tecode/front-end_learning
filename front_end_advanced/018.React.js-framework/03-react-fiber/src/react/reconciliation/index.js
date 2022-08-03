@@ -1,4 +1,4 @@
-import { createTaskQueue } from '../misc'
+import { createTaskQueue, arrayField, getTag, createStateNode } from '../misc'
 
 
 /**
@@ -40,6 +40,117 @@ import { createTaskQueue } from '../misc'
     child: null,
     alternate: task.dom.__rootFiberContainer
   }
+}
+
+const reconcileChildren = (fiber, children) => {
+  /**
+   * children 可能对象 也可能是数组
+   * 将children 转换成数组
+   */
+  const arrayFieldChildren = arrayField(children)
+  /**
+   * 循环 children 使用的索引
+   */
+  let index = 0
+  /**
+   * children 数组中元素的个数
+   */
+  let numberOfElements = arrayFieldChildren.length
+  /**
+   * 循环过程中的循环项 就是子节点的 virtualDOM 对象
+   */
+  let element = null
+  /**
+   * 子级 fiber 对象
+   */
+  let newFiber = null
+  /**
+   * 上一个兄弟 fiber 对象
+   */
+  let prevFiber = null
+
+  let alternate = null
+
+  if (fiber.alternate && fiber.alternate.child) {
+    alternate = fiber.alternate.child
+  }
+
+  while (index < numberOfElements || alternate) {
+    /**
+     * 子级 virtualDOM 对象
+     */
+    element = arrayFieldChildren[index]
+
+    if (!element && alternate) {
+      /**
+       * 删除操作
+       */
+      alternate.effectTag = "delete"
+      fiber.effects.push(alternate)
+    } else if (element && alternate) {
+      /**
+       * 更新
+       */
+      newFiber = {
+        type: element.type,
+        props: element.props,
+        tag: getTag(element),
+        effects: [],
+        effectTag: "update",
+        parent: fiber,
+        alternate
+      }
+      if (element.type === alternate.type) {
+        /**
+         * 类型相同
+         */
+        newFiber.stateNode = alternate.stateNode
+      } else {
+        /**
+         * 类型不同
+         */
+        newFiber.stateNode = createStateNode(newFiber)
+      }
+    } else if (element && !alternate) {
+      /**
+       * 初始渲染
+       */
+      /**
+       * 子级 fiber 对象
+       */
+      newFiber = {
+        type: element.type,
+        props: element.props,
+        tag: getTag(element),
+        effects: [],
+        effectTag: "placement",
+        parent: fiber
+      }
+      /**
+       * 为fiber节点添加DOM对象或组件实例对象
+       */
+      newFiber.stateNode = createStateNode(newFiber)
+    }
+
+    if (index === 0) {
+      fiber.child = newFiber
+    } else if (element) {
+      prevFiber.sibling = newFiber
+    }
+    
+
+    if (alternate && alternate.sibling) {
+      alternate = alternate.sibling
+    } else {
+      alternate = null
+    }
+
+    // 更新
+    prevFiber = newFiber
+    index++
+  }
+  
+  console.log(fiber, '-fiber');
 }
 
 const executeTask = fiber => {
@@ -133,10 +244,18 @@ export const render = (element, dom) => {
     dom,
     props: { children: element }
   })
-
-  console.log(taskQueue.pop(), '--taskQueue');
   /**
    * 指定在浏览器空闲的时间去执行任务
    */
+  requestIdleCallback(performTask)
+}
+
+
+export const scheduleUpdate = (instance, partialState) => {
+  taskQueue.push({
+    from: "class_component",
+    instance,
+    partialState
+  })
   requestIdleCallback(performTask)
 }

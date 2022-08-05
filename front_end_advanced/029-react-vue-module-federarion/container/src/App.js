@@ -29,7 +29,7 @@ function App() {
             <AuthApp setStatus={setStatus} />
           </Route>
           <Route path="/dashboard">
-            {!status && <Redirect to="/" />}
+            {/* {!status && <Redirect to="/" />} */}
             <DashboardApp />
           </Route>
           <Route path="/">

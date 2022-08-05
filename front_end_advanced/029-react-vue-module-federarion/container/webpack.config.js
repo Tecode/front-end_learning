@@ -5,10 +5,10 @@ const packageJSON = require("./package.json")
 module.exports = {
   mode: "development",
   output: {
-    publicPath: "http://localhost:8080/"
+    publicPath: "http://localhost:8000/"
   },
   devServer: {
-    port: 8080,
+    port: 8000,
     historyApiFallback: true
   },
   module: {

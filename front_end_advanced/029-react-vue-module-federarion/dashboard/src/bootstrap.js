@@ -11,4 +11,10 @@ if (process.env.NODE_ENV === "development") {
   if (el) mount(el)
 }
 
-export { mount }
+// 挂载组件Vue组件到节点
+function mountComponent(el, component) {
+  const app = createApp(component)
+  app.mount(el)
+}
+
+export { mount, mountComponent }

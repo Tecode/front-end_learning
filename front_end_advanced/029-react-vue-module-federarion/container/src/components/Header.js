@@ -73,7 +73,7 @@ export default function Header({ status, setStatus }) {
             component={RouterLink}
             to="/"
           >
-            拉勾教育
+            React+Vue微前端
           </Typography>
           <Button
             color="primary"

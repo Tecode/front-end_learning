@@ -86,6 +86,7 @@
         </div>
       </Panel>
     </div>
+    <VueComponent />
   </div>
 </template>
 
@@ -104,6 +105,7 @@ import Column from "primevue/column"
 import DataTable from "primevue/datatable"
 import Chart from "primevue/chart"
 import ProgressBar from "primevue/progressbar"
+import VueComponent from './VueComponent.vue'
 
 export default {
   components: {
@@ -115,7 +117,8 @@ export default {
     Button,
     Column,
     DataTable,
-    Chart
+    Chart,
+    VueComponent
   },
   data() {
     return {

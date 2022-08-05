@@ -56,7 +56,8 @@ module.exports = {
       name: "dashboard",
       filename: "remoteEntry.js",
       exposes: {
-        "./DashboardApp": "./src/bootstrap"
+        "./DashboardApp": "./src/bootstrap",
+        "./VueComponent": "./src/components/VueComponent.vue"
       },
       shared: packageJson.dependencies
     }),

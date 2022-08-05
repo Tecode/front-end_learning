@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from "react"
+import React, { lazy, Suspense, useState, useEffect, createRef } from "react"
 import { Router, Route, Switch, Redirect } from "react-router-dom"
 import { createBrowserHistory } from "history"
 // import MarketingApp from "./components/MarketingApp"
@@ -9,12 +9,16 @@ import Progress from "./components/Progress"
 const MarketingApp = lazy(() => import("./components/MarketingApp"))
 const AuthApp = lazy(() => import("./components/AuthApp"))
 const DashboardApp = lazy(() => import("./components/DashboardApp"))
+import VueComponent from "dashboard/VueComponent"
+import { mountComponent } from "dashboard/DashboardApp"
 
 const history = createBrowserHistory()
 
 function App() {
   const [status, setStatus] = useState(false)
+  const refs = createRef()
   useEffect(() => {
+    mountComponent(refs.current, VueComponent)
     console.log(status)
     if (status) {
       history.push("/dashboard")
@@ -33,7 +37,9 @@ function App() {
             <DashboardApp />
           </Route>
           <Route path="/">
-            <MarketingApp />
+            <div>自定义组件</div>
+            <div ref={refs}></div>
+            {/* <MarketingApp /> */}
           </Route>
         </Switch>
       </Suspense>

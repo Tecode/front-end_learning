@@ -13,7 +13,6 @@ import { createTaskQueue, arrayField, getTag, createStateNode } from '../misc'
  let pendingCommit = null
 
  const commitAllWork = fiber => {
-  console.log(fiber, 'fiber----fiber')
   /**
    * 循环 effets 数组 构建 DOM 节点树
    */
@@ -232,7 +231,6 @@ const executeTask = fiber => {
         ...fiber.stateNode.__fiber.partialState
       }
     }
-
     reconcileChildren(fiber, fiber.stateNode.render())
   } else if (fiber.tag === "function_component") {
     reconcileChildren(fiber, fiber.stateNode(fiber.props))

@@ -278,10 +278,15 @@ var Greeting = /*#__PURE__*/function (_Component) {
   }]);
 
   return Greeting;
-}(_react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+}(_react__WEBPACK_IMPORTED_MODULE_0__["Component"]); // render(<Greeting title="奥利给" />, root)
 
-Object(_react__WEBPACK_IMPORTED_MODULE_0__["render"])( /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(Greeting, {
-  title: "\u5965\u5229\u7ED9"
+
+function FnComponent(props) {
+  return /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("div", null, props.title, "FnComponent");
+}
+
+Object(_react__WEBPACK_IMPORTED_MODULE_0__["render"])( /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(FnComponent, {
+  title: "Hello"
 }), root);
 
 /***/ }),

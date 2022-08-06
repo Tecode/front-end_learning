@@ -28,4 +28,11 @@ class Greeting extends Component {
   }
 }
 
-render(<Greeting title="奥利给" />, root)
+// render(<Greeting title="奥利给" />, root)
+
+
+function FnComponent(props) {
+  return <div>{props.title}FnComponent</div>
+}
+
+render(<FnComponent title="Hello" />, root)

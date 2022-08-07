@@ -1,4 +1,5 @@
-import { createTaskQueue, arrayField, getTag, createStateNode } from '../misc'
+import { createTaskQueue, arrayField, getTag, createStateNode, getRoot } from '../misc'
+import { updateNodeElement } from '../../DOM'
 
 
 /**

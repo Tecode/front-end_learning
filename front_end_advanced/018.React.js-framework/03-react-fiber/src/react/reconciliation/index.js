@@ -149,7 +149,7 @@ const reconcileChildren = (fiber, children) => {
     prevFiber = newFiber
     index++
   }
-  
+
   console.log(fiber, '-fiber');
 }
 

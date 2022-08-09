@@ -1,0 +1,55 @@
+Arguments: 
+  /Users/haoxuan/.nvm/versions/node/v14.18.0/bin/node /Users/haoxuan/.yarn/bin/yarn.js
+
+PATH: 
+  /Users/haoxuan/.yarn/bin:/Users/haoxuan/.config/yarn/global/node_modules/.bin:/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/bin:/Users/haoxuan/.nvm/versions/node/v14.18.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/haoxuan/.yarn/bin:/Users/haoxuan/.config/yarn/global/node_modules/.bin:/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/bin:/Users/haoxuan/.nvm/versions/node/v14.18.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/haoxuan/Application/flutter/bin:.:/Users/haoxuan/Application/flutter/bin:.
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  14.18.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: read ECONNRESET
+      at TCP.onStreamRead (internal/stream_base_commons.js:209:20)
+
+npm manifest: 
+  {
+    "name": "marketing",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "webpack serve"
+    },
+    "dependencies": {
+      "@material-ui/core": "^4.11.0",
+      "@material-ui/icons": "^4.9.1",
+      "react": "^17.0.1",
+      "react-dom": "^17.0.1",
+      "react-router-dom": "^5.2.0"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.12.3",
+      "@babel/plugin-transform-runtime": "^7.12.1",
+      "@babel/preset-env": "^7.12.1",
+      "@babel/preset-react": "^7.12.1",
+      "babel-loader": "^8.1.0",
+      "clean-webpack-plugin": "^3.0.0",
+      "css-loader": "^5.0.0",
+      "html-webpack-plugin": "^4.5.0",
+      "style-loader": "^2.0.0",
+      "webpack": "^5.4.0",
+      "webpack-cli": "^4.1.0",
+      "webpack-dev-server": "^3.11.0",
+      "webpack-merge": "^5.2.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

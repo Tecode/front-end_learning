@@ -219,10 +219,82 @@ function updateNodeElement(newElement, virtualDOM) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./react */ "./src/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 var root = document.getElementById('root');
-var jsx = /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("div", null, /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("p", null, "Hello React"), /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("p", null, "Hi Fiber"));
-Object(_react__WEBPACK_IMPORTED_MODULE_0__["render"])(jsx, root);
+var jsx = /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("div", null, /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("p", null, "Hello React"), /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("p", null, "Hi Fiber")); // render(jsx, root)
+// setTimeout(() => {
+//   const jsx = (
+//     <div>
+//       <div>奥利给</div>
+//     </div>
+//   )
+//   render(jsx, root)
+// }, 2000)
+
+var Greeting = /*#__PURE__*/function (_Component) {
+  _inherits(Greeting, _Component);
+
+  var _super = _createSuper(Greeting);
+
+  function Greeting(props) {
+    var _this;
+
+    _classCallCheck(this, Greeting);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      name: "张三"
+    };
+    return _this;
+  }
+
+  _createClass(Greeting, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("div", null, this.props.title, "haoxuan ", this.state.name, /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("button", {
+        onClick: function onClick() {
+          return _this2.setState({
+            name: "李四"
+          });
+        }
+      }, "button"));
+    }
+  }]);
+
+  return Greeting;
+}(_react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+Object(_react__WEBPACK_IMPORTED_MODULE_0__["render"])( /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement(Greeting, {
+  title: "\u5965\u5229\u7ED9"
+}), root);
+
+function FnComponent(props) {
+  return /*#__PURE__*/_react__WEBPACK_IMPORTED_MODULE_0__["default"].createElement("div", null, props.title, "FnComponent");
+} // render(<FnComponent title="Hello" />, root)
 
 /***/ }),
 
@@ -308,7 +380,7 @@ function createElement(type, props) {
 /*!****************************!*\
   !*** ./src/react/index.js ***!
   \****************************/
-/*! exports provided: render, default */
+/*! exports provided: render, Component, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -316,6 +388,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _createElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createElement */ "./src/react/createElement.js");
 /* harmony import */ var _reconciliation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reconciliation */ "./src/react/reconciliation/index.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _reconciliation__WEBPACK_IMPORTED_MODULE_1__["render"]; });
+
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./component */ "./src/react/component.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Component", function() { return _component__WEBPACK_IMPORTED_MODULE_2__["Component"]; });
+
 
 
 
@@ -431,6 +507,29 @@ var createTaskQueue = function createTaskQueue() {
 
 /***/ }),
 
+/***/ "./src/react/misc/getRoot.js":
+/*!***********************************!*\
+  !*** ./src/react/misc/getRoot.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var getRoot = function getRoot(instance) {
+  var fiber = instance.__fiber;
+
+  while (fiber.parent) {
+    fiber = fiber.parent;
+  }
+
+  return fiber;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (getRoot);
+
+/***/ }),
+
 /***/ "./src/react/misc/getTag.js":
 /*!**********************************!*\
   !*** ./src/react/misc/getTag.js ***!
@@ -461,7 +560,7 @@ var getTag = function getTag(vdom) {
 /*!*********************************!*\
   !*** ./src/react/misc/index.js ***!
   \*********************************/
-/*! exports provided: createTaskQueue, arrayField, getTag, createStateNode */
+/*! exports provided: createTaskQueue, arrayField, getTag, createStateNode, getRoot */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -477,6 +576,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _createStateNode__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./createStateNode */ "./src/react/misc/createStateNode.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createStateNode", function() { return _createStateNode__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _getRoot__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getRoot */ "./src/react/misc/getRoot.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getRoot", function() { return _getRoot__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
 
 
 
@@ -497,11 +600,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scheduleUpdate", function() { return scheduleUpdate; });
 /* harmony import */ var _misc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../misc */ "./src/react/misc/index.js");
+/* harmony import */ var _DOM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../DOM */ "./src/DOM/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 /**
@@ -514,6 +619,72 @@ var taskQueue = Object(_misc__WEBPACK_IMPORTED_MODULE_0__["createTaskQueue"])();
  */
 
 var subTask = null;
+var pendingCommit = null;
+
+var commitAllWork = function commitAllWork(fiber) {
+  /**
+   * 循环 effets 数组 构建 DOM 节点树
+   */
+  fiber.effects.forEach(function (item) {
+    if (item.tag === "class_component") {
+      item.stateNode.__fiber = item;
+    }
+
+    if (item.effectTag === "delete") {
+      item.parent.stateNode.removeChild(item.stateNode);
+    } else if (item.effectTag === "update") {
+      /**
+       * 更新
+       */
+      if (item.type === item.alternate.type) {
+        /**
+         *  节点类型相同
+         */
+        Object(_DOM__WEBPACK_IMPORTED_MODULE_1__["updateNodeElement"])(item.stateNode, item, item.alternate);
+      } else {
+        /**
+         * 节点类型不同
+         */
+        item.parent.stateNode.replaceChild(item.stateNode, item.alternate.stateNode);
+      }
+    } else if (item.effectTag === "placement") {
+      /**
+       * 向页面中追加节点
+       */
+
+      /**
+       * 当前要追加的子节点
+       */
+      var _fiber = item;
+      /**
+       * 当前要追加的子节点的父级
+       */
+
+      var parentFiber = item.parent;
+      /**
+       * 找到普通节点父级 排除组件父级
+       * 因为组件父级是不能直接追加真实DOM节点的
+       */
+
+      while (parentFiber.tag === "class_component" || parentFiber.tag === "function_component") {
+        parentFiber = parentFiber.parent;
+      }
+      /**
+       * 如果子节点是普通节点 找到父级 将子节点追加到父级中
+       */
+
+
+      if (_fiber.tag === "host_component") {
+        parentFiber.stateNode.appendChild(_fiber.stateNode);
+      }
+    }
+  });
+  /**
+   * 备份旧的 fiber 节点对象
+   */
+
+  fiber.stateNode.__rootFiberContainer = fiber;
+};
 
 var getFirstTask = function getFirstTask() {
   /**
@@ -522,7 +693,7 @@ var getFirstTask = function getFirstTask() {
   var task = taskQueue.pop();
 
   if (task.from === "class_component") {
-    var root = getRoot(task.instance);
+    var root = Object(_misc__WEBPACK_IMPORTED_MODULE_0__["getRoot"])(task.instance);
     task.instance.__fiber.partialState = task.partialState;
     return {
       props: root.props,

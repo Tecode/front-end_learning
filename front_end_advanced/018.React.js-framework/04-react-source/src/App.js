@@ -1,6 +1,7 @@
 import * as React from "react"
 
-function App() {
+function App(props) {
+  console.log(props.key);
   React.useEffect(() => {
     console.log("useEffect")
   }, [])

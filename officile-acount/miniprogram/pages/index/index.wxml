@@ -20,6 +20,6 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
-  <web-view src="https://mp.weixin.qq.com/s/x2p7pFxufzl_ibpB31AtXA" />
-  <!-- <web-view src="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg2NjAwMDA5MA==#wechat_redirect" /> -->
+  <!-- <web-view src="https://mp.weixin.qq.com/s/x2p7pFxufzl_ibpB31AtXA" /> -->
+  <web-view src="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg2NjAwMDA5MA==#wechat_redirect" />
 </view>

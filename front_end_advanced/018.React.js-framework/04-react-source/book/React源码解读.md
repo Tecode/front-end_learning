@@ -840,6 +840,7 @@ export function render(
     isValidContainer(container),
     'Target container is not a DOM element.',
   );
+  
   return legacyRenderSubtreeIntoContainer(
     // 父组件 初始渲染没有父组件 传递 null 占位
     null,

@@ -18,7 +18,7 @@ const virtualDOM = (
   </div>
 )
 
-// console.log(virtualDOM, '---')
+console.log(virtualDOM, '---')
 // Go.render(virtualDOM, document.getElementById('root'))
 
 function Demo() {

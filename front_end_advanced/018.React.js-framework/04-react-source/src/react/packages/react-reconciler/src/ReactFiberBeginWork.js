@@ -1012,7 +1012,7 @@ function updateHostRoot(current, workInProgress, renderExpirationTime) {
   const prevState = workInProgress.memoizedState;
   // 获取上一次渲染使用的 children null
   const prevChildren = prevState !== null ? prevState.element : null;
-  // 浅复制更新队列, 防止引用属性互相影响
+  // 浅复制更新队列, 防止引用属性互相影响 
   // workInProgress.updateQueue 浅拷贝 current.updateQueue
   cloneUpdateQueue(current, workInProgress);
   // 获取 updateQueue.payload 并赋值到 workInProgress.memoizedState

@@ -256,6 +256,7 @@ function legacyRenderSubtreeIntoContainer(
     );
     // 获取 Fiber Root 对象
     fiberRoot = root._internalRoot;
+    console.log(fiberRoot, 'fiberRoot');
     /**
      * 改变 callback 函数中的 this 指向
      * 使其指向 render 方法第一个参数的真实 DOM 对象

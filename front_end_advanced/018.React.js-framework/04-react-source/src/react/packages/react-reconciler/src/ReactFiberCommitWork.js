@@ -358,6 +358,7 @@ function commitHookEffectListUnmount(tag: number, finishedWork: Fiber) {
  * useEffect 回调函数调用
  */
 function commitHookEffectListMount(tag: number, finishedWork: Fiber) {
+  console.log(finishedWork, '--finishedWork');
   // 获取任务队列
   const updateQueue: FunctionComponentUpdateQueue | null = (finishedWork.updateQueue: any);
   // 获取 lastEffect

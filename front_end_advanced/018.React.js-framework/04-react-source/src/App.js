@@ -1,10 +1,11 @@
 import * as React from "react"
 
 function App(props) {
-  console.log(props.key);
+  const [value,changeValue] = React.useState(0)
   React.useEffect(() => {
     console.log("useEffect")
   }, [])
+  console.log(props.key,value, changeValue, '--changeValue');
   return <div>App works</div>
 }
 

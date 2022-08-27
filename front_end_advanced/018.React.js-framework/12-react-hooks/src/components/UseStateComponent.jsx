@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function UseStateComponent(params) {
   // 1. 接收唯⼀的参数即状态初始值. 初始值可以是任意数据类型.

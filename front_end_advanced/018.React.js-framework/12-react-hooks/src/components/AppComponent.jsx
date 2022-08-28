@@ -3,6 +3,7 @@ import UseStateComponent from "./UseStateComponent";
 import UseReducerComponent from "./UseReducerComponent";
 import UseContextComponent from "./UseContextComponent";
 import UseEffectComponent from "./UseEffectComponent";
+import App from "../App";
 
 function AppComponent(params) {
   return (
@@ -11,6 +12,7 @@ function AppComponent(params) {
       <UseReducerComponent />
       <UseContextComponent />
       <UseEffectComponent />
+      <App />
     </React.Fragment>
   );
 }

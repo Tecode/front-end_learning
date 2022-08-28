@@ -77,6 +77,7 @@ function App() {
   }
   const [count, dispatch] = useReducer(reducer, 0);
   return <div>
+    <h2>实现useEffect useReducer useState</h2>
     {count}
     <button onClick={() => dispatch({type: 'increment'})}>+1</button>
     <button onClick={() => dispatch({type: 'decrement'})}>-1</button>

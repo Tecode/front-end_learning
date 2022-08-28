@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -23,9 +24,30 @@ import { useEffect } from "react";
 // 5. useEffect 结合异步函数
 // useEffect中的参数函数不能是异步函数, 因为useEffect函数要返回清理资源的函数, 如果是异步函数就变成了返回Promise
 
+// 自定义Input Hooks
+function useUpdateInput(initValue) {
+  const [value, setValue] = useState(initValue);
+  return { value, onChange: (event) => setValue(event.target.value) };
+}
+
+// 自定义异步请求hooks
+function useGetData() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get(
+        "https://api.github.com/users/Tecode/repos"
+      );
+      console.log(response.data);
+      setData(response.data);
+    })();
+  }, []);
+  return [data, setData];
+}
+
 function UseEffectComponent() {
   const [count, setCount] = useState(0);
-  // b. 设置定时器让count数值每隔⼀秒增加1
+  // 设置定时器让count数值每隔⼀秒增加1
   useEffect(() => {
     const timer = setInterval(() => {
       setCount((value) => {
@@ -38,6 +60,15 @@ function UseEffectComponent() {
       clearInterval(timer);
     };
   }, []);
+  // 自定义Input Hooks
+  const userNameInput = useUpdateInput("");
+  const passwordInput = useUpdateInput("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(userNameInput.value, passwordInput.value, "---useUpdateInput");
+  };
+  // 自定义请求Hooks
+  const [data] = useGetData();
   return (
     <>
       <h2>UseEffectComponent</h2>
@@ -49,6 +80,23 @@ function UseEffectComponent() {
       >
         Umount Component
       </button>
+      <h3>自定义Input Hooks</h3>
+      <form onSubmit={handleSubmit}>
+        <input name="userName" type="text" {...userNameInput} />
+        <input
+          name="password"
+          type="password"
+          autoComplete="on"
+          {...passwordInput}
+        />
+        <button>Submit</button>
+      </form>
+      <h3>自定义异步请求 Hooks</h3>
+      {data
+        .filter((item, index) => index < 5)
+        .map((item) => (
+          <p key={item.id}>{item.full_name}</p>
+        ))}
     </>
   );
 }

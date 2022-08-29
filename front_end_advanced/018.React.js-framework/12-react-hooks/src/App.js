@@ -8,6 +8,7 @@ let stateIndex = 0;
 function createSetter (index) {
   return function (newState) {
     state[index] = newState;
+    // 重新渲染
     render ();
   }
 }
@@ -76,6 +77,9 @@ function App() {
     }
   }
   const [count, dispatch] = useReducer(reducer, 0);
+  useEffect(()=> {
+    console.log("实现Effect钩子函数");
+  })
   return <div>
     <h2>实现useEffect useReducer useState</h2>
     {count}

@@ -6,6 +6,7 @@ import UseEffectComponent from "./UseEffectComponent";
 import App from "../App";
 import UseMemoComponent from "./UseMemoComponent";
 import Memo from "./memo";
+import UseCallbackComponent from "./UseCallbackComponent";
 
 function AppComponent(params) {
   return (
@@ -16,6 +17,7 @@ function AppComponent(params) {
       <UseEffectComponent />
       <UseMemoComponent />
       <Memo />
+      <UseCallbackComponent />
       <App />
     </React.Fragment>
   );

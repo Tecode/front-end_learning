@@ -5,6 +5,7 @@ import UseContextComponent from "./UseContextComponent";
 import UseEffectComponent from "./UseEffectComponent";
 import App from "../App";
 import UseMemoComponent from "./UseMemoComponent";
+import Memo from "./memo";
 
 function AppComponent(params) {
   return (
@@ -14,6 +15,7 @@ function AppComponent(params) {
       <UseContextComponent />
       <UseEffectComponent />
       <UseMemoComponent />
+      <Memo />
       <App />
     </React.Fragment>
   );

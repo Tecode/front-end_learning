@@ -22,6 +22,7 @@ function UseReducerComponent(params) {
       <button onClick={() => dispatch({ type: "Increment" })}>
         Increment 10
       </button>
+      丨
       <button onClick={() => dispatch({ type: "Reducer" })}>Reducer 10</button>
     </>
   );

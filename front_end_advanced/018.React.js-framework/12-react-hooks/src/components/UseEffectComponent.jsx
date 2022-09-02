@@ -82,14 +82,14 @@ function UseEffectComponent() {
       </button>
       <h3>自定义Input Hooks</h3>
       <form onSubmit={handleSubmit}>
-        <input name="userName" type="text" {...userNameInput} />
+        <input name="userName" type="text" {...userNameInput} />丨
         <input
           name="password"
           type="password"
           autoComplete="on"
           {...passwordInput}
         />
-        <button>Submit</button>
+        丨<button>Submit</button>
       </form>
       <h3>自定义异步请求 Hooks</h3>
       {data

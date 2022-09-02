@@ -24,6 +24,7 @@ function UseStateComponent(params) {
       <h2>UseStateComponent</h2>
       <p>{count}</p>
       <button onClick={() => handelChange(count + 10)}>Increment 10</button>
+      丨
       <button onClick={() => handelChange(count - 10)}>Reducer 10</button>
     </>
   );

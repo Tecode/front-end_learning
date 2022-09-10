@@ -1,5 +1,5 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
+import ReactMemo from "./ReactMemo"
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<ReactMemo />, document.getElementById("root"))

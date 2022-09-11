@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import ReactMemo from "./ReactMemo"
+import ErrorBoundaries from "./ErrorBoundaries"
+// import ReactMemo from "./ReactMemo"
 
-ReactDOM.render(<ReactMemo />, document.getElementById("root"))
+ReactDOM.render(<ErrorBoundaries />, document.getElementById("root"))

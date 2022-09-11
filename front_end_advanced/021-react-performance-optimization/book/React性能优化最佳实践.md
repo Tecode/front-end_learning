@@ -659,8 +659,9 @@ export default class App extends Component {
    2. 1.[hash].chunk.js: 这是第三方库的代码, 包含你在 node_modules 中导入的模块
 
    3. runtime~main.[hash].js webpack运行时代码
-
-         <img src="./images/5-1-未加入lodash时的初始包大小.png" align="left" width="50%"/>
+<p align="left">
+         <img src="./images/5-1-未加入lodash时的初始包大小.png"  width="50%"/>
+</p>
 
          <img src="./images/5-2-加入lodash后的包大小.png" align="left" width="50%"/>
 
@@ -679,6 +680,3 @@ export default class App extends Component {
    
    export default App
    ```
-
-![联系方式](https://s.zceme.cn/fed/cover-h.jpg)
-

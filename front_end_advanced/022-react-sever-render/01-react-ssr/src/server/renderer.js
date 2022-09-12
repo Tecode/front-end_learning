@@ -12,7 +12,7 @@ export default (req, store) => {
       <StaticRouter location={req.path}>{renderRoutes(routes)}</StaticRouter>
     </Provider>
   );
-  const initalState = serialize(store.getState());
+  const initialState = serialize(store.getState());
   return `
   <html>
     <head>
@@ -20,7 +20,7 @@ export default (req, store) => {
     </head>
     <body>
       <div id="root">${content}</div>
-      <script>window.INITIAL_STATE = ${initalState} </script>
+      <script>window.INITIAL_STATE = ${initialState} </script>
       <script src="bundle.js"></script>
     </body>
   </html>

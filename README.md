@@ -31,7 +31,6 @@ packageDom();
 // 1014277249.2 ops/s ± 0.3%
 // 99.99 % slower
 ```
-
 ## Typescript自定义.d.ts类型（tsconfig.json types/**/*.d.ts）
 
 ```js

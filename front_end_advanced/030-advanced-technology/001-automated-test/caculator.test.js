@@ -8,6 +8,7 @@ const { sum, subtract } = require("./calculator")
 // const result = sum(1,2)
 // const expected = 3
 
+
 test('sum(1,2) 的结果应该是3', () => {
     expect(sum(1, 2)).toBe(3)
 })

@@ -14,7 +14,7 @@ module.exports = {
         filename: "remoteEntry.js",
         remotes: {
           auth: "auth@http://localhost:9002/remoteEntry.js",
-          product: "product@http://localhost:8080/remoteEntry.js",
+          product: "product@http://localhost:9001/remoteEntry.js",
         },
         shared: require("./package.json").dependencies,
       },

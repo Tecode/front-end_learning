@@ -2,7 +2,7 @@ const { ModuleFederationPlugin } = require("webpack").container;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  publicPath: "./",
+  publicPath: "http://localhost:9001/",
   chainWebpack: (config) => {
     config.optimization.delete("splitChunks");
   },

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
+    <router-link class="link" to="/bar">Container模块</router-link>
     <router-link class="link" to="/">Auth模块</router-link>
-    <router-link class="link" to="/bar">Product模块</router-link>
-    <router-link class="link" to="/product/home">Auth页面</router-link>
+    <router-link class="link" to="/product/home">Product页面</router-link>
     <router-view></router-view>
     <!-- <MainComponent />
     <HelloWorld2 /> -->
@@ -19,7 +19,7 @@ export default {
     // MainComponent: () => import("auth/MainComponent"),
     // HelloWorld2: () => import("product/HelloWorld"),
   },
-  mounted(){
+  mounted() {
     // setTimeout(() => this.$router.push("/bar"), 2000);
   },
 };

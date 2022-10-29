@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <p>This is a component from /other-app.</p>
+    <p>This is a component from auth-app.</p>
     <p>I am being imported.</p>
     <p>I also has my own behavior like fetching data</p>
     <p>

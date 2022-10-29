@@ -7,8 +7,12 @@ import { mount } from "product/ProductApp";
 
 export default {
   name: "ProductComponent",
+  beforeCreate() {
+    // import("product/ProductApp").then(({ mount }) => {
+    //   console.log(mount, "---");
+    // });
+  },
   mounted() {
-    console.log(this.$router);
     mount(this.$refs["product-app"]);
   },
   watch: {

@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LocalComponent } from './container/local/local.component';
+import { HomeComponent } from './containers/home/home.component';
+import { LocalComponent } from './containers/local/local.component';
 
 const routes: Routes = [
-  { path: 'local', component: LocalComponent }
+  { path: '', component: HomeComponent },
+  { path: 'local', component: LocalComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

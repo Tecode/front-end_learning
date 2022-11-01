@@ -1,0 +1,14 @@
+<h2 #nativeElement class="local-container" [attr.data-value]="name">Class Style</h2>
+<p [class.local-container]="true">[class.local-container]</p>
+<p [ngClass]="{'local-container': true}">[ngClass]</p>
+<p [ngClass]="{'local-container': true}" [ngStyle]="{color: 'red'}"> [ngClass] [ngStyle] </p>
+
+<h2 class="local-container" [attr.data-value]="name">Bind Event</h2>
+<button (click)="handleClick($event)">Button Click</button>
+<input type="text" (keyup)="handleKeyup($event)" />
+
+<h2 class="local-container" [attr.data-value]="name">Get Document Element</h2>
+<button #document (click)="handleClickGetElement(document)">Console Log Element</button>
+<ul>
+    <li #child *ngFor="let index  of [10, 12, 23, 56, 98]">{{index}}</li>
+</ul>

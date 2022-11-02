@@ -36,3 +36,23 @@
 <h2 class="local-container" [attr.data-value]="name">Fault-tolerant processing</h2>
 <h3>{{human.information?.name}}丨?.</h3>
 <h3 *ngIf="human.information">{{human.information.name}} 丨 ngIf</h3>
+
+<h2 class="local-container" [attr.data-value]="name">Directive</h2>
+<div *ngIf="listData.length > 0; then list else noData">listData</div>
+<ng-template #list>List Data</ng-template>
+<ng-template #noData>No Data</ng-template>
+<div [hidden]="listData.length < 0">listData</div>
+
+<h2 class="local-container" [attr.data-value]="name">ngFor trackBy</h2>
+<div *ngFor="
+ let item of listData;
+ let index = index;
+ let isOdd = odd;
+ let isFirst = first;
+ let isLast = last;
+ trackBy: trackValue;
+ ">
+    {{index}}-{{item}}-isOdd:{{isOdd}}isFirst:{{isFirst}}isLast:{{isLast}}
+</div>
+
+<h2 [appHover]="{backgroundColor: 'red'}" class="local-container" [attr.data-value]="name">Custom Directive</h2>

@@ -30,6 +30,7 @@ export class LocalComponent implements OnInit, AfterViewInit {
   name = 'localApplication';
   value = 'Data bidirectional';
   human: Human = { information: { name: 'haoxuan' } };
+  listData: string[] = ['haoxuan', 'jie', 'child'];
 
   handleClick(event: Event) {
     console.log(this, event);
@@ -49,6 +50,11 @@ export class LocalComponent implements OnInit, AfterViewInit {
 
   handleClickGetElement(button: HTMLButtonElement) {
     console.log(button);
+  }
+
+  trackValue(index: number, value: string) {
+    console.log(value, index, '---');
+    return index;
   }
 
   ngAfterViewInit(): void {

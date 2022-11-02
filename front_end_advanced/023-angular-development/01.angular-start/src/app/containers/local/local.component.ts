@@ -8,6 +8,13 @@ import {
   ViewChildren,
 } from '@angular/core';
 
+type Human = {
+  information?: {
+    name: string;
+    id?: number;
+  };
+};
+
 @Component({
   selector: 'app-local',
   templateUrl: './local.component.html',
@@ -21,9 +28,19 @@ export class LocalComponent implements OnInit, AfterViewInit {
   @ViewChildren('child') children: QueryList<HTMLElement> | undefined;
 
   name = 'localApplication';
+  value = 'Data bidirectional';
+  human: Human = { information: { name: 'haoxuan' } };
 
   handleClick(event: Event) {
     console.log(this, event);
+  }
+
+  handleSetValue() {
+    this.value = 'Value is changed';
+  }
+
+  handleGetValue() {
+    console.log('handleGetValue', this.value);
   }
 
   handleKeyup(event: Event) {

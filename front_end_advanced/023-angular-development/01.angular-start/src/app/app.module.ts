@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocalComponent } from './containers/local/local.component';
 import { HomeComponent } from './containers/home/home.component';
+import { FormsModule } from '@angular/forms';
+import { ProjectionComponent } from './components/content/projection/projection.component';
 
 @NgModule({
-  declarations: [AppComponent, LocalComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent, LocalComponent, HomeComponent, ProjectionComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

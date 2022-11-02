@@ -4,7 +4,7 @@
 <p [ngClass]="{'local-container': true}" [ngStyle]="{color: 'red'}"> [ngClass] [ngStyle] </p>
 
 <h2 class="local-container" [attr.data-value]="name">Bind Event</h2>
-<button (click)="handleClick($event)">Button Click</button>
+<button (click)="handleClick($event)">Button Click</button>丨
 <input type="text" (keyup)="handleKeyup($event)" />
 
 <h2 class="local-container" [attr.data-value]="name">Get Document Element</h2>
@@ -12,3 +12,27 @@
 <ul>
     <li #child *ngFor="let index  of [10, 12, 23, 56, 98]">{{index}}</li>
 </ul>
+
+<h2 class="local-container" [attr.data-value]="name">Data bidirectional</h2>
+<input [(ngModel)]='value' />丨
+<button (click)="handleSetValue()">Set value</button>丨
+<button (click)="handleGetValue()">Get value</button>丨
+<span>{{value}}</span>
+
+
+<h2 class="local-container" [attr.data-value]="name">Content projection</h2>
+<app-projection>
+    <h2>Content projection</h2>
+</app-projection>
+<app-projection class="value001">
+    <h3>Content value001</h3>
+</app-projection>
+<app-projection>
+    <ng-container class="value002">
+        <h4>Content value002</h4>
+    </ng-container>
+</app-projection>
+
+<h2 class="local-container" [attr.data-value]="name">Fault-tolerant processing</h2>
+<h3>{{human.information?.name}}丨?.</h3>
+<h3 *ngIf="human.information">{{human.information.name}} 丨 ngIf</h3>

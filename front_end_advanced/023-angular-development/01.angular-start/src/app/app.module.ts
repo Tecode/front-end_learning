@@ -8,6 +8,7 @@ import { HomeComponent } from './containers/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { ProjectionComponent } from './components/content/projection/projection.component';
 import { HoverDirective } from './directives/hover.directive';
+import { PipeComponent } from './containers/pipe/pipe.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HoverDirective } from './directives/hover.directive';
     HomeComponent,
     ProjectionComponent,
     HoverDirective,
+    PipeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

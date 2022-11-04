@@ -10,6 +10,8 @@ import { ProjectionComponent } from './components/content/projection/projection.
 import { HoverDirective } from './directives/hover.directive';
 import { PipeComponent } from './containers/pipe/pipe.component';
 import { ModifyTextPipe } from './pipes/modify-text.pipe';
+import { CommunicationComponent } from './containers/communication/communication.component';
+import { ChildContentComponent } from './components/child-content/child-content.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ModifyTextPipe } from './pipes/modify-text.pipe';
     HoverDirective,
     PipeComponent,
     ModifyTextPipe,
+    CommunicationComponent,
+    ChildContentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

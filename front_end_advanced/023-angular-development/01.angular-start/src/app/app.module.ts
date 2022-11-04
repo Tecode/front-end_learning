@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ProjectionComponent } from './components/content/projection/projection.component';
 import { HoverDirective } from './directives/hover.directive';
 import { PipeComponent } from './containers/pipe/pipe.component';
+import { ModifyTextPipe } from './pipes/modify-text.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PipeComponent } from './containers/pipe/pipe.component';
     ProjectionComponent,
     HoverDirective,
     PipeComponent,
+    ModifyTextPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

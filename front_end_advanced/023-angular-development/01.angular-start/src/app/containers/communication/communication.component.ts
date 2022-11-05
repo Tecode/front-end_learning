@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./communication.component.scss']
 })
 export class CommunicationComponent implements OnInit {
+  isFavorite: boolean = true
 
   constructor() { }
+
+  handleChange(value: {name: string}) {
+    console.log(value);
+  }
 
   ngOnInit(): void {
   }

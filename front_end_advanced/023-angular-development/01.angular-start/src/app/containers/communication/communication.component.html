@@ -1,2 +1,2 @@
 <h1>Father Component</h1>
-<app-child-content></app-child-content>
+<app-child-content [isFavorite]="isFavorite" (change)="handleChange($event)"></app-child-content>

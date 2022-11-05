@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-child-content',
@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./child-content.component.scss']
 })
 export class ChildContentComponent implements OnInit {
+  @Input('isFavorite') isFavorite : boolean = false
+  @Output() change = new EventEmitter()
 
   constructor() { }
+
+  handleClick() {
+    this.change.emit({name: 'haoxuan'})
+  }
 
   ngOnInit(): void {
   }

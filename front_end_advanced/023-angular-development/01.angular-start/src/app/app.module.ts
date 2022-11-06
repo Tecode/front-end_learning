@@ -12,7 +12,7 @@ import { PipeComponent } from './containers/pipe/pipe.component';
 import { ModifyTextPipe } from './pipes/modify-text.pipe';
 import { CommunicationComponent } from './containers/communication/communication.component';
 import { ChildContentComponent } from './components/child-content/child-content.component';
-import { DependencyInjectionComponent } from './containers/dependency-injection/dependency-injection.component';
+import { DependencyInjectionModule } from './containers/dependency-injection/dependency-injection.module';
 
 @NgModule({
   declarations: [
@@ -25,9 +25,8 @@ import { DependencyInjectionComponent } from './containers/dependency-injection/
     ModifyTextPipe,
     CommunicationComponent,
     ChildContentComponent,
-    DependencyInjectionComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, DependencyInjectionModule],
   providers: [],
   bootstrap: [AppComponent],
 })

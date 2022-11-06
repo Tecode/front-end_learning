@@ -1,12 +1,18 @@
 import { Component, OnInit, ReflectiveInjector } from '@angular/core';
+import { CommonService } from 'src/app/service/common.service';
 
 @Component({
   selector: 'app-dependency-injection',
   templateUrl: './dependency-injection.component.html',
   styleUrls: ['./dependency-injection.component.scss'],
+  // providers: [CommonService] // 组件级别
 })
 export class DependencyInjectionComponent implements OnInit {
-  constructor() {}
+  name: string = ''
+
+  constructor(private service: CommonService) {
+    this.name = this.service.name
+  }
 
   ngOnInit(): void {}
 }

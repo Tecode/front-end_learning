@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'router/:name',
     component: RouterComponent,
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./containers/lazy-load/lazy-load.module').then((m) => {
+        console.log(m);
+        return m.LazyLoadModule;
+      }),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

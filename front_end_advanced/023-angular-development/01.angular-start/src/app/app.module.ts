@@ -13,6 +13,8 @@ import { ModifyTextPipe } from './pipes/modify-text.pipe';
 import { CommunicationComponent } from './containers/communication/communication.component';
 import { ChildContentComponent } from './components/child-content/child-content.component';
 import { DependencyInjectionModule } from './containers/dependency-injection/dependency-injection.module';
+import { NotFoundComponent } from './containers/not-found/not-found.component';
+import { RouterComponent } from './containers/router/router.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { DependencyInjectionModule } from './containers/dependency-injection/dep
     ModifyTextPipe,
     CommunicationComponent,
     ChildContentComponent,
+    NotFoundComponent,
+    RouterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, DependencyInjectionModule],
   providers: [],

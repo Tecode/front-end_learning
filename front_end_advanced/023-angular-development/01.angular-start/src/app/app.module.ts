@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocalComponent } from './containers/local/local.component';
 import { HomeComponent } from './containers/home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectionComponent } from './components/content/projection/projection.component';
 import { HoverDirective } from './directives/hover.directive';
 import { PipeComponent } from './containers/pipe/pipe.component';
@@ -13,6 +13,7 @@ import { ModifyTextPipe } from './pipes/modify-text.pipe';
 import { CommunicationComponent } from './containers/communication/communication.component';
 import { ChildContentComponent } from './components/child-content/child-content.component';
 import { DependencyInjectionModule } from './containers/dependency-injection/dependency-injection.module';
+import { FormComponent } from './containers/form/form.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import { DependencyInjectionModule } from './containers/dependency-injection/dep
     ModifyTextPipe,
     CommunicationComponent,
     ChildContentComponent,
+    FormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, DependencyInjectionModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, DependencyInjectionModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

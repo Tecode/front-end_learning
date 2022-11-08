@@ -1,0 +1,60 @@
+<h2>Angular Form</h2>
+<form #angularForm="ngForm" (submit)="handleSubmit(angularForm)">
+  <input type="text" name="content" ngModel /> 丨
+  <button>Submit</button>
+</form>
+
+<h2>Angular Form Group</h2>
+<form #groupForm="ngForm" (submit)="handleSubmit(groupForm)">
+  <ng-container ngModelGroup="baseInfo">
+    <input type="text" name="name" ngModel />丨
+  </ng-container>
+  <ng-container ngModelGroup="article">
+    <input type="text" name="tittle" ngModel />丨
+  </ng-container>
+  <button>Submit</button>
+</form>
+
+<h2>Angular Form Group Valid</h2>
+<form #validForm="ngForm" (submit)="handleSubmit(validForm)">
+  <ng-container ngModelGroup="baseInfo">
+    <input type="text" name="name" ngModel required maxlength="6" minlength="2" #name="ngModel" />丨
+    <ng-container *ngIf="name.touched && name.invalid && name.errors">
+      <span *ngIf="name.errors['required']">Minlength is required!</span>丨
+      <span *ngIf="name.errors['minlength']">Minlength is Two length !</span>丨
+    </ng-container>
+  </ng-container>
+  <ng-container ngModelGroup="article">
+    <input type="text" name="title" ngModel required />丨
+  </ng-container>
+  <button [disabled]="validForm.invalid">Submit</button>
+</form>
+
+<h2>Model Drive Form</h2>
+<form [formGroup]="contactForm" (submit)="handleFormSubmit()">
+  <input type="text" formControlName="name" />丨
+  <input type="text" formControlName="hobby" />丨
+  <button>Submit</button>
+</form>
+
+<h2>Model Drive Group Form</h2>
+<form [formGroup]="contactGroupForm" (submit)="handleGroupSubmit()">
+  <ng-container formGroupName="userInfo">
+    <input type="text" formControlName="name" />丨
+    <input type="text" formControlName="hobby" />丨
+  </ng-container>
+
+  <button>Submit</button>
+</form>
+
+<h2>Angular Form Array</h2>
+<form [formGroup]="formArray">
+  <ng-container formArrayName="contacts">
+    <div *ngFor="let contact of contacts.controls; let index = index" [formGroupName]="index">
+      <input type="text" name="name" /> 丨
+      <input type="text" name="hobby" />丨
+      <input type="text" name="address" />丨
+      <button>Remove Item</button>
+    </div>
+  </ng-container>
+</form>

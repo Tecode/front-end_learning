@@ -37,7 +37,9 @@
     <p *ngIf="contactName.errors['required']">Name not found</p>
     <p *ngIf="contactName.errors['minlength']">Less than 4 char</p>
     <p *ngIf="contactName.errors['cannotContainSpace']">Name cannotContainSpace</p>
+    <p *ngIf="contactName.errors['shouldBeUnique']">Name shouldBeUnique</p>
   </div>
+  <div *ngIf="contactName.pending">Async Validator Name</div>
   <input type="text" formControlName="hobby" />丨
   <button [disabled]="contactForm.invalid">Submit</button>
 </form>

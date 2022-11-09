@@ -9,7 +9,11 @@ import { NameValidators } from './customValidators';
 })
 export class FormComponent implements OnInit {
   contactForm: FormGroup = new FormGroup({
-    name: new FormControl('Validators value', [Validators.required, Validators.minLength(4), NameValidators.cannotContainSpace]),
+    name: new FormControl('Validators value', [
+      Validators.required,
+      Validators.minLength(4),
+      NameValidators.cannotContainSpace
+    ], NameValidators.shouldBeUnique),
     hobby: new FormControl('', [Validators.required])
   });
 

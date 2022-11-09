@@ -8,4 +8,17 @@ export class NameValidators {
     // 验证通过
     return null
   }
+
+  // 异步验证
+  static shouldBeUnique(control: AbstractControl): Promise<ValidationErrors | null> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        if (control.value == "admin") {
+          resolve({ shouldBeUnique: true })
+        } else {
+          resolve(null)
+        }
+      }, 2000)
+    })
+  }
 }

@@ -34,8 +34,9 @@
 <form [formGroup]="contactForm" (submit)="handleFormSubmit()">
   <input type="text" formControlName="name" />丨
   <div *ngIf="contactName.touched && contactName.errors">
-    <p [hidden]="contactName.errors['required']">Name not found</p>
+    <p *ngIf="contactName.errors['required']">Name not found</p>
     <p *ngIf="contactName.errors['minlength']">Less than 4 char</p>
+    <p *ngIf="contactName.errors['cannotContainSpace']">Name cannotContainSpace</p>
   </div>
   <input type="text" formControlName="hobby" />丨
   <button [disabled]="contactForm.invalid">Submit</button>

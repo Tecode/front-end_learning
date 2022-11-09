@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { NameValidators } from './customValidators';
 
 @Component({
   selector: 'app-form',
@@ -8,7 +9,7 @@ import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/
 })
 export class FormComponent implements OnInit {
   contactForm: FormGroup = new FormGroup({
-    name: new FormControl('Validators value', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('Validators value', [Validators.required, Validators.minLength(4), NameValidators.cannotContainSpace]),
     hobby: new FormControl('', [Validators.required])
   });
 

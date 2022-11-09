@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NameValidators } from './customValidators';
 
 @Component({
@@ -28,7 +28,16 @@ export class FormComponent implements OnInit {
     contacts: new FormArray([]),
   });
 
-  constructor() { }
+  formBuilder: FormGroup
+
+  constructor(private builder: FormBuilder) {
+    this.formBuilder = this.builder.group({
+      fullName: this.builder.group({
+        firstName: ['', [Validators.required]],
+        lastName: this.builder.control('', [Validators.required, Validators.minLength(2)])
+      })
+    })
+  }
 
   get contacts() {
     return this.formArray.get(['contacts']) as FormArray;
@@ -68,6 +77,11 @@ export class FormComponent implements OnInit {
   handleGroupSubmit() {
     console.log('GroupSubmit', this.contactGroupForm.value);
     console.log('name', this.contactGroupForm.get(['userInfo', 'name'])?.value);
+  }
+
+  handleFormBuilderSubmit() {
+    console.log('formBuilder:', this.formBuilder.value);
+    console.log('formBuilder:', this.formBuilder.valid);
   }
 
   ngOnInit(): void {

@@ -5,7 +5,9 @@ import { DependencyInjectionComponent } from './containers/dependency-injection/
 import { FormComponent } from './containers/form/form.component';
 import { HomeComponent } from './containers/home/home.component';
 import { LocalComponent } from './containers/local/local.component';
+import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { PipeComponent } from './containers/pipe/pipe.component';
+import { RouterComponent } from './containers/router/router.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +16,20 @@ const routes: Routes = [
   { path: 'communication', component: CommunicationComponent },
   { path: 'dependency-injection', component: DependencyInjectionComponent },
   { path: 'form', component: FormComponent },
+  { path: 'router', component: RouterComponent },
+  {
+    path: 'router/:name',
+    component: RouterComponent,
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./containers/lazy-load/lazy-load.module').then((m) => {
+        console.log(m);
+        return m.LazyLoadModule;
+      }),
+  },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -8,8 +8,8 @@ import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
   contactForm: FormGroup = new FormGroup({
-    name: new FormControl('Default value'),
-    hobby: new FormControl(),
+    name: new FormControl('Validators value', [Validators.required, Validators.minLength(4)]),
+    hobby: new FormControl('', [Validators.required])
   });
 
   contactGroupForm: FormGroup = new FormGroup({
@@ -23,10 +23,14 @@ export class FormComponent implements OnInit {
     contacts: new FormArray([]),
   });
 
-  constructor() {}
+  constructor() { }
 
   get contacts() {
     return this.formArray.get(['contacts']) as FormArray;
+  }
+
+  get contactName() {
+    return this.contactForm.get('name')!
   }
 
   insertContact() {
@@ -38,13 +42,22 @@ export class FormComponent implements OnInit {
     this.contacts.push(groupData);
   }
 
+  handleRemove(index: number) {
+    this.contacts.removeAt(index)
+  }
+
+  handleArraySubmit() {
+    console.log(this.contacts);
+  }
+
   handleSubmit(form: NgForm) {
     console.log('value:', form.value);
     console.log('valid', form.valid);
   }
 
   handleFormSubmit() {
-    console.log('contactForm', this.contactForm.value);
+    console.log('Validators contactForm', this.contactForm.value);
+    console.log('Validators contactForm', this.contactForm.valid);
   }
 
   handleGroupSubmit() {

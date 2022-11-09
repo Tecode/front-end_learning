@@ -33,8 +33,12 @@
 <h2>Model Drive Form</h2>
 <form [formGroup]="contactForm" (submit)="handleFormSubmit()">
   <input type="text" formControlName="name" />丨
+  <div *ngIf="contactName.touched && contactName.errors">
+    <p [hidden]="contactName.errors['required']">Name not found</p>
+    <p *ngIf="contactName.errors['minlength']">Less than 4 char</p>
+  </div>
   <input type="text" formControlName="hobby" />丨
-  <button>Submit</button>
+  <button [disabled]="contactForm.invalid">Submit</button>
 </form>
 
 <h2>Model Drive Group Form</h2>
@@ -48,13 +52,15 @@
 </form>
 
 <h2>Angular Form Array</h2>
-<form [formGroup]="formArray">
+<form [formGroup]="formArray" (submit)="handleArraySubmit()">
   <ng-container formArrayName="contacts">
     <div *ngFor="let contact of contacts.controls; let index = index" [formGroupName]="index">
       <input type="text" name="name" /> 丨
       <input type="text" name="hobby" />丨
       <input type="text" name="address" />丨
-      <button>Remove Item</button>
+      <button (click)="handleRemove(index)">Remove Item</button>
     </div>
   </ng-container>
+  <button style="margin-top: 20px;" (click)="insertContact()">Insert Item</button>丨
+  <button style="margin-top: 20px;">Submit</button>
 </form>

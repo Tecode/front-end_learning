@@ -2,12 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NameValidators } from './customValidators';
 
+type data = {
+  name: string
+  value: boolean
+}
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  checkBoxList = []
+
   contactForm: FormGroup = new FormGroup({
     name: new FormControl('Validators value', [
       Validators.required,

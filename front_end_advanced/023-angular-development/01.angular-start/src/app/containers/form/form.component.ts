@@ -13,6 +13,7 @@ type data = {
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  // 多选表单
   checkBoxList = []
 
   contactForm: FormGroup = new FormGroup({

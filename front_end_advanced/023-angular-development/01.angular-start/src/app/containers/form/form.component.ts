@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NameValidators } from './customValidators';
 
-type data = {
-  name: string
-  value: boolean
+type CheckData = {
+  title: string
+  value: string
 }
 
 @Component({
@@ -13,7 +13,18 @@ type data = {
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  checkBoxList = []
+  // CheckList
+  checkList: Array<CheckData> = [
+    { title: 'Angular', value: 'Angular' },
+    { title: 'Swift', value: 'Swift' },
+    { title: 'Kotlin', value: 'Kotlin' },
+    { title: 'Go', value: 'Go' },
+    { title: 'JavaScript', value: 'JavaScript' },
+    { title: 'Java', value: 'Java' }
+  ]
+
+  // CheckBox From
+  checkBoxForm: FormGroup
 
   contactForm: FormGroup = new FormGroup({
     name: new FormControl('Validators value', [
@@ -44,6 +55,8 @@ export class FormComponent implements OnInit {
         lastName: this.builder.control('', [Validators.required, Validators.minLength(2)])
       })
     })
+
+    this.checkBoxForm = builder.group({ checkArray: builder.array([]) })
   }
 
   get contacts() {
@@ -89,6 +102,26 @@ export class FormComponent implements OnInit {
   handleFormBuilderSubmit() {
     console.log('formBuilder:', this.formBuilder.value);
     console.log('formBuilder:', this.formBuilder.valid);
+  }
+
+  // Checkbox
+  handleCheckBoxChange(event: Event) {
+    const target = event.target as HTMLInputElement
+    const checked = target.checked
+    const value = target.value
+    const checkArray = this.checkBoxForm.get("checkArray") as FormArray
+    if (checked) {
+      checkArray.push(this.builder.control(value))
+    } else {
+      const index = checkArray.controls.findIndex(
+        control => control.value === value
+      )
+      checkArray.removeAt(index)
+    }
+  }
+
+  handleCheckBoxSubmit() {
+    console.log('checkBoxForm', this.checkBoxForm.value);
   }
 
   ngOnInit(): void {

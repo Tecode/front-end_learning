@@ -78,3 +78,10 @@
 </form>
 
 <h2>Form CheckBox Radio</h2>
+<form [formGroup]="checkBoxForm" (submit)="handleCheckBoxSubmit()">
+  <label *ngFor="let data of checkList">
+    <input type="checkbox" [value]="data.value" (change)="handleCheckBoxChange($event)" />
+    {{data.title}}
+  </label>
+  <button>Submit</button>
+</form>

@@ -16,6 +16,8 @@ import { DependencyInjectionModule } from './containers/dependency-injection/dep
 import { FormComponent } from './containers/form/form.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { RouterComponent } from './containers/router/router.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientComponent } from './containers/http-client/http-client.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,17 @@ import { RouterComponent } from './containers/router/router.component';
     FormComponent,
     NotFoundComponent,
     RouterComponent,
+    HttpClientComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, DependencyInjectionModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    DependencyInjectionModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

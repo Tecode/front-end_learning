@@ -4,6 +4,7 @@ import { CommunicationComponent } from './containers/communication/communication
 import { DependencyInjectionComponent } from './containers/dependency-injection/dependency-injection.component';
 import { FormComponent } from './containers/form/form.component';
 import { HomeComponent } from './containers/home/home.component';
+import { HttpClientComponent } from './containers/http-client/http-client.component';
 import { LocalComponent } from './containers/local/local.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { PipeComponent } from './containers/pipe/pipe.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
         return m.LazyLoadModule;
       }),
   },
+  { path: 'http-client', component: HttpClientComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

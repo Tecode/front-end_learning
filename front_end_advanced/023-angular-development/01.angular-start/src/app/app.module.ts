@@ -17,7 +17,7 @@ import { FormComponent } from './containers/form/form.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { RouterComponent } from './containers/router/router.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientComponent } from './containers/http-client/http-client.component';
+import { HttpClientComponentModule } from './containers/http-client/http-client.module';
 
 @NgModule({
   declarations: [
@@ -32,8 +32,7 @@ import { HttpClientComponent } from './containers/http-client/http-client.compon
     ChildContentComponent,
     FormComponent,
     NotFoundComponent,
-    RouterComponent,
-    HttpClientComponent,
+    RouterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +41,7 @@ import { HttpClientComponent } from './containers/http-client/http-client.compon
     DependencyInjectionModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientComponentModule
   ],
   providers: [],
   bootstrap: [AppComponent],

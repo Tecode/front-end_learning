@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store';
-import { decrement, increment } from 'src/app/store/actions/counter.actions';
+import { decrement, increment, incrementAsync } from 'src/app/store/actions/counter.actions';
 import { CountState } from 'src/app/store/reducers/counter.reducer';
 import { selectorCount } from 'src/app/store/selectors/counter.selectors';
 
@@ -26,6 +26,10 @@ export class AnimationComponent implements OnInit {
 
   decrement() {
     this.store.dispatch(decrement({ count: 5 }))
+  }
+
+  incrementAsync() {
+    this.store.dispatch(incrementAsync({ count: 20 }))
   }
 
   ngOnInit(): void {

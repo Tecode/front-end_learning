@@ -18,5 +18,14 @@ export const reducers: ActionReducerMap<AppState> = {
   [fromCounter.counterFeatureKey]: fromCounter.reducer,
 };
 
+// metaReducer 是 Action -> Reducer 之间的钩子，允许开发者对 Action 进行预处理 (在普通 Reducer 函
+// 数调用之前调用)。
+function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
+  return function name(state, action) {
+    console.log('state', state);
+    console.log('action', action);
+    return reducer(state, action)
+  }
+}
 
-export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [logger] : [];

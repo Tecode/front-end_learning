@@ -31,3 +31,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ```ts
 yarn ng g m app-routing --flat=true
 ```
+
+## NGRX
+https://ngrx.io/guide/store/install
+
+```js
+yarn ng g store State --root --module app.module.ts --state-path store --state-interface AppState
+```
+### schematics
+
+https://ngrx.io/guide/schematics/store
+
+### selector
+https://ngrx.io/guide/store/walkthrough

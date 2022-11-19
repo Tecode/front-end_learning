@@ -1,0 +1,6 @@
+<h2>Ngrx&Animation works!</h2>
+<h3>Current Count: {{ (count$ | async)?.count }}</h3>
+<h3>Selector Current Count: {{ selectorCount$ | async }}</h3>
+
+<button (click)="increment()">increment</button>丨
+<button (click)="decrement()">decrement</button>

@@ -18,6 +18,11 @@ import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { RouterComponent } from './containers/router/router.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientComponentModule } from './containers/http-client/http-client.module';
+import { AnimationComponent } from './containers/animation/animation.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,8 @@ import { HttpClientComponentModule } from './containers/http-client/http-client.
     ChildContentComponent,
     FormComponent,
     NotFoundComponent,
-    RouterComponent
+    RouterComponent,
+    AnimationComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,9 @@ import { HttpClientComponentModule } from './containers/http-client/http-client.
     DependencyInjectionModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpClientComponentModule
+    HttpClientComponentModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AnimationComponent } from './containers/animation/animation.component';
 import { CommunicationComponent } from './containers/communication/communication.component';
 import { DependencyInjectionComponent } from './containers/dependency-injection/dependency-injection.component';
 import { FormComponent } from './containers/form/form.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
         return m.LazyLoadModule;
       }),
   },
-  { path: 'http-client', component: HttpClientComponent },
+  { path: 'http-client', component: HttpClientComponent }, 
+  { path: 'animation', component: AnimationComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
@@ -38,4 +40,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

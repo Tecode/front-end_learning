@@ -21,11 +21,11 @@ export class AnimationComponent implements OnInit {
   }
 
   increment() {
-    this.store.dispatch(increment())
+    this.store.dispatch(increment({ count: 5 }))
   }
 
   decrement() {
-    this.store.dispatch(decrement())
+    this.store.dispatch(decrement({ count: 5 }))
   }
 
   ngOnInit(): void {

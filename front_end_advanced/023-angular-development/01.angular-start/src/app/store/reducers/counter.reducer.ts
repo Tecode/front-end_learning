@@ -14,11 +14,11 @@ export const initialState: CountState = {
 };
 
 export const reducer = createReducer(initialState,
-  on(increment, state => {
+  on(increment, (state, action) => {
     console.log(state);
-    return { ...state, count: state.count + 1 }
+    return { ...state, count: state.count + action.count }
   }), 
-  on(decrement, state => {
+  on(decrement, (state, action) => {
     console.log(state);
-    return { ...state, count: state.count - 1 }
+    return { ...state, count: state.count - action.count }
   }));

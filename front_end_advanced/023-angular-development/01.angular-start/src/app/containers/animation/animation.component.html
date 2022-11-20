@@ -5,3 +5,13 @@
 <button (click)="increment()">increment</button>丨
 <button (click)="decrement()">decrement</button>丨
 <button (click)="incrementAsync()">incrementAsync</button>
+
+<h2>Ngrx Todo List</h2>
+<div class="wrap-container">
+  <!-- <pre>{{ listData$ | async | json}}</pre> -->
+  <input #input />
+  <div class="item" *ngFor="let data of listData$ | async">
+    <h3>{{data.value}}</h3>
+    <button (click)="reducerList(data.id)">Remove</button>
+  </div>
+</div>

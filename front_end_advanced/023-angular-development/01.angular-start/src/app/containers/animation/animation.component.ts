@@ -20,12 +20,16 @@ export class AnimationComponent implements OnInit, AfterViewInit {
 
   count$: Observable<CountState>
   selectorCount$: Observable<number>
+  // listData$: Observable<Data[]>
   listData$: Observable<Data[]>
+
 
   constructor(private store: Store<AppState>) {
     this.count$ = store.select('counter')
     this.selectorCount$ = store.select(selectorCount)
+    // this.listData$ = store.select(listData)
     this.listData$ = store.select(listData)
+
   }
 
   increment() {

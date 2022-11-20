@@ -12,7 +12,7 @@ import { PipeComponent } from './containers/pipe/pipe.component';
 import { RouterComponent } from './containers/router/router.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, data: {animation: 'one'} },
   { path: 'local', component: LocalComponent },
   { path: 'pipe', component: PipeComponent },
   { path: 'communication', component: CommunicationComponent },
@@ -32,7 +32,7 @@ const routes: Routes = [
       }),
   },
   { path: 'http-client', component: HttpClientComponent }, 
-  { path: 'animation', component: AnimationComponent },
+  { path: 'animation', component: AnimationComponent, data: {animation: 'two'} },
   { path: '**', component: NotFoundComponent },
 ];
 

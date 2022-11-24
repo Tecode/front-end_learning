@@ -13,9 +13,9 @@
 // console.log(process.platform)
 
 // 3 运行状态： 启动参数、PID、运行时间
-/* console.log(process.argv)
-console.log(process.argv0)  // execArgv
-console.log(process.pid) */  // ppid 
+console.log(process.argv)
+// console.log(process.argv0)  // execArgv
+// console.log(process.pid)  // ppid 
 
 // setTimeout(() => {
 //   console.log(process.uptime())

@@ -28,10 +28,10 @@ const path = require('path')
  * 01 返回 path路径中相应文件的后缀名
  * 02 如果 path 路径当中存在多个点，它匹配的是最后一个点，到结尾的内容
  */
-/* console.log(path.extname(__filename))
+console.log(path.extname(__filename))
 console.log(path.extname('/a/b'))
 console.log(path.extname('/a/b/index.html.js.css'))
-console.log(path.extname('/a/b/index.html.js.'))  */
+console.log(path.extname('/a/b/index.html.js.'))
 
 // 4 解析路径
 /**
@@ -40,40 +40,38 @@ console.log(path.extname('/a/b/index.html.js.'))  */
  */
 // const obj = path.parse('/a/b/c/index.html')
 // const obj = path.parse('/a/b/c/')
-/* const obj = path.parse('./a/b/c/')
-console.log(obj.name) */
+const obj = path.parse('./a/b/c/')
+console.log(obj.name)
 
 // 5 序列化路径
 /* const obj = path.parse('./a/b/c/')
 console.log(path.format(obj)) */
 
 // 6 判断当前路径是否为绝对
-/* console.log(path.isAbsolute('foo'))
-console.log(path.isAbsolute('/foo'))
-console.log(path.isAbsolute('///foo'))
-console.log(path.isAbsolute(''))
-console.log(path.isAbsolute('.'))
-console.log(path.isAbsolute('../bar')) */
+// console.log(path.isAbsolute('foo'))
+// console.log(path.isAbsolute('/foo'))
+// console.log(path.isAbsolute('///foo'))
+// console.log(path.isAbsolute(''))
+// console.log(path.isAbsolute('.'))
+// console.log(path.isAbsolute('../bar'))
 
 // 7 拼接路径
-/* console.log(path.join('a/b', 'c', 'index.html'))
-console.log(path.join('/a/b', 'c', 'index.html'))
-console.log(path.join('/a/b', 'c', '../', 'index.html'))
-console.log(path.join('/a/b', 'c', './', 'index.html'))
-console.log(path.join('/a/b', 'c', '', 'index.html'))
-console.log(path.join('')) */
+// console.log(path.join('a/b', 'c', 'index.html'))
+// console.log(path.join('/a/b', 'c', 'index.html'))
+// console.log(path.join('/a/b', 'c', '../', 'index.html'))
+// console.log(path.join('/a/b', 'c', './', 'index.html'))
+// console.log(path.join('/a/b', 'c', '', 'index.html'))
+// console.log(path.join(''))
 
 // 8 规范化路径
-/* console.log(path.normalize(''))
-console.log(path.normalize('a/b/c/d'))
-console.log(path.normalize('a///b/c../d'))
-console.log(path.normalize('a//\\/b/c\\/d'))
-console.log(path.normalize('a//\b/c\\/d')) */
+// console.log(path.normalize(''))
+// console.log(path.normalize('a/b/c/d'))
+// console.log(path.normalize('a///b/c../d'))
+// console.log(path.normalize('a//\\/b/c\\/d'))
+// console.log(path.normalize('a//\b/c\\/d'))
 
 // 9 绝对路径
 // console.log(path.resolve())
-/**
- * resolve([from], to)
- */
+// resolve([from], to)
 // console.log(path.resolve('/a', '../b'))
 console.log(path.resolve('index.html'))

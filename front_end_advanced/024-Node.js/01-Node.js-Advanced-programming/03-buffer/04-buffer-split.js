@@ -5,7 +5,7 @@ ArrayBuffer.prototype.split = function (sep) {
   let start = 0
   let offset = 0
 
-  while( offset = this.indexOf(sep, start) !== -1) {
+  while (offset = this.indexOf(sep, start) !== -1) {
     ret.push(this.slice(start, offset))
     start = offset + len
   }

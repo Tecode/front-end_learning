@@ -26,7 +26,7 @@ const fs = require('fs')
 }) */
 
 // 四、rmdir
-fs.rmdir('a', {recursive: true}, (err) => {
+fs.rmdir('a', { recursive: true }, (err) => {
   if (!err) {
     console.log('删除成功')
   } else {
@@ -34,7 +34,7 @@ fs.rmdir('a', {recursive: true}, (err) => {
   }
 })
 
-// 五、readdir 
+// 五、readdir
 /* fs.readdir('a/b', (err, files) => {
   console.log(files)
 }) */

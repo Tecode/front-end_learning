@@ -22,6 +22,8 @@ const b2 = Buffer.from(b1)
 console.log(b1)
 console.log(b2)
 
+
+// 对新的空间进行拷贝
 b1[0] = 1
 console.log(b1)
 console.log(b2)

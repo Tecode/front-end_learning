@@ -28,10 +28,10 @@ const path = require('path')
  * 01 返回 path路径中相应文件的后缀名
  * 02 如果 path 路径当中存在多个点，它匹配的是最后一个点，到结尾的内容
  */
-console.log(path.extname(__filename))
-console.log(path.extname('/a/b'))
-console.log(path.extname('/a/b/index.html.js.css'))
-console.log(path.extname('/a/b/index.html.js.'))
+// console.log(path.extname(__filename))
+// console.log(path.extname('/a/b'))
+// console.log(path.extname('/a/b/index.html.js.css'))
+// console.log(path.extname('/a/b/index.html.js.'))
 
 // 4 解析路径
 /**
@@ -40,12 +40,12 @@ console.log(path.extname('/a/b/index.html.js.'))
  */
 // const obj = path.parse('/a/b/c/index.html')
 // const obj = path.parse('/a/b/c/')
-const obj = path.parse('./a/b/c/')
-console.log(obj.name)
+// const obj = path.parse('./a/b/c/')
+// console.log(obj.name)
 
 // 5 序列化路径
-/* const obj = path.parse('./a/b/c/')
-console.log(path.format(obj)) */
+// const obj = path.parse('./a/b/c/')
+// console.log(path.format(obj))
 
 // 6 判断当前路径是否为绝对
 // console.log(path.isAbsolute('foo'))

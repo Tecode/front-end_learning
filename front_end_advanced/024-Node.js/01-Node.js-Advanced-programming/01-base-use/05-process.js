@@ -13,10 +13,24 @@
 // console.log(process.platform)
 
 // 3 运行状态： 启动参数、PID、运行时间
-console.log(process.argv)
+// console.log(process.argv)
 // console.log(process.argv0)  // execArgv
 // console.log(process.pid)  // ppid 
 
 // setTimeout(() => {
 //   console.log(process.uptime())
 // }, 3000)
+
+// 4 事件
+// process.on('exit', (code) => {
+//     // 只能写同步代码，不能写异步代码
+//     console.log(code, '进程结束了')
+// })
+
+// process.on('beforeExit', (code) => {
+//     console.log(code, '进程即将结束')
+// })
+
+// console.log('代码执行完成');
+
+process.stdin.pipe(process.stdout)

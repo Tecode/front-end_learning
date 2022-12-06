@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-node",
-            "request": "launch",
             "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\front_end_advanced\\013-hand-writing\\002-multiple-source-code\\dist\\build.js"
+            "program": "${workspaceFolder}/front_end_advanced/024-Node.js/01-Node.js-Advanced-programming/05-module/02-require-load.js",
+            "request": "launch",
+            // "skipFiles": [
+            //     "<node_internals>/**"
+            // ],
+            "type": "node"
         }
     ]
 }

@@ -1,21 +1,21 @@
 setTimeout(() => {
-  console.log('s1')
-})
+  console.log("s1");
+});
 
 Promise.resolve().then(() => {
-  console.log('p1')
-})
+  console.log("p1");
+});
 
-console.log('start')
+console.log("start");
 
 process.nextTick(() => {
-  console.log('tick')
-})
+  console.log("tick");
+});
 
 setImmediate(() => {
-  console.log('setimmediate')
-})
+  console.log("setimmediate");
+});
 
-console.log('end')
+console.log("end");
 
 // start,  end, tick, p1, s1,  st

@@ -1,41 +1,48 @@
 // setTimeout(() => {
-//   console.log('s1')
+//   console.log("s1");
 //   Promise.resolve().then(() => {
-//     console.log('p1')
-//   })
+//     console.log("p1");
+//   });
 //   Promise.resolve().then(() => {
-//     console.log('p2')
-//   })
-// })
+//     console.log("p2");
+//   });
+// });
 
 // setTimeout(() => {
-//   console.log('s2')
+//   console.log("s2");
 //   Promise.resolve().then(() => {
-//     console.log('p3')
-//   })
+//     console.log("p3");
+//   });
 //   Promise.resolve().then(() => {
-//     console.log('p4')
-//   })
-// })
+//     console.log("p4");
+//   });
+// });
+
+// s1
+// p1
+// p2
+// s2
+// p3
+// p4
 
 setTimeout(() => {
-  console.log('s1')
+  console.log("s1");
   Promise.resolve().then(() => {
-    console.log('p2')
-  })
+    console.log("p2");
+  });
   Promise.resolve().then(() => {
-    console.log('p3')
-  })
-})
+    console.log("p3");
+  });
+});
 
 Promise.resolve().then(() => {
-  console.log('p1')
+  console.log("p1");
   setTimeout(() => {
-    console.log('s2')
-  })
+    console.log("s2");
+  });
   setTimeout(() => {
-    console.log('s3')
-  })
-})
+    console.log("s3");
+  });
+});
 
 // p1 s1 p2 p3 s2 s3

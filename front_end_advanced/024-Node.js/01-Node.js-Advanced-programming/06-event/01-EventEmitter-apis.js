@@ -1,8 +1,8 @@
-const EventEmitter = require('events')
+const EventEmitter = require("events");
 
-const ev = new EventEmitter()
+const ev = new EventEmitter();
 
-// on 
+// on
 /* ev.on('事件1', () => {
   console.log('事件1执行了---2')
 })
@@ -15,7 +15,7 @@ ev.on('事件1', () => {
 ev.emit('事件1')
 ev.emit('事件1') */
 
-// once 
+// once
 /* ev.once('事件1', () => {
   console.log('事件1执行了')
 })
@@ -49,7 +49,7 @@ ev.on('事件2', function () {
 
 ev.emit('事件1') */
 
-const fs = require('fs')
+const fs = require("fs");
 
-const crt = fs.createReadStream()
-crt.on('data')
+const crt = fs.createReadStream();
+crt.on("data");

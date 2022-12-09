@@ -1,3 +1,4 @@
+// 微任务process.nextTick先于promise.then
 setTimeout(() => {
   console.log("s1");
 });
@@ -18,4 +19,9 @@ setImmediate(() => {
 
 console.log("end");
 
-// start,  end, tick, p1, s1,  st
+// start
+// end
+// tick
+// p1
+// s1
+// setimmediate

@@ -26,4 +26,12 @@ setTimeout(() => {
 
 console.log('end')
 
-// start, end， p2, s1, s2 , t1, t2, p1, p3
+// start
+// end
+// p2
+// s1
+// t1
+// p1
+// s2
+// t2
+// p3

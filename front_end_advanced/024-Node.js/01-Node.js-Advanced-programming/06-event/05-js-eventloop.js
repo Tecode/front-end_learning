@@ -25,6 +25,7 @@
 // p3
 // p4
 
+// 注意：在完成队列切换之前会清空微任务队列
 setTimeout(() => {
   console.log("s1");
   Promise.resolve().then(() => {

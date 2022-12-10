@@ -1,15 +1,15 @@
-const fs = require('fs')
+const fs = require("fs");
 
-const ws = fs.createWriteStream('test.txt', {
-  flags: 'w', 
+const ws = fs.createWriteStream("test.txt", {
+  flags: "w",
   mode: 438,
   fd: null,
   encoding: "utf-8",
   start: 0,
-  highWaterMark: 3
-})
+  highWaterMark: 3,
+});
 
-let buf = Buffer.from('abc')
+let buf = Buffer.from("abc");
 
 // 字符串 或者  buffer ===》 fs rs
 /* ws.write(buf, () => {
@@ -24,7 +24,7 @@ let buf = Buffer.from('abc')
   console.log('open', fd)
 }) */
 
-ws.write("2")
+ws.write("2");
 
 // close 是在数据写入操作全部完成之后再执行
 /* ws.on('close', () => {
@@ -32,11 +32,9 @@ ws.write("2")
 }) */
 
 // end 执行之后就意味着数据写入操作完成
-ws.end('拉勾教育')
-
+ws.end("拉勾教育");
 
 // error
-ws.on('error', (err) => {
-  console.log('出错了')
-})
-
+ws.on("error", (err) => {
+  console.log("出错了");
+});

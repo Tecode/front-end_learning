@@ -1,20 +1,19 @@
-let {Transform} = require('stream')
+let { Transform } = require("stream");
 
-
-class MyTransform extends Transform{
+class MyTransform extends Transform {
   constructor() {
-    super()
+    super();
   }
   _transform(chunk, en, cb) {
-    this.push(chunk.toString().toUpperCase())
-    cb(null)
+    this.push(chunk.toString().toUpperCase());
+    cb(null);
   }
 }
 
-let t = new MyTransform()
+let t = new MyTransform();
 
-t.write('a')
+t.write("a");
 
-t.on('data', (chunk) => {
-  console.log(chunk.toString())
-})
+t.on("data", (chunk) => {
+  console.log(chunk.toString());
+});

@@ -1,22 +1,22 @@
-const {Readable} = require('stream')
+const { Readable } = require("stream");
 
 // 模拟底层数据
-let source = ['lg', 'zce', 'syy']
+let source = ["lg", "zce", "syy"];
 
 // 自定义类继承 Readable
-class MyReadable extends Readable{
+class MyReadable extends Readable {
   constructor(source) {
-    super()
-    this.source = source
+    super();
+    this.source = source;
   }
   _read() {
-    let data = this.source.shift() || null 
-    this.push(data)
+    let data = this.source.shift() || null;
+    this.push(data);
   }
 }
 
 // 实例化
-let myReadable = new MyReadable(source)
+let myReadable = new MyReadable(source);
 
 /* myReadable.on('readable', () => {
   let data = null 
@@ -25,6 +25,6 @@ let myReadable = new MyReadable(source)
   }
 }) */
 
-myReadable.on('data', (chunk) => {
-  console.log(chunk.toString())
-})
+myReadable.on("data", (chunk) => {
+  console.log(chunk.toString());
+});

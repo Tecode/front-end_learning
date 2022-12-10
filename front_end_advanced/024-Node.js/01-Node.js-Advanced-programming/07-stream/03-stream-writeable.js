@@ -1,17 +1,17 @@
-const {Writable} = require('stream')
+const { Writable } = require("stream");
 
-class MyWriteable extends Writable{
+class MyWriteable extends Writable {
   constructor() {
-    super()
+    super();
   }
   _write(chunk, en, done) {
-    process.stdout.write(chunk.toString() + '<----')
-    process.nextTick(done)
+    process.stdout.write(chunk.toString() + "<----");
+    process.nextTick(done);
   }
 }
 
-let myWriteable = new MyWriteable()
+let myWriteable = new MyWriteable();
 
-myWriteable.write('拉勾教育', 'utf-8', () => {
-  console.log('end')
-})
+myWriteable.write("haoxuan", "utf-8", () => {
+  console.log("end");
+});

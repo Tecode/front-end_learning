@@ -9,7 +9,7 @@ let ws = fs.createWriteStream('test1.txt', {
 })
 
 let flag = true
-
+// pipe的内部实现
 /* rs.on('data', (chunk) => {
   flag = ws.write(chunk, () => {
     console.log('写完了')

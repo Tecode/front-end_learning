@@ -1,7 +1,7 @@
-let {Transform} = require('stream')
+let { Transform } = require('stream')
 
 
-class MyTransform extends Transform{
+class MyTransform extends Transform {
   constructor() {
     super()
   }

@@ -8,16 +8,16 @@
   05 增加 删除 修改 查询 清空 
 */
 
-class Node{
+class Node {
   constructor(element, next) {
     this.element = element
     this.next = next
   }
 }
 
-class LinkedList{
+class LinkedList {
   constructor(head, size) {
-    this.head = null 
+    this.head = null
     this.size = 0
   }
   _getNode(index) {
@@ -50,10 +50,10 @@ class LinkedList{
 
   remove(index) {
     if (index == 0) {
-      let head = this.head 
+      let head = this.head
       this.head = head.next
     } else {
-      let prevNode = this._getNode(index -1)
+      let prevNode = this._getNode(index - 1)
       prevNode.next = prevNode.next.next
     }
     this.size--
@@ -66,8 +66,8 @@ class LinkedList{
     return this._getNode(index)
   }
   clear() {
-    this.head = null 
-    this.size = 0 
+    this.head = null
+    this.size = 0
   }
 }
 

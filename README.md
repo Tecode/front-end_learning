@@ -9,8 +9,7 @@
 // 数据的存储和读取
 
 // https://jsbench.me/ 测试结果
-var i,
-  str = "";
+var i,str = "";
 function packageDom() {
   for (i = 0; i < 1000; i++) {
     str += i;

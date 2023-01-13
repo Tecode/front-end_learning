@@ -1,7 +1,7 @@
 const fs = require("fs");
 
-const ws = fs.createWriteStream("test.txt", {
-  flags: "w",
+const ws = fs.createWriteStream('test.txt', {
+  flags: 'w',
   mode: 438,
   fd: null,
   encoding: "utf-8",

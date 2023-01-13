@@ -1,13 +1,13 @@
-class Node{
+class Node {
   constructor(element, next) {
     this.element = element
     this.next = next
   }
 }
 
-class LinkedList{
+class LinkedList {
   constructor(head, size) {
-    this.head = null 
+    this.head = null
     this.size = 0
   }
   _getNode(index) {
@@ -39,15 +39,15 @@ class LinkedList{
   }
 
   remove(index) {
-    let rmNode = null 
+    let rmNode = null
     if (index == 0) {
-      rmNode = this.head 
+      rmNode = this.head
       if (!rmNode) {
         return undefined
       }
       this.head = rmNode.next
     } else {
-      let prevNode = this._getNode(index -1)
+      let prevNode = this._getNode(index - 1)
       rmNode = prevNode.next
       prevNode.next = rmNode.next
     }
@@ -62,12 +62,12 @@ class LinkedList{
     return this._getNode(index)
   }
   clear() {
-    this.head = null 
-    this.size = 0 
+    this.head = null
+    this.size = 0
   }
 }
 
-class Queue{
+class Queue {
   constructor() {
     this.linkedList = new LinkedList()
   }

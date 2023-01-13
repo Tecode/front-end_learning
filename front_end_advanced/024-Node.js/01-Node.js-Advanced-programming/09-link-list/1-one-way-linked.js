@@ -8,16 +8,16 @@
   05 增加 删除 修改 查询 清空 
 */
 
-class Node{
+class Node {
   constructor(element, next) {
     this.element = element
     this.next = next
   }
 }
 
-class LinkedList{
+class LinkedList {
   constructor(head, size) {
-    this.head = null 
+    this.head = null
     this.size = 0
   }
   add(index, element) {

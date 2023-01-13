@@ -11,13 +11,13 @@ let ws = fs.createWriteStream('test.txt', {
 })
 
 // ws.write('拉勾教育')
-let source = "拉勾教育".split('')
+let source = "haoxuan".split('')
 let num = 0
 let flag = true
 
-function executeWrite () {
+function executeWrite() {
   flag = true
-  while(num !== 4 && flag) {
+  while (num !== 4 && flag) {
     flag = ws.write(source[num])
     num++
   }

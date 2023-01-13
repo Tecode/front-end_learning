@@ -19,7 +19,7 @@ fs.readFile('./m1.js', () => {
   setTimeout(() => {
     console.log('timeout')
   }, 0)
-  
+
   setImmediate(() => {
     console.log('immdieate')
   })

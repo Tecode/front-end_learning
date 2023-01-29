@@ -1,6 +1,6 @@
 const fs = require('fs')
 const EventsEmitter = require('events')
-const Queue = require('./linkedlist')
+const Queue = require('./linkList')
 
 class MyWriteStream extends EventsEmitter{
   constructor(path, options={}) {
@@ -94,7 +94,7 @@ flag = ws.write('10', 'utf8', () => {
   console.log('ok1')
 })
 
-flag = ws.write('拉勾教育', 'utf8', () => {
+flag = ws.write('自定义文件读写流', 'utf8', () => {
   console.log('ok3')
 })
 

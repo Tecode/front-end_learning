@@ -11,4 +11,4 @@ const ws = fs.createWriteStream('./f10.txt')
 
 rs.pipe(ws)
 
-// data 
+// data

@@ -1,4 +1,4 @@
-class MyTransformCode{
+class MyTransformCode {
   constructor() {
     this.packageHeaderLen = 4
     this.serialNum = 0

@@ -1,7 +1,7 @@
 const net = require('net')
 
 const client = net.createConnection({
-  port: 1234, 
+  port: 1234,
   host: '127.0.0.1'
 })
 

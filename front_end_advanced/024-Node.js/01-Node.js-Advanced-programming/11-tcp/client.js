@@ -1,11 +1,11 @@
 const net = require('net')
 const MyTransform = require('./myTransform.js')
 
-let overageBuffer = null 
+let overageBuffer = null
 let ts = new MyTransform()
 
 const client = net.createConnection({
-  host: 'localhost', 
+  host: 'localhost',
   port: 1234
 })
 
@@ -20,7 +20,7 @@ client.on('data', (chunk) => {
     chunk = Buffer.concat([overageBuffer, chunk])
   }
   let packageLen = 0
-  while(packageLen = ts.getPackageLen(chunk)) {
+  while (packageLen = ts.getPackageLen(chunk)) {
     const packageCon = chunk.slice(0, packageLen)
     chunk = chunk.slice(packageLen)
 

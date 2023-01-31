@@ -18,7 +18,8 @@ server.on('connection', (socket) => {
       chunk = Buffer.concat([overageBuffer, chunk])
     }
     let packageLen = 0
-    while(packageLen = ts.getPackageLen(chunk)) {
+    while (packageLen = ts.getPackageLen(chunk)) {
+      console.log(packageLen);
       const packageCon = chunk.slice(0, packageLen)
       chunk = chunk.slice(packageLen)
 

@@ -8,6 +8,6 @@ const func = (data:string) => {
   console.log(data)
 }
 
-func()
+func('2')
 
 createApp(App).use(store).use(router).mount('#app')

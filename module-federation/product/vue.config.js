@@ -1,5 +1,8 @@
 const { ModuleFederationPlugin } = require("webpack").container;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const dependencies = require("./package.json").dependencies
+
+console.log(dependencies);
 
 module.exports = {
   publicPath: "http://localhost:9001/",
@@ -18,7 +21,12 @@ module.exports = {
           "./HelloWorld": "./src/components/HelloWorld",
           "./ProductApp": "./src/bootstrap",
         },
-        shared: require("./package.json").dependencies,
+        // shared: {
+        //   vue: '^2.6.14',
+        //   'vue-router': '^3.2.0'
+        // },
+        // shared: require("./package.json").dependencies,
+        shared: ['vue', 'vue-router']
       }),
     ],
   },

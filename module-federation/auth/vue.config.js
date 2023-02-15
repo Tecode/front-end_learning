@@ -19,7 +19,8 @@ module.exports = {
         remotes: {
           product: "product@http://localhost:9001/remoteEntry.js",
         },
-        shared: require("./package.json").dependencies,
+        // shared: require("./package.json").dependencies,
+        shared: ['vue', 'vue-router']
       }),
     ],
   },

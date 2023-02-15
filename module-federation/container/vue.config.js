@@ -16,7 +16,12 @@ module.exports = {
           auth: "auth@http://localhost:9002/remoteEntry.js",
           product: "product@http://localhost:9001/remoteEntry.js",
         },
-        shared: require("./package.json").dependencies,
+        // shared: require("./package.json").dependencies,
+        // shared: {
+        //   vue: '^2.6.14',
+        //   'vue-router': '^3.2.0'
+        // },
+        shared: ['vue', 'vue-router']
       },
     ]);
   },

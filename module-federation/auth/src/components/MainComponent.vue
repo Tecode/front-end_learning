@@ -8,7 +8,7 @@
         Click to fetch from FakeApi6
       </button>
     </p>
-    <pre><code>{{result}}</code></pre>
+    <pre><code>{{ result }}</code></pre>
   </section>
 </template>
 

@@ -1,20 +1,27 @@
 <template>
-  <section class="section">
-    <p>This is a component from auth-app.</p>
-    <p>I am being imported.</p>
-    <p>I also has my own behavior like fetching data</p>
-    <p>
-      <button @click="fetchData" type="button">
-        Click to fetch from FakeApi6
-      </button>
-    </p>
-    <pre><code>{{ result }}</code></pre>
-  </section>
+  <div>
+    <h3>来着Product下面的组件</h3>
+    <ProductHello />
+    <section class="section">
+      <p>This is a component from auth-app.</p>
+      <p>I am being imported.</p>
+      <p>I also has my own behavior like fetching data</p>
+      <p>
+        <button @click="fetchData" type="button">
+          Click to fetch from FakeApi6
+        </button>
+      </p>
+      <pre><code>{{ result }}</code></pre>
+    </section>
+  </div>
 </template>
 
 <script>
+import ProductHello from "product/HelloWorld";
+
 export default {
   name: "MainComponent",
+  components: { ProductHello },
   data() {
     return {
       result: null,

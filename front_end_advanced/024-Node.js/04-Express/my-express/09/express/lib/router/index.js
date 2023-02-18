@@ -34,6 +34,11 @@ Router.prototype.handle = function (req, res) {
       Object.assign(req.params, layer.params)
     }
     // 顶层只判定请求路径，内层判定请求方法
+    // 兼容
+    // app.route('/foo')
+    // .get()
+    // .post()
+    // .delete()
     if (match) {
       // 顶层这里调用的 handler 其实就是 dispatch 函数
       return layer.handler(req, res, next)

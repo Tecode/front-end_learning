@@ -95,3 +95,7 @@ app.use('/graphql', graphqlHTTP({
 app.listen(4000, () => {
   console.log('GraphQL Server is running at http://localhost:4000/')
 })
+
+// 默认查询query
+// query{} 查询
+// mutation{} 查询

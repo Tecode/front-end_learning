@@ -246,6 +246,18 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
+cnchar-types@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.npmmirror.com/cnchar-types/-/cnchar-types-3.2.2.tgz#ff4cc0161a05e0e62b1feff2e3e6bb142277dddc"
+  integrity sha512-25h6rT/c7r3CUC5VRp/roSGgAb2XRwUqHlJVZ1fRIXcOY+g+qoCnUsUIuLvsyV5hX7ReD+/9fraScL41Vowljg==
+
+cnchar@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.npmmirror.com/cnchar/-/cnchar-3.2.2.tgz#76168414056f798e17436ea8e56860a44684b440"
+  integrity sha512-Ywqw40EP9jkIvSgwdDKqnwWj32ArRR3o2nKZ0NfaMCe4f8BIF1eD1NwtoCLm82SxqJuCnlHPoDHfPtmERd0V6A==
+  dependencies:
+    cnchar-types "^3.2.2"
+
 colorette@^2.0.14:
   version "2.0.16"
   resolved "https://registry.npmmirror.com/colorette/-/colorette-2.0.16.tgz#713b9af84fdb000139f04546bd4a93f62a5085da"

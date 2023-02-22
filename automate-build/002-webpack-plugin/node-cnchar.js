@@ -1,5 +1,5 @@
 const fs = require("fs");
-const cnchar = require("cnchar");
+const { pinyin } = require("pinyin");
 
 const list = [
   // {
@@ -1558,7 +1558,8 @@ const list = [
 const cityList = {};
 
 list.forEach((data) => {
-  const spell = data.value.spell()[0];
+  const spell = pinyin(data.value, { style: pinyin.STYLE_NORMAL })[0][0][0].toUpperCase();
+  console.log(spell);
   if (cityList[spell]) {
     cityList[spell].push({ city: data.value, value: data.city, spell: spell });
   } else {

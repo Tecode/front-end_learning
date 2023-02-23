@@ -8,6 +8,6 @@ window.onload = function () {
     ipcRenderer.send('openWin2')
 
     // 打开窗口2之后，保存数据至....
-    localStorage.setItem('name', '拉勾教育')
+    localStorage.setItem('name', 'haoxuan')
   })
 }

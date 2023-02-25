@@ -1558,7 +1558,9 @@ const list = [
 const cityList = {};
 
 list.forEach((data) => {
-  const spell = pinyin(data.value, { style: pinyin.STYLE_NORMAL })[0][0][0].toUpperCase();
+  const spell = pinyin(data.value, {
+    style: pinyin.STYLE_NORMAL,
+  })[0][0][0].toUpperCase();
   console.log(spell);
   if (cityList[spell]) {
     cityList[spell].push({ city: data.value, value: data.city, spell: spell });
@@ -1567,7 +1569,19 @@ list.forEach((data) => {
   }
 });
 
-fs.writeFile('./city.json', JSON.stringify(cityList), 'utf-8', (err) => {
-  console.log('cityList 生成成功了')
-})
-console.log(cityList);
+const sellText = (text) => {
+  return pinyin(text, { style: pinyin.STYLE_NORMAL })[0][0];
+};
+
+Object.keys(cityList).forEach((key) => {
+  cityList[key].sort((value1, value2) => {
+    console.log(sellText(value1.city) > sellText(value2.city));
+    return sellText(value1.city) > sellText(value2.city);
+  });
+  console.log(cityList[key]);
+});
+
+// fs.writeFile('./city.json', JSON.stringify(cityList), 'utf-8', (err) => {
+//   console.log('cityList 生成成功了')
+// })
+// console.log(cityList);

@@ -119,4 +119,14 @@ packageDom();
 ✅ 处理路由重复跳转，导致导航控制错乱问题\
 ✅ 量化性能分析
 
+## 👇错误监控❎
+
+Sentry：`Sentry`是一款功能强大的开源错误监控平台，支持JavaScript、Python、Java、Ruby等多种语言，可以监控错误、性能问题、崩溃等。Sentry提供了丰富的功能，例如事件收集、告警、事件分析、集成等，并提供了开源的代码库和文档。
+
+Rollbar：`Rollbar`是一款支持多种语言的错误监控服务，可以监控JavaScript、Python、Ruby、PHP等语言的错误。Rollbar提供了错误跟踪、事件收集、报警、分析等功能，并支持与Slack、JIRA等工具集成。
+
+Bugsnag(Flutter Vue React Angular)：`Bugsnag`是一款面向Web和移动应用的错误监控服务，可以监控JavaScript、Android、iOS等多种平台的错误。Bugsnag提供了错误分析、事件收集、告警、集成等功能，并支持与Slack、PagerDuty等工具集成。
+
+TrackJS：`TrackJS`是一款专注于JavaScript错误监控的服务，可以监控JavaScript错误、资源加载错误等。TrackJS提供了事件收集、告警、分析等功能，并支持与Slack、JIRA等工具集成。
+
 ## 程序员节1024

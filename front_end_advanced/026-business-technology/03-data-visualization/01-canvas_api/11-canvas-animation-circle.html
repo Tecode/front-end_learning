@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Canvas Example</title>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="300" height="300"></canvas>
+
+  <script>
+    // 获取画布和绘图上下文
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    // 定义渐变颜色
+    var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    gradient.addColorStop(0, "red");
+    gradient.addColorStop(0.5, "yellow");
+    gradient.addColorStop(1, "green");
+
+    // 定义刻度相关参数
+    var tickSize = 10; // 刻度的大小
+    var tickCount = 24; // 刻度的数量
+    var tickSpacing = Math.PI * 2 / tickCount; // 刻度之间的间隔
+
+    // 定义动画相关参数
+    var tickAngle = 0; // 刻度的角度
+
+    // 绘制渐变圆形和刻度
+    function draw() {
+      // 清空画布
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 绘制刻度
+      for (var i = 0; i < tickCount; i++) {
+        ctx.beginPath();
+        var angle = i * tickSpacing + tickAngle;
+        ctx.moveTo(
+          canvas.width / 2 + (canvas.width / 3 - tickSize) * Math.cos(angle),
+          canvas.height / 2 + (canvas.width / 3 - tickSize) * Math.sin(angle)
+        );
+        ctx.lineTo(
+          canvas.width / 2 + (canvas.width / 3 - tickSize * 2) * Math.cos(angle),
+          canvas.height / 2 + (canvas.width / 3 - tickSize * 2) * Math.sin(angle)
+        );
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+      }
+
+      // 绘制渐变圆形
+      ctx.beginPath();
+      ctx.arc(
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.width / 3,
+        0,
+        Math.PI * 1.2,
+        false
+      );
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 20;
+      ctx.stroke();
+
+      // 更新刻度角度，使得刻度动起来
+      tickAngle += Math.PI / 180;
+
+      // 请求下一帧动画
+      requestAnimationFrame(draw);
+    }
+
+    // 开始动画
+    draw();
+  </script>
+</body>
+
+</html>

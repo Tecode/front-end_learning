@@ -72,15 +72,17 @@
     let ball = new Ball(canvas)
     ballArr.push(ball)
   }
-
   // 动画
-  setInterval(() => {
+  function runBall() {
     ctx.clearRect(0, 0, canvas.clientWidth * 1.5, canvas.clientHeight * 1.5)
     for (let i = 0; i < ballArr.length; i++) {
       let ball = ballArr[i]
       ball.init()
     }
-  }, 15)
+    requestAnimationFrame(runBall)
+  }
+  runBall()
+
 </script>
 
 </html>

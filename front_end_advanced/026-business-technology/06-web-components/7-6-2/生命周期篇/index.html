@@ -10,6 +10,7 @@
 
 <body>
   <fancy-components></fancy-components>
+  <iframe src="./iframe.html"></iframe>
 
   <script>
     customElements.define('fancy-components', class extends HTMLElement {
@@ -18,6 +19,10 @@
         // 相当于 Vue 的 setup
         console.log(this, '先运行构造函数')
         this.innerHTML = "<h2>Web component</h2>"
+        const iframeComponent = document.querySelector('iframe')
+        iframeComponent.onload = () => {
+          document.body.appendChild(document.adoptNode(iframeComponent.contentDocument.querySelector('iframe-components')))
+        }
       }
       connectedCallback() {
         // 相当于 Vue 的 mounted

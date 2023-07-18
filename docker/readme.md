@@ -10,3 +10,9 @@ docker compose up -d
 # 创建管理员
 docker compose run --rm web createuser
 ```
+
+## 停止所有运行的容器
+
+```sh
+docker stop $(docker ps -q)
+```

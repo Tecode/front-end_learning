@@ -7,12 +7,13 @@
 
 <script>
 import child from "./child.vue";
+
 export default {
+  name: "d-g",
   components: {
     child,
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

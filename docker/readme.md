@@ -1,9 +1,12 @@
 ## sentry私有化部署
 
 ```sh
+# Self-Hosted Sentry
+https://develop.sentry.dev/self-hosted/
+
 wget https://github.com/getsentry/onpremise/archive/refs/tags/23.7.0.tar.gz
 tar -zxvf 23.7.0.tar.gz
-cd onpremise-23.7.0
+cd self.xxx-23.7.0
 ./install.sh
 
 docker compose up -d
@@ -15,4 +18,5 @@ docker compose run --rm web createuser
 
 ```sh
 docker stop $(docker ps -q)
+docker exec -it abcdef123456 /bin/bash
 ```

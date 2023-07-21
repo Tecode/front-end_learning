@@ -9,6 +9,7 @@ tar -zxvf 23.7.0.tar.gz
 cd self.xxx-23.7.0
 ./install.sh
 
+# 启动服务访问 http://localhost:9000
 docker compose up -d
 # 创建管理员
 docker compose run --rm web createuser

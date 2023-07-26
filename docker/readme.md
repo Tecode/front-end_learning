@@ -15,4 +15,5 @@ docker compose run --rm web createuser
 
 ```sh
 docker stop $(docker ps -q)
+docker run -it ubuntu bash
 ```

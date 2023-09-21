@@ -12,8 +12,6 @@
 
   <script>
     let canvasElement = null
-    // createElement()
-    // window.addEventListener("resize", createElement);
     // 生成水印
     function drawWatermark(autoRender) {
       if (canvasElement) {
@@ -45,7 +43,8 @@
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       // 定义水印文本
-      const watermarkText = "同程酒店Ebooking";
+      const watermarkText = "同程酒店商家";
+      const nameText = "ming.xie";
 
       // 设置水印文本样式
       ctx.font = "14px Arial";
@@ -53,7 +52,7 @@
 
       // 计算水印文本的宽度和高度
       const textWidth = ctx.measureText(watermarkText).width + 50;
-      const nameWidth = ctx.measureText("ming.xie").width;
+      const nameWidth = ctx.measureText(nameText).width;
       const textHeight = 24; // 文本高度
 
       // 旋转水印的角度（以弧度为单位，这里是45度）
@@ -69,8 +68,8 @@
           ctx.save();
           ctx.translate(x, y);
           ctx.rotate(rotationAngle);
-          ctx.fillText("ming.xie", 0, 0);
-          ctx.fillText(watermarkText, -(textWidth - nameWidth - 60) / 2, 18);
+          ctx.fillText(nameText, 0, 0);
+          ctx.fillText(watermarkText, -(textWidth - nameWidth - 50) / 2, 18);
           ctx.restore();
         }
       }

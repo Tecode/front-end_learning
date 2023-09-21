@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // function-const.html:55 Uncaught ReferenceError: Cannot access 'value' before initialization
+  //   at function-const.html:55:19
+  //   at function-const.html:59:8
+  function run(value = "haoxuan") {
+    const data = { value: "haoxuan2" }
+    return function () {
+      console.log(value)
+      const { value } = data
+    }
+  }
+  run()()
+</script>
+
+</html>

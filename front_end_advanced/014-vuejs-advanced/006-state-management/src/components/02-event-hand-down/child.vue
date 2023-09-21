@@ -7,15 +7,16 @@
 
 <script>
 export default {
-  props: {
-    fontSize: Number,
-  },
-  methods: {
-    handler() {
-      this.$emit("enlargeText", 0.1);
-    },
-  },
-};
+	name: 'c-f',
+	props: {
+		fontSize: Number,
+	},
+	methods: {
+		handler() {
+			this.$emit('enlargeText', 0.1)
+		},
+	},
+}
 </script>
 
 <style>

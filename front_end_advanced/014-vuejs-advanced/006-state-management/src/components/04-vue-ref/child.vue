@@ -7,17 +7,18 @@
 
 <script>
 export default {
-  data() {
-    return {
-      value: "",
-    };
-  },
-  methods: {
-    focus() {
-      this.$refs.input.focus();
-    },
-  },
-};
+	name: 'child-component',
+	data() {
+		return {
+			value: '',
+		}
+	},
+	methods: {
+		focus() {
+			this.$refs.input.focus()
+		},
+	},
+}
 </script>
 
 <style>

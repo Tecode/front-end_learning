@@ -9,11 +9,12 @@
 </head>
 
 <body>
-  <fancy-components></fancy-components>
+  <fancy-components color="purple"></fancy-components>
   <iframe src="./iframe.html"></iframe>
 
   <script>
     customElements.define('fancy-components', class extends HTMLElement {
+      static observedAttributes = ['color']
       constructor() {
         super()
         // 相当于 Vue 的 setup
@@ -35,6 +36,15 @@
       adoptedCallback() {
         // 当使用 document.adoptNode 后会触发该生命周期
         console.log('当使用 document.adoptNode 后会运行收养回调')
+      }
+
+      attributeChangedCallback(name, odlValue, newValue) {
+        // attribute 特性
+        // property  属性
+        console.log(name, odlValue, newValue, '---attributeChangeCallBack');
+        if (name == 'color') {
+          this.style.color = newValue
+        }
       }
     })
   </script>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Canvas水印示例</title>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+  <!-- 网页内容 -->
+  <h1>欢迎来到我的网页</h1>
+  <p>这是一些示例文本。</p>
+
+  <script>
+    let canvasElement = null
+    // 生成水印
+    function drawWatermark(autoRender) {
+      if (canvasElement) {
+        if (canvasElement.removedNode) {
+          canvasElement.removedNode()
+        } else {
+          canvasElement.remove()
+        }
+      }
+      const canvas = document.createElement("canvas");
+      canvas.id = 'watermarkCanvas';
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvas.style.position = 'fixed';
+      canvas.style.top = 0;
+      canvas.style.left = 0;
+      canvas.style.zIndex = 9999;
+      canvas.style.pointerEvents = 'none';
+      document.body.appendChild(canvas);
+      canvasElement = canvas
+      // document.body.replaceChild(canvas, canvasElement);
+      // 获取Canvas元素
+      // const canvas = document.getElementById('watermarkCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // 设置Canvas的宽度和高度为整个窗口大小
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // 定义水印文本
+      const watermarkText = "同程酒店商家";
+      const nameText = "ming.xie";
+
+      // 设置水印文本样式
+      ctx.font = "14px Arial";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.06)"; // 设置水印颜色和透明度
+
+      // 计算水印文本的宽度和高度
+      const textWidth = ctx.measureText(watermarkText).width + 50;
+      const nameWidth = ctx.measureText(nameText).width;
+      const textHeight = 24; // 文本高度
+
+      // 旋转水印的角度（以弧度为单位，这里是45度）
+      const rotationAngle = Math.PI / 4;
+
+      // 间隔（水印之间的距离）
+      const spacingX = textWidth * Math.cos(rotationAngle);
+      const spacingY = textWidth * Math.sin(rotationAngle);
+
+      // 绘制水印文本
+      for (let x = -textWidth; x < canvas.width; x += spacingX) {
+        for (let y = -textHeight; y < canvas.height; y += spacingY) {
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.rotate(rotationAngle);
+          ctx.fillText(nameText, 0, 0);
+          ctx.fillText(watermarkText, -(textWidth - nameWidth - 50) / 2, 18);
+          ctx.restore();
+        }
+      }
+    }
+    drawWatermark();
+    // 屏幕尺寸变化重新绘制
+    window.addEventListener("resize", drawWatermark);
+    // 监听Dom元素的变化
+    const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    const observer = new MutationObserver(function (mutations) {
+      for (const mutation of mutations) {
+        // 监听属性变化
+        if (mutations.length === 1 && mutation.target === canvasElement) {
+          drawWatermark()
+          break
+        }
+        // 监听节点被删除
+        if (mutation.removedNodes.length > 0 && mutation.removedNodes[0] == canvasElement) {
+          drawWatermark()
+          break
+        }
+      }
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+    });
+  </script>
+</body>
+
+</html>

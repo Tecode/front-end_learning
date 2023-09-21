@@ -7,16 +7,19 @@
 </template>
 
 <script>
-import child from "./child.vue";
+import child from './child.vue'
+
 export default {
-  components: {
-    child,
-  },
-  mounted() {
-    this.$refs.c.focus();
-    this.$refs.c.value = "hello input";
-  },
-};
+	name: 'parent-component',
+	components: {
+		child,
+	},
+	mounted() {
+		console.log(window.token.data.name)
+		this.$refs.c.focus()
+		this.$refs.c.value = 'hello input'
+	},
+}
 </script>
 
 <style>

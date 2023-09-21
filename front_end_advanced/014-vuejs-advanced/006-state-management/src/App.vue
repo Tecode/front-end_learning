@@ -24,31 +24,34 @@
 </template>
 
 <script>
-import parent01 from "./components/01-props-hand-down/parent.vue";
-import parent02 from "./components/02-event-hand-down/parent.vue";
-import sibling01 from "./components/03-event-bus/001-sibling.vue";
-import sibling02 from "./components/03-event-bus/002-sibling.vue";
-import parent04 from "./components/04-vue-ref/parent.vue";
-import componentA from "./components/05-easy-state/componentA.vue";
-import componentB from "./components/05-easy-state/componentB.vue";
+import parent01 from './components/01-props-hand-down/parent.vue'
+import parent02 from './components/02-event-hand-down/parent.vue'
+import sibling01 from './components/03-event-bus/001-sibling.vue'
+import sibling02 from './components/03-event-bus/002-sibling.vue'
+import parent04 from './components/04-vue-ref/parent.vue'
+import componentA from './components/05-easy-state/componentA.vue'
+import componentB from './components/05-easy-state/componentB.vue'
+
 
 export default {
-  name: "App",
-  components: {
-    parent01,
-    parent02,
-    sibling01,
-    sibling02,
-    parent04,
-    componentA,
-    componentB,
+	name: 'app-component',
+	components: {
+		parent01,
+		parent02,
+		sibling01,
+		sibling02,
+		parent04,
+		componentA,
+		componentB,
+	},
+  mounted(){
   },
-  data() {
-    return {
-      num: 1,
-    };
-  },
-};
+	data() {
+		return {
+			num: 1,
+		}
+	},
+}
 </script>
 
 <style>

@@ -11,22 +11,23 @@
 </template>
 
 <script>
-import child from "./child.vue";
+import child from './child.vue'
 export default {
-  components: {
-    child,
-  },
-  data() {
-    return {
-      hFontSize: 1,
-    };
-  },
-  methods: {
-    enlargeText(size) {
-      this.hFontSize += size;
-    },
-  },
-};
+	name: 'parent-component',
+	components: {
+		child,
+	},
+	data() {
+		return {
+			hFontSize: 1,
+		}
+	},
+	methods: {
+		enlargeText(size) {
+			this.hFontSize += size
+		},
+	},
+}
 </script>
 
 <style>

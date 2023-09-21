@@ -7,20 +7,20 @@
 </template>
 
 <script>
-import store from "./store";
+import store from './store'
 export default {
-  methods: {
-    change() {
-      store.setUserNameAction("componentA");
-    },
-  },
-  data() {
-    return {
-      privateState: {},
-      sharedState: store.state,
-    };
-  },
-};
+	methods: {
+		change() {
+			store.setUserNameAction('componentA')
+		},
+	},
+	data() {
+		return {
+			privateState: {},
+			sharedState: store.state,
+		}
+	},
+}
 </script>
 
 <style>

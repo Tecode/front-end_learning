@@ -7,19 +7,19 @@
 </template>
 
 <script>
-import bus from "./event-bus";
+import bus from './event-bus'
 export default {
-  data() {
-    return {
-      msg: "",
-    };
-  },
-  created() {
-    bus.$on("numchange", (value) => {
-      this.msg = `您选择了${value}件商品`;
-    });
-  },
-};
+	data() {
+		return {
+			msg: '',
+		}
+	},
+	created() {
+		bus.$on('numchange', (value) => {
+			this.msg = `您选择了${value}件商品`
+		})
+	},
+}
 </script>
 
 <style>

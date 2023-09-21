@@ -19,5 +19,7 @@ docker compose run --rm web createuser
 
 ```sh
 docker stop $(docker ps -q)
+
+docker run -it ubuntu bash
 docker exec -it abcdef123456 /bin/bash
 ```

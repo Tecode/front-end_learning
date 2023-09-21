@@ -8,33 +8,33 @@
 </template>
 
 <script>
-import bus from "./event-bus";
+import bus from './event-bus'
 
 export default {
-  props: {
-    num: Number,
-  },
-  created() {
-    this.value = this.num;
-  },
-  data() {
-    return {
-      value: -1,
-    };
-  },
-  methods: {
-    sub() {
-      if (this.value > 1) {
-        this.value--;
-        bus.$emit("numchange", this.value);
-      }
-    },
-    add() {
-      this.value++;
-      bus.$emit("numchange", this.value);
-    },
-  },
-};
+	props: {
+		num: Number,
+	},
+	created() {
+		this.value = this.num
+	},
+	data() {
+		return {
+			value: -1,
+		}
+	},
+	methods: {
+		sub() {
+			if (this.value > 1) {
+				this.value--
+				bus.$emit('numchange', this.value)
+			}
+		},
+		add() {
+			this.value++
+			bus.$emit('numchange', this.value)
+		},
+	},
+}
 </script>
 
 <style>

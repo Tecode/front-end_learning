@@ -130,3 +130,15 @@ Bugsnag(Flutter Vue React Angular)：`Bugsnag`是一款面向Web和移动应用�
 TrackJS：`TrackJS`是一款专注于JavaScript错误监控的服务，可以监控JavaScript错误、资源加载错误等。TrackJS提供了事件收集、告警、分析等功能，并支持与Slack、JIRA等工具集成。
 
 ## 程序员节1024
+
+## 最佳实践
+
+### `COLOR THIEF`获取图片的主要颜色
+
+Example:https://lokeshdhakar.com/projects/color-thief/#examples\
+github:https://github.com/lokesh/color-thief
+
+```js
+$ npm i --save colorthief
+$ yarn install colorthief
+```

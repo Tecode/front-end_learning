@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>大文件断点续传</title>
+</head>
+
+<body>
+  <input type="file" id="fileInput" />
+  <button onclick="startUpload()">开始上传</button>
+  <button onclick="pauseUpload()">暂停上传</button>
+  <progress id="progressBar" max="100" value="0"></progress>
+  <div id="status"></div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const progressBar = document.getElementById('progressBar');
+    const status = document.getElementById('status');
+    let uploadOffset = 0; // 上传偏移量
+    let isPaused = false; // 是否暂停上传
+
+    function startUpload() {
+      const file = fileInput.files[0];
+      const chunkSize = 1024 * 1024; // 1MB 分片大小
+
+      function uploadChunk() {
+        if (isPaused) {
+          return;
+        }
+
+        const chunk = file.slice(uploadOffset, uploadOffset + chunkSize);
+        console.log(file, 'chunk');
+        const formData = new FormData();
+        formData.append('chunk', chunk);
+        formData.append('offset', uploadOffset);
+
+        // 发送分片到服务器
+        fetch('/upload', {
+          method: 'POST',
+          body: formData,
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('上传失败');
+            }
+            return response.json();
+          })
+          .then(data => {
+            uploadOffset += chunk.size;
+            const percent = (uploadOffset / file.size) * 100;
+            progressBar.value = percent;
+            status.innerText = `已上传 ${percent.toFixed(2)}%`;
+
+            if (uploadOffset < file.size) {
+              // 继续上传下一个分片
+              uploadChunk();
+            } else {
+              // 所有分片上传完成
+              status.innerText = '上传完成';
+            }
+          })
+          .catch(error => {
+            status.innerText = `上传失败: ${error.message}`;
+          });
+      }
+
+      uploadChunk(); // 开始上传第一个分片
+    }
+
+    function pauseUpload() {
+      isPaused = true;
+    }
+  </script>
+</body>
+
+</html>

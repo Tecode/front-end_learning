@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>马赛克效果</title>
+</head>
+
+<body>
+  <canvas id="mosaicCanvas"></canvas>
+  <img id="sourceImage" src="http://127.0.0.1:5500/module-federation/auth/src/assets/logo.png" style="display:none;">
+</body>
+<script>
+  // 获取 Canvas 元素和上下文
+  var canvas = document.getElementById('mosaicCanvas');
+  var context = canvas.getContext('2d', { willReadFrequently: true });
+
+  // 获取图像元素
+  var image = document.getElementById('sourceImage');
+
+  // 设置马赛克块的大小
+  var blockSize = 10; // 你可以根据需要调整块的大小
+
+  // 设置 Canvas 的大小与图像相同
+  canvas.width = image.width;
+  canvas.height = image.height;
+
+  // 在 Canvas 上绘制图像
+  context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+  // 在 Canvas 上绘制马赛克效果
+  function drawMosaic() {
+    for (var y = 0; y < canvas.height; y += blockSize) {
+      for (var x = 0; x < canvas.width; x += blockSize) {
+        var averageColor = calculateAverageColor(x, y);
+        context.fillStyle = 'rgb(' + averageColor.r + ',' + averageColor.g + ',' + averageColor.b + ')';
+        context.fillRect(x, y, blockSize, blockSize);
+      }
+    }
+  }
+
+  // 计算马赛克块的平均颜色
+  function calculateAverageColor(x, y) {
+    var totalR = 0, totalG = 0, totalB = 0;
+    var pixelCount = 0;
+
+    // 遍历每个块内的像素
+    for (var offsetY = 0; offsetY < blockSize && y + offsetY < canvas.height; offsetY++) {
+      for (var offsetX = 0; offsetX < blockSize && x + offsetX < canvas.width; offsetX++) {
+        var pixelData = context.getImageData(x + offsetX, y + offsetY, 1, 1);
+        totalR += pixelData.data[0];
+        totalG += pixelData.data[1];
+        totalB += pixelData.data[2];
+        pixelCount++;
+      }
+    }
+
+    var averageR = Math.round(totalR / pixelCount);
+    var averageG = Math.round(totalG / pixelCount);
+    var averageB = Math.round(totalB / pixelCount);
+
+    return {
+      r: averageR,
+      g: averageG,
+      b: averageB
+    };
+  }
+
+  // 调用绘制马赛克函数
+  drawMosaic();
+
+</script>
+
+</html>

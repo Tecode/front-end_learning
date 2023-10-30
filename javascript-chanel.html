@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javascript Chanel</title>
+</head>
+
+<body>
+  <button id="btn">点击按钮</button>
+  <img src="" id="image" style="width: 100%;" />
+</body>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('btn')
+    btn.addEventListener('click', function () {
+      // 调用nativeMethod方法告诉flutter端需要调用拍照
+      if (window.nativeMethod) {
+        window.nativeMethod.postMessage('TakePhoto')
+      } else {
+        console.log('nativeMethod is not defined')
+      }
+    })
+    // 拍照成功以后会调用这个方法，返回base64数据
+    window.nativeResult = (type, base64) => {
+      if (type === 'TakePhoto') {
+        const strLength = base64.length;
+        // 图片尺寸最大宽1080 最大高度1080图片质量90
+        alert(parseInt((strLength * 3 / 4) / 1024) + "kb")
+        const image = document.getElementById('image')
+        image.src = base64
+      }
+    }
+  })
+</script>
+
+</html>

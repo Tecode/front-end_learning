@@ -14,6 +14,7 @@
     let canvasElement = null
     // 生成水印
     function drawWatermark(autoRender) {
+      let loop = 0
       if (canvasElement) {
         if (canvasElement.removedNode) {
           canvasElement.removedNode()
@@ -36,40 +37,47 @@
       // 获取Canvas元素
       // const canvas = document.getElementById('watermarkCanvas');
       const ctx = canvas.getContext('2d');
+      // 绘制清晰的文本
+      const scale = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * scale;
+      canvas.height = window.innerHeight * scale;
+      canvas.style.width = window.innerWidth + 'px'
+      canvas.style.height = window.innerHeight + 'px'
+      ctx.scale(scale, scale);
 
       // 设置Canvas的宽度和高度为整个窗口大小
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // canvas.width = window.innerWidth;
+      // canvas.height = window.innerHeight;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       // 定义水印文本
-      const watermarkText = "同程酒店商家";
+      const watermarkText = "haxuan(Tecode)@同程酒店商家";
       const nameText = "ming.xie";
 
       // 设置水印文本样式
       ctx.font = "14px Arial";
-      ctx.fillStyle = "rgba(0, 0, 0, 0.06)"; // 设置水印颜色和透明度
+      ctx.fillStyle = "rgba(0, 0, 0, 0.9)"; // 设置水印颜色和透明度
 
       // 计算水印文本的宽度和高度
-      const textWidth = ctx.measureText(watermarkText).width + 50;
-      const nameWidth = ctx.measureText(nameText).width;
-      const textHeight = 24; // 文本高度
+      const textWidth = Math.max(ctx.measureText(watermarkText).width, 200);
+      // const nameWidth = ctx.measureText(nameText).width;
+      const textHeight = 14; // 文本高度
 
       // 旋转水印的角度（以弧度为单位，这里是45度）
-      const rotationAngle = Math.PI / 4;
+      const rotationAngle = Math.PI / 4 - 0.4;
 
       // 间隔（水印之间的距离）
       const spacingX = textWidth * Math.cos(rotationAngle);
       const spacingY = textWidth * Math.sin(rotationAngle);
+      // console.log(spacingX, spacingY);
 
       // 绘制水印文本
-      for (let x = -textWidth; x < canvas.width; x += spacingX) {
-        for (let y = -textHeight; y < canvas.height; y += spacingY) {
+      for (let x = -textWidth; x < canvas.width; x += spacingX + 40) {
+        for (let y = -textHeight; y < canvas.height; y += spacingY + 80) {
           ctx.save();
           ctx.translate(x, y);
-          ctx.rotate(rotationAngle);
-          ctx.fillText(nameText, 0, 0);
-          ctx.fillText(watermarkText, -(textWidth - nameWidth - 50) / 2, 18);
+          ctx.rotate(-rotationAngle);
+          ctx.fillText(watermarkText, 40, textWidth / 2);
           ctx.restore();
         }
       }

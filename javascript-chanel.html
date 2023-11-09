@@ -10,6 +10,8 @@
 <body>
   <button id="btn">点击按钮</button>
   <img src="" id="image" style="width: 100%;" />
+  <img src="http://pavo.elongstatic.com/i/ori/1on5oZtIW7m.png" data-v-cca5d4e8="">
+  <h2 id="info"></h2>
 </body>
 <script>
   window.addEventListener('DOMContentLoaded', function () {
@@ -17,19 +19,19 @@
     btn.addEventListener('click', function () {
       // 调用nativeMethod方法告诉flutter端需要调用拍照
       if (window.nativeMethod) {
-        window.nativeMethod.postMessage('TakePhoto')
+        window.nativeMethod.postMessage('Gallery')
       } else {
         console.log('nativeMethod is not defined')
       }
     })
     // 拍照成功以后会调用这个方法，返回base64数据
     window.nativeResult = (type, base64) => {
-      if (type === 'TakePhoto') {
+      if (type === 'Gallery') {
         const strLength = base64.length;
         // 图片尺寸最大宽1080 最大高度1080图片质量90
-        alert(parseInt((strLength * 3 / 4) / 1024) + "kb")
+        document.getElementById('info').innerHTML = parseInt((strLength * 3 / 4) / 1024) + "kb"
         const image = document.getElementById('image')
-        image.src = base64
+        image.src = "http://pavo.elongstatic.com/i/ori/1on5oZtIW7m.png"
       }
     }
   })

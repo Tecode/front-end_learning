@@ -142,3 +142,8 @@ github:https://github.com/lokesh/color-thief
 $ npm i --save colorthief
 $ yarn install colorthief
 ```
+
+## http_proxy
+```
+export http_proxy=socks5://127.0.0.1:7890 https_proxy=socks5://127.0.0.1:7890
+```

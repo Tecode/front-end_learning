@@ -129,4 +129,29 @@ Bugsnag(Flutter Vue React Angular)：`Bugsnag`是一款面向Web和移动应用�
 
 TrackJS：`TrackJS`是一款专注于JavaScript错误监控的服务，可以监控JavaScript错误、资源加载错误等。TrackJS提供了事件收集、告警、分析等功能，并支持与Slack、JIRA等工具集成。
 
-## 程序员节1024
+## Sentry服务端安装
+
+环境配置要求
+---------------------------------------------
+Docker 19.03.6+
+Compose 1.28.0+
+4 CPU Cores
+8 GB RAM
+20 GB Free Disk Space
+----------------------------------------------
+
+```sh
+wget https://github.com/getsentry/onpremise/archive/refs/tags/23.7.0.tar.gz
+tar -zxvf 23.7.0.tar.gz
+cd self.xxx-23.7.0
+./install.sh
+```
+
+# 启动服务访问 http://localhost:9000
+```sh
+docker compose up -d
+```
+# 创建超级管理员
+```sh
+docker compose run --rm web createuser
+```
